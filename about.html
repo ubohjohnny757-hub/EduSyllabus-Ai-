@@ -1,0 +1,328 @@
+<!<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us - EduSyllabus AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f5ff;
+            color: #222;
+            line-height: 1.7;
+        }
+
+        header {
+            background: #073b70;
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        header p {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        nav {
+            background: #0756a3;
+            padding: 12px 5px;
+            text-align: center;
+        }
+
+        nav a {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 5px 9px;
+        }
+
+        nav a:hover {
+            color: #ffe082;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0756a3, #00a6a6);
+            color: white;
+            text-align: center;
+            padding: 45px 20px;
+        }
+
+        .hero h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 950px;
+            margin: 25px auto;
+        }
+
+        .section {
+            background: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .section h2 {
+            color: #0756a3;
+            margin-bottom: 12px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .feature {
+            background: #edf5ff;
+            border-left: 4px solid #087fca;
+            padding: 16px;
+            border-radius: 8px;
+        }
+
+        .feature h3 {
+            color: #073b70;
+            margin-bottom: 8px;
+        }
+
+        .levels {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .levels span {
+            background: #0756a3;
+            color: white;
+            padding: 7px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .home-button {
+            display: inline-block;
+            background: #087fca;
+            color: white;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 7px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .home-button:hover {
+            background: #073b70;
+        }
+
+        footer {
+            background: #073b70;
+            color: white;
+            text-align: center;
+            padding: 20px 12px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 25px;
+            }
+
+            .section {
+                padding: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>EduSyllabus AI</h1>
+        <p>Learn Better. Study Smarter. Achieve More.</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="quizzes.html">Quiz Centre</a>
+    </nav>
+
+    <section class="hero">
+        <h2>About EduSyllabus AI</h2>
+        <p>
+            Your learning companion for school curricula,
+            educational resources, practice quizzes and
+            AI-assisted learning.
+        </p>
+    </section>
+
+    <main class="container">
+
+        <section class="section">
+            <h2>Who We Are</h2>
+
+            <p>
+                EduSyllabus AI is an educational website designed
+                to help secondary school students and teachers
+                access learning resources in one place.
+
+                Our goal is to make studying, teaching and revision
+                easier, more organised and more accessible.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Our Mission</h2>
+
+            <p>
+                Our mission is to support students in understanding
+                their subjects, help teachers organise learning
+                materials and encourage students to practise
+                regularly in preparation for examinations.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>Who Can Use EduSyllabus AI?</h2>
+
+            <p>
+                EduSyllabus AI is designed for junior and senior
+                secondary school students and teachers.
+            </p>
+
+            <div class="levels">
+                <span>JSS1</span>
+                <span>JSS2</span>
+                <span>JSS3</span>
+                <span>SS1</span>
+                <span>SS2</span>
+                <span>SS3</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>What We Offer</h2>
+
+            <div class="features">
+
+                <div class="feature">
+                    <h3>School Curricula</h3>
+                    <p>
+                        Organised subject topics for different
+                        secondary school levels.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>Quiz Centre</h3>
+                    <p>
+                        Practise multiple-choice questions,
+                        test your understanding and check your
+                        results.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>AI Teacher</h3>
+                    <p>
+                        An AI learning assistant designed to
+                        explain topics and answer educational
+                        questions when connected to its AI service.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>Teacher Resources</h3>
+                    <p>
+                        Educational materials to support lesson
+                        preparation, teaching and revision.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>Different Subject Areas</h3>
+                    <p>
+                        Learning resources across science,
+                        arts, commercial subjects and other
+                        school subjects.
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3>Better Learning</h3>
+                    <p>
+                        Resources designed to encourage regular
+                        practice, improve understanding and
+                        build learning confidence.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Our Vision</h2>
+
+            <p>
+                Our vision is to develop EduSyllabus AI into
+                a useful digital learning platform where students
+                can study school topics, practise questions and
+                receive educational support.
+            </p>
+        </section>
+
+        <section class="section">
+            <h2>A Message to Students</h2>
+
+            <p>
+                Every great achievement begins with learning.
+                Study consistently, ask questions when you do
+                not understand, practise what you learn and
+                keep improving every day.
+            </p>
+
+            <a href="index.html" class="home-button">
+                Back to Home
+            </a>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>
+            &copy; <span id="year"></span> EduSyllabus AI
+        </p>
+        <p>Supporting learning, one topic at a time.</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+    

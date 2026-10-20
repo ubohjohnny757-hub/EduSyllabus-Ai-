@@ -1,0 +1,319 @@
+<!DOCTY
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Economics - EduSyllabus</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f5f9;color:#1e293b}
+header{background:#166534;color:white;text-align:center;padding:22px 12px}
+main{width:92%;max-width:800px;margin:20px auto}
+.card{background:white;padding:18px;border-radius:10px;margin-bottom:18px;box-shadow:0 2px 6px #0000000d}
+h2{color:#166534}
+.classes{display:flex;gap:8px;margin-bottom:18px}
+.classes button{flex:1;padding:13px 5px;border:0;border-radius:7px;background:#dcfce7;color:#166534;font-weight:bold;font-size:16px;cursor:pointer}
+.classes button.active{background:#166534;color:white}
+.term-button{width:100%;padding:15px;margin:7px 0;border:0;border-radius:8px;background:#dcfce7;color:#166534;text-align:left;font-size:16px;font-weight:bold;cursor:pointer}
+.term-button span{float:right}
+.term-content{padding:12px;border:1px solid #bbf7d0;border-radius:8px;margin-bottom:12px}
+.lesson-button{width:100%;padding:12px;margin:5px 0;text-align:left;border:1px solid #cbd5e1;background:white;border-radius:6px;color:#1e293b;cursor:pointer}
+.lesson-button:active{background:#dcfce7}
+.lesson{padding:12px;background:#f0fdf4;border-radius:6px;margin:5px 0 12px;line-height:1.7}
+.lesson[hidden],.term-content[hidden]{display:none!important}
+.back{display:inline-block;background:#166534;color:white;padding:12px 16px;text-decoration:none;border-radius:7px}
+footer{text-align:center;background:#166534;color:white;padding:15px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>EduSyllabus</h1>
+<p>Economics</p>
+<p>SS1 - SS3 Curriculum and Lessons</p>
+</header>
+
+<main>
+<section class="card">
+<h2>Economics Curriculum</h2>
+<p>Select your class, open a term, and tap a lesson to study it.</p>
+</section>
+
+<div class="classes">
+<button type="button" class="active" onclick="showClass('SS1',this)">SS1</button>
+<button type="button" onclick="showClass('SS2',this)">SS2</button>
+<button type="button" onclick="showClass('SS3',this)">SS3</button>
+</div>
+
+<section class="card" id="curriculum"></section>
+
+<a class="back" href="index.html">← Back to Home</a>
+</main>
+
+<footer>
+<p>EduSyllabus © 2026</p>
+<p>Learn • Practise • Succeed</p>
+</footer>
+
+<script>
+const courses = {
+SS1: {
+"First Term": [
+["Meaning and Scope of Economics",
+"Economics studies how people and societies use scarce resources to satisfy competing wants.",
+"Example: A student decides how to divide limited pocket money between transport and food."],
+["Basic Economic Concepts",
+"Basic concepts include wants, scarcity, choice, scale of preference and opportunity cost.",
+"Example: Choosing to buy a textbook instead of a snack means giving up the snack."],
+["Scale of Preference",
+"A scale of preference is a list of wants arranged in order of importance.",
+"Example: A student ranks school fees above buying a new game."],
+["Opportunity Cost",
+"Opportunity cost is the value of the next best alternative forgone when a choice is made.",
+"Example: If you spend your money on a book instead of a bag, the bag may be your opportunity cost."],
+["Production",
+"Production is the creation of goods and services or the addition of value to them.",
+"Example: A baker turns flour into bread."],
+["Factors of Production",
+"The four traditional factors are land, labour, capital and entrepreneurship.",
+"Example: Land supplies the farm space, labour provides the work, capital provides tools, and an entrepreneur organises the farm."],
+["Division of Labour",
+"Division of labour means dividing production into specialised tasks performed by different workers.",
+"Example: In a bakery, different workers may mix dough, bake bread and package products."]
+],
+"Second Term": [
+["Demand",
+"Demand is the quantity of a good or service consumers are willing and able to buy at different prices during a period.",
+"Example: A lower price may encourage consumers to buy more, other things being equal."],
+["Supply",
+"Supply is the quantity producers are willing and able to offer for sale at different prices during a period.",
+"Example: A higher market price may encourage producers to supply more."],
+["Demand and Supply Curves",
+"Demand and supply curves show the relationship between price and quantity demanded or supplied.",
+"Example: A graph can show how a change in price affects the quantity of tomatoes bought."],
+["Market Equilibrium",
+"Market equilibrium occurs where quantity demanded equals quantity supplied.",
+"Example: At the equilibrium price, the amount buyers want matches the amount sellers offer."],
+["Elasticity of Demand",
+"Price elasticity of demand measures how responsive quantity demanded is to a change in price.",
+"Example: Customers may respond strongly to a price increase for a product with many substitutes."],
+["Types of Markets",
+"Markets can be classified according to the number of buyers and sellers and the level of competition.",
+"Example: Perfect competition and monopoly are different market structures."]
+],
+"Third Term": [
+["Money",
+"Money is anything generally accepted as payment for goods and services and settlement of debts.",
+"Example: People use naira notes and electronic payments to buy goods in Nigeria."],
+["Functions of Money",
+"Money serves as a medium of exchange, unit of account, store of value and standard of deferred payment.",
+"Example: Money makes it easier to compare the prices of two books."],
+["Banking",
+"Banks provide services such as accepting deposits, making payments and granting loans.",
+"Example: A customer deposits money into a bank account."],
+["Inflation",
+"Inflation is a sustained increase in the general price level of goods and services.",
+"Example: If prices generally rise, the same amount of money buys fewer goods."],
+["Economic Systems",
+"Economic systems describe how societies organise production, distribution and resource allocation.",
+"Example: Market, planned and mixed economies use different methods of making economic decisions."],
+["Revision and Assessment",
+"Review the term's concepts and practise answering economics questions.",
+"Activity: Explain scarcity and give two examples from everyday life."]
+]
+},
+SS2: {
+"First Term": [
+["National Income",
+"National income measures income earned by a country's residents from economic activity, according to the measure used.",
+"Example: Gross national income includes income earned by residents from domestic and foreign sources, with relevant adjustments."],
+["Methods of Measuring National Income",
+"Common approaches are the output, income and expenditure methods.",
+"Example: The expenditure approach adds final consumption, investment, government spending and net exports, with appropriate accounting treatment."],
+["Population",
+"Population studies examine the size, distribution, composition and changes of a population.",
+"Example: A population census collects information about people living in a country."],
+["Labour Force",
+"The labour force generally includes employed people and unemployed people who are actively seeking and available for work.",
+"Example: A person who is working is employed; an eligible person actively seeking work may be unemployed."],
+["Unemployment",
+"Unemployment occurs when people who are able and willing to work and are seeking work cannot find employment.",
+"Example: A qualified job seeker who cannot find work may be unemployed."],
+["Economic Growth and Development",
+"Economic growth refers to an increase in real output, while economic development also considers broader improvements in living conditions.",
+"Example: Higher output alongside improved education and healthcare can contribute to development."]
+],
+"Second Term": [
+["Public Finance",
+"Public finance studies government revenue, expenditure and borrowing.",
+"Example: Government collects taxes and spends money on roads and schools."],
+["Taxation",
+"Taxation is the compulsory payment imposed by government under the law to raise revenue and pursue public objectives.",
+"Example: Eligible workers may pay personal income tax."],
+["Government Expenditure",
+"Government expenditure is public spending on goods, services, transfers and other obligations.",
+"Example: Government funds public healthcare services."],
+["Public Debt",
+"Public debt refers to money owed by government as a result of borrowing.",
+"Example: Government may borrow to finance approved infrastructure projects."],
+["International Trade",
+"International trade is the exchange of goods and services between countries.",
+"Example: Nigeria exports some products and imports machinery."],
+["Balance of Payments",
+"The balance of payments records economic transactions between residents of a country and the rest of the world over a period.",
+"Example: It records relevant export, import, investment and financial transactions."]
+],
+"Third Term": [
+["Foreign Exchange",
+"Foreign exchange involves exchanging one currency for another.",
+"Example: A business may convert naira into another currency to pay an overseas supplier."],
+["Economic Integration",
+"Economic integration involves countries cooperating to reduce trade barriers or coordinate economic policies.",
+"Example: Regional agreements can make trade between participating countries easier."],
+["Agriculture and the Economy",
+"Agriculture provides food, employment, raw materials and export earnings.",
+"Example: Farmers supply crops to food-processing businesses."],
+["Industrialisation",
+"Industrialisation is the growth of manufacturing and other industrial activities in an economy.",
+"Example: A food-processing factory converts agricultural products into packaged goods."],
+["Economic Planning",
+"Economic planning involves setting objectives and coordinating policies and resources to pursue economic goals.",
+"Example: A government may plan investments in electricity and transport."],
+["Revision and Assessment",
+"Review national income, public finance, trade and economic development.",
+"Activity: Explain two possible causes of unemployment."]
+]
+},
+SS3: {
+"First Term": [
+["Economic Development Planning",
+"Development planning sets priorities and coordinates policies intended to improve economic and social conditions.",
+"Example: A development plan may prioritise electricity, schools and healthcare."],
+["Monetary Policy",
+"Monetary policy involves actions by a central bank to influence monetary and financial conditions.",
+"Example: Changes in policy interest rates can influence borrowing and spending."],
+["Fiscal Policy",
+"Fiscal policy uses government taxation, expenditure and borrowing to influence economic activity.",
+"Example: Increased public spending may support demand during an economic slowdown."],
+["Commercial Banks",
+"Commercial banks accept deposits, facilitate payments and provide loans and other financial services.",
+"Example: A bank may offer a loan to an eligible small business."],
+["Central Bank",
+"A central bank oversees important parts of the monetary system and carries out functions defined by law.",
+"Example: The Central Bank of Nigeria conducts monetary policy."],
+["International Economic Organisations",
+"International economic organisations support cooperation on trade, development, finance and economic stability.",
+"Example: Different organisations provide research, funding or policy support."]
+],
+"Second Term": [
+["Economic Problems of Nigeria",
+"Economic challenges can include unemployment, inflation, infrastructure gaps and poverty.",
+"Example: Unreliable electricity can raise operating costs for businesses."],
+["Economic Reforms",
+"Economic reforms are changes to policies or institutions intended to improve economic performance.",
+"Example: A reform may change how a sector is regulated."],
+["Privatisation and Commercialisation",
+"Privatisation transfers ownership from the public sector to private owners. Commercialisation focuses on operating an enterprise on commercial principles.",
+"Example: A government may sell an enterprise to private investors or require a public enterprise to improve its commercial performance."],
+["Regional Economic Cooperation",
+"Regional cooperation allows countries to work together on trade and other shared economic interests.",
+"Example: African countries cooperate through regional trade arrangements."],
+["Sustainable Development",
+"Sustainable development seeks to meet present needs while protecting the ability of future generations to meet theirs.",
+"Example: Responsible land management can support farming over the long term."],
+["Economic Indicators",
+"Economic indicators help describe conditions and changes in an economy.",
+"Example: Inflation, unemployment and real GDP growth are commonly monitored indicators."]
+],
+"Third Term": [
+["Revision of Microeconomics",
+"Microeconomics examines decisions made by consumers and firms and how individual markets operate.",
+"Activity: Explain how demand and supply can influence market prices."],
+["Revision of Macroeconomics",
+"Macroeconomics studies economy-wide outcomes such as inflation, unemployment and national output.",
+"Activity: Distinguish economic growth from economic development."],
+["Data Interpretation",
+"Economic data can be presented in tables, charts and graphs to identify patterns.",
+"Activity: Interpret a graph showing changes in prices over several years."],
+["Economic Essay Writing",
+"Economic essays define concepts, explain causes and effects, and support points with relevant examples.",
+"Activity: Write an answer explaining three causes of inflation."],
+["Past Questions Practice",
+"Practise previous examination-style questions and check your understanding of key concepts.",
+"Activity: Answer questions on national income, taxation and international trade."],
+["Final Revision",
+"Review important definitions, diagrams, calculations and policy concepts.",
+"Activity: Prepare a summary of the major topics covered from SS1 to SS3."]
+]
+}
+};
+
+function showClass(className, button) {
+  document.querySelectorAll(".classes button").forEach(function(btn) {
+    btn.classList.remove("active");
+  });
+  button.classList.add("active");
+
+  const container = document.getElementById("curriculum");
+  container.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = className + " Economics Curriculum";
+  container.appendChild(heading);
+
+  Object.entries(courses[className]).forEach(function(entry) {
+    const termName = entry[0];
+    const lessons = entry[1];
+
+    const termButton = document.createElement("button");
+    termButton.type = "button";
+    termButton.className = "term-button";
+    termButton.innerHTML = termName + " <span>+</span>";
+
+    const termContent = document.createElement("div");
+    termContent.className = "term-content";
+    termContent.hidden = true;
+
+    termButton.addEventListener("click", function() {
+      termContent.hidden = !termContent.hidden;
+      termButton.querySelector("span").textContent =
+        termContent.hidden ? "+" : "−";
+    });
+
+    lessons.forEach(function(lesson, index) {
+      const lessonButton = document.createElement("button");
+      lessonButton.type = "button";
+      lessonButton.className = "lesson-button";
+      lessonButton.textContent = (index + 1) + ". " + lesson[0];
+
+      const lessonContent = document.createElement("div");
+      lessonContent.className = "lesson";
+      lessonContent.hidden = true;
+
+      const explanation = document.createElement("p");
+      explanation.textContent = lesson[1];
+
+      const example = document.createElement("p");
+      example.textContent = lesson[2];
+
+      lessonContent.append(explanation, example);
+
+      lessonButton.addEventListener("click", function() {
+        lessonContent.hidden = !lessonContent.hidden;
+      });
+
+      termContent.append(lessonButton, lessonContent);
+    });
+
+    container.append(termButton, termContent);
+  });
+}
+
+showClass("SS1", document.querySelector(".classes button"));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCT
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History - EduSyllabus</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.6;
+}
+
+header {
+    background: #7c2d12;
+    color: white;
+    text-align: center;
+    padding: 22px 12px;
+}
+
+main {
+    max-width: 850px;
+    margin: auto;
+    padding: 15px;
+}
+
+.back {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding: 9px 12px;
+    background: white;
+    color: #7c2d12;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.class-button {
+    width: 31%;
+    padding: 12px 4px;
+    margin: 2px;
+    border: 0;
+    border-radius: 7px;
+    background: #fed7aa;
+    color: #7c2d12;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.class-button.active {
+    background: #7c2d12;
+    color: white;
+}
+
+.term {
+    margin: 12px 0;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px #00000012;
+}
+
+.term-button {
+    width: 100%;
+    padding: 14px;
+    border: 0;
+    background: #ffedd5;
+    color: #7c2d12;
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.term-content {
+    padding: 10px;
+}
+
+.topic-button {
+    width: 100%;
+    padding: 12px;
+    margin: 5px 0;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background: #f8fafc;
+    text-align: left;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.lesson {
+    padding: 12px;
+    margin: 5px 0 12px;
+    background: #fff7ed;
+    border-left: 4px solid #ea580c;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+footer {
+    text-align: center;
+    padding: 18px;
+    color: #64748b;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>EduSyllabus</h1>
+    <h2>History Curriculum</h2>
+    <p>Senior Secondary School — SS1 to SS3</p>
+</header>
+
+<main>
+    <a class="back" href="index.html">← Back to Home</a>
+
+    <h3>Select your class</h3>
+
+    <button type="button" class="class-button active"
+        onclick="showClass('SS1', this)">SS1</button>
+    <button type="button" class="class-button"
+        onclick="showClass('SS2', this)">SS2</button>
+    <button type="button" class="class-button"
+        onclick="showClass('SS3', this)">SS3</button>
+
+    <div id="curriculum"></div>
+</main>
+
+<footer>EduSyllabus © 2026</footer>
+
+<script>
+var historyData = {
+    SS1: {
+        "First Term": [
+            ["Meaning and Importance of History",
+             "History is the study of past events and human experiences using evidence. It helps people understand their origins and how societies change.",
+             "Example: Studying the history of a community can explain how its traditions developed."],
+            ["Sources of History",
+             "Sources of history include oral traditions, written records, archaeological remains, photographs and other historical evidence.",
+             "Example: An old letter can provide information about life in the past."],
+            ["Oral Tradition",
+             "Oral tradition is the passing of information from one generation to another through spoken accounts, songs, stories and traditions.",
+             "Example: An elder recounts the history of a village to younger people."],
+            ["Archaeology",
+             "Archaeology studies past human societies through material remains such as tools, pottery, buildings and other objects.",
+             "Example: Archaeologists study ancient pottery to learn about earlier communities."],
+            ["Early Human Communities",
+             "Early human communities adapted to their environments and developed different ways of finding food, making tools and living together.",
+             "Example: Some communities relied on hunting and gathering before adopting farming."]
+        ],
+        "Second Term": [
+            ["Early Civilisations",
+             "Early civilisations developed organised communities, specialised work, systems of leadership and cultural practices.",
+             "Example: Ancient Egypt developed along the River Nile."],
+            ["Ancient Egypt",
+             "Ancient Egyptian society developed along the Nile, where farming supported towns, government and monumental construction.",
+             "Example: The pyramids are important remains of ancient Egyptian civilisation."],
+            ["Ancient Ghana",
+             "Ancient Ghana was a West African state whose influence grew partly through trade, including the exchange of gold and salt.",
+             "Example: Trans-Saharan trade connected West African communities with North Africa."],
+            ["The Mali Empire",
+             "The Mali Empire became a major West African power. Trade, agriculture and learning contributed to its development.",
+             "Example: Mansa Musa is remembered as a famous ruler of Mali."],
+            ["The Songhai Empire",
+             "The Songhai Empire became a major power in the western Sudan region of Africa, with important political and trading centres.",
+             "Example: Timbuktu became known as a centre of trade and Islamic scholarship."]
+        ],
+        "Third Term": [
+            ["Early Nigerian Societies",
+             "The peoples of the area now called Nigeria developed varied systems of settlement, leadership, farming, craft production and trade.",
+             "Example: Archaeological evidence from Nok includes distinctive terracotta sculptures."],
+            ["The Nok Culture",
+             "The Nok culture is known for terracotta sculptures and evidence of early ironworking in parts of present-day Nigeria.",
+             "Example: Nok terracotta figures are important archaeological discoveries."],
+            ["Kanem-Bornu",
+             "Kanem-Bornu was a long-lasting state in the Lake Chad region. Its history involved trade, political change and links with neighbouring regions.",
+             "Example: Trans-Saharan trade helped connect the state with other regions."],
+            ["The Benin Kingdom",
+             "The Benin Kingdom developed a centralised monarchy and became known for its political organisation, art and trade.",
+             "Example: Benin bronze and brass works are internationally recognised."],
+            ["The Oyo Empire",
+             "The Oyo Empire was an influential Yoruba state with political institutions, trade and military organisation.",
+             "Example: The Alaafin was the ruler of Oyo."]
+        ]
+    },
+
+    SS2: {
+        "First Term": [
+            ["The Hausa States",
+             "Historical Hausa states developed towns, crafts, farming, trade and political institutions in northern Nigeria.",
+             "Example: Kano became an important commercial centre."],
+            ["The Trans-Saharan Trade",
+             "Trans-Saharan trade linked West Africa with North Africa through routes across the Sahara Desert.",
+             "Example: Gold and salt were important items in regional trade."],
+            ["The Trans-Atlantic Slave Trade",
+             "The trans-Atlantic slave trade forcibly transported millions of Africans across the Atlantic. It caused severe suffering and affected African societies for generations.",
+             "Example: European trading networks transported enslaved Africans to the Americas."],
+            ["The Abolition of the Slave Trade",
+             "Abolition involved campaigns, laws and actions intended to end the slave trade and slavery. The process occurred at different times in different places.",
+             "Example: Britain prohibited its participation in the trans-Atlantic slave trade in 1807."],
+            ["Christian Missionary Activities",
+             "Christian missionaries established missions and, in some areas, schools and printing activities. Their work influenced education, religion and social change.",
+             "Example: Mission schools contributed to the growth of Western-style education in parts of Nigeria."]
+        ],
+        "Second Term": [
+            ["European Contact with Nigeria",
+             "European contact with coastal Nigerian communities grew through trade and later involved increasing political intervention.",
+             "Example: Coastal communities traded goods with European merchants."],
+            ["The Scramble for Africa",
+             "The Scramble for Africa was the period when European powers competed to control African territories, especially during the late nineteenth century.",
+             "Example: European powers negotiated territorial claims at the Berlin Conference of 1884–1885."],
+            ["British Colonial Rule in Nigeria",
+             "British colonial rule expanded through treaties, military campaigns and administrative measures before Nigeria became independent in 1960.",
+             "Example: The amalgamation of Northern and Southern Nigeria took place in 1914."],
+            ["Indirect Rule",
+             "Indirect rule was a colonial administrative system that used selected traditional authorities to help govern under colonial supervision.",
+             "Example: British officials used emirate institutions in parts of northern Nigeria."],
+            ["Nationalism in Nigeria",
+             "Nigerian nationalism involved movements and individuals seeking greater political rights and independence from British rule.",
+             "Example: Newspapers and political associations helped spread nationalist ideas."]
+        ],
+        "Third Term": [
+            ["The First World War",
+             "The First World War lasted from 1914 to 1918 and involved many countries. It changed political relationships and contributed to later global developments.",
+             "Example: The war ended with an armistice in November 1918."],
+            ["The Second World War",
+             "The Second World War lasted from 1939 to 1945. It caused extensive destruction and reshaped international relations.",
+             "Example: The United Nations was established in 1945 after the war."],
+            ["The United Nations",
+             "The United Nations is an international organisation established in 1945 to encourage international cooperation and help maintain peace and security.",
+             "Example: The UN supports humanitarian and development programmes."],
+            ["Independence Movements in Africa",
+             "African independence movements used political organising, negotiation, public campaigns and, in some cases, armed struggle against colonial rule.",
+             "Example: Ghana became independent in 1957."],
+            ["Nigeria's Independence",
+             "Nigeria became independent from British rule on 1 October 1960 after years of political activity and constitutional development.",
+             "Example: Nigeria marked the beginning of independent self-government in 1960."]
+        ]
+    },
+
+    SS3: {
+        "First Term": [
+            ["Constitutional Development in Nigeria",
+             "Nigeria's constitutional development involved changes in representation, regional arrangements and the powers of government before and after independence.",
+             "Example: The Richards Constitution was introduced in 1946."],
+            ["The 1960 Constitution",
+             "The 1960 Constitution provided the framework for independent Nigeria and established a parliamentary system.",
+             "Example: The prime minister headed the federal government."],
+            ["The 1963 Constitution",
+             "The 1963 Constitution made Nigeria a republic and provided for a Nigerian president as head of state.",
+             "Example: Nigeria no longer had the British monarch as its head of state."],
+            ["The Nigerian Civil War",
+             "The Nigerian Civil War lasted from 1967 to 1970 after the secession of the Eastern Region as the Republic of Biafra. It caused extensive human suffering.",
+             "Example: Reconciliation and reconstruction became important after the war."],
+            ["Military Rule in Nigeria",
+             "Nigeria experienced several periods of military government following military coups, before the return to civilian rule in 1999.",
+             "Example: Military administrations governed Nigeria during parts of 1966–1999."]
+        ],
+        "Second Term": [
+            ["The Second Republic",
+             "Nigeria's Second Republic began in 1979 under a presidential system and ended following a military coup in December 1983.",
+             "Example: The 1979 Constitution established the presidential system."],
+            ["The Return to Civilian Rule in 1999",
+             "Nigeria returned to civilian democratic government on 29 May 1999, beginning the Fourth Republic.",
+             "Example: An elected president took office in 1999."],
+            ["Democracy and Elections",
+             "Democracy involves political participation, competitive elections, accountability and protection of rights under the law.",
+             "Example: Eligible voters choose representatives during elections."],
+            ["Human Rights in Nigeria",
+             "Human rights are fundamental freedoms and protections recognised under law, including relevant protections in Nigeria's Constitution.",
+             "Example: The Constitution recognises rights such as freedom of expression, subject to lawful limitations."],
+            ["Challenges of Nation-Building",
+             "Nation-building involves developing shared civic identity, effective institutions and cooperation among diverse communities.",
+             "Example: Fair public services can help strengthen trust among communities."]
+        ],
+        "Third Term": [
+            ["African Independence and Development",
+             "After independence, African countries faced varied challenges involving economic development, political institutions and social services.",
+             "Example: Countries developed different plans for education and infrastructure."],
+            ["Apartheid in South Africa",
+             "Apartheid was a system of racial segregation and discrimination enforced by the South African government. It ended through sustained resistance and political negotiations.",
+             "Example: Nelson Mandela became South Africa's president in 1994 after the first democratic election with universal adult suffrage."],
+            ["Pan-Africanism",
+             "Pan-Africanism promotes solidarity and cooperation among African peoples and people of African descent.",
+             "Example: Pan-African ideas influenced movements for independence and continental cooperation."],
+            ["The African Union",
+             "The African Union promotes cooperation among African states on issues including development, peace and regional integration.",
+             "Example: Member states work together through continental initiatives."],
+            ["Revision and Historical Research",
+             "Historical research involves asking questions, examining sources, comparing evidence and drawing conclusions supported by the evidence.",
+             "Example: A student can compare oral accounts with written records to study a local historical event."]
+        ]
+    }
+};
+
+function showClass(className, clickedButton) {
+    var area = document.getElementById("curriculum");
+    area.innerHTML = "";
+
+    document.querySelectorAll(".class-button").forEach(function(button) {
+        button.classList.remove("active");
+    });
+    clickedButton.classList.add("active");
+
+    var heading = document.createElement("h2");
+    heading.textContent = className + " History";
+    area.appendChild(heading);
+
+    Object.keys(historyData[className]).forEach(function(termName) {
+        var term = document.createElement("section");
+        term.className = "term";
+
+        var termButton = document.createElement("button");
+        termButton.type = "button";
+        termButton.className = "term-button";
+        termButton.textContent = termName + " ▼";
+
+        var termContent = document.createElement("div");
+        termContent.className = "term-content";
+        termContent.hidden = true;
+
+        termButton.addEventListener("click", function() {
+            termContent.hidden = !termContent.hidden;
+            termButton.textContent = termName +
+                (termContent.hidden ? " ▼" : " ▲");
+        });
+
+        historyData[className][termName].forEach(function(item) {
+            var topicButton = document.createElement("button");
+            topicButton.type = "button";
+            topicButton.className = "topic-button";
+            topicButton.textContent = "+ " + item[0];
+
+            var lesson = document.createElement("div");
+            lesson.className = "lesson";
+            lesson.hidden = true;
+
+            var explanation = document.createElement("p");
+            explanation.textContent = item[1];
+
+            var example = document.createElement("p");
+            example.textContent = item[2];
+
+            lesson.appendChild(explanation);
+            lesson.appendChild(example);
+
+            topicButton.addEventListener("click", function() {
+                lesson.hidden = !lesson.hidden;
+                topicButton.textContent =
+                    (lesson.hidden ? "+ " : "− ") + item[0];
+            });
+
+            termContent.appendChild(topicButton);
+            termContent.appendChild(lesson);
+        });
+
+        term.appendChild(termButton);
+        term.appendChild(termContent);
+        area.appendChild(term);
+    });
+}
+
+showClass("SS1", document.querySelector(".class-button"));
+</script>
+
+</body>
+</html>

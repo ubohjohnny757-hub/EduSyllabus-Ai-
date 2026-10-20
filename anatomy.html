@@ -1,0 +1,299 @@
+<!DOCTYPE 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anatomy | EduSyllabus</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+header {
+  background: #0f766e;
+  color: white;
+  text-align: center;
+  padding: 22px 12px;
+}
+
+header h1 {
+  margin: 0 0 8px;
+}
+
+header p {
+  margin: 5px 0;
+}
+
+main {
+  width: 94%;
+  max-width: 850px;
+  margin: 20px auto;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #0f766e;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+h2 {
+  color: #0f766e;
+}
+
+.classes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.classes button {
+  padding: 13px 5px;
+  border: none;
+  border-radius: 6px;
+  background: #ccfbf1;
+  color: #115e59;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.classes button.active {
+  background: #0f766e;
+  color: white;
+}
+
+.term-button {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+  background: #115e59;
+  color: white;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.term-content {
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.lesson-button {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  border: 1px solid #99f6e4;
+  border-radius: 5px;
+  background: #f0fdfa;
+  color: #115e59;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.lesson {
+  background: #f8fafc;
+  border-left: 4px solid #14b8a6;
+  padding: 12px;
+  margin: 5px 0 12px;
+  border-radius: 4px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+footer {
+  background: #0f766e;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>EduSyllabus</h1>
+  <p>Human Anatomy</p>
+  <p>Senior Secondary Learning Resource: SS1 – SS3</p>
+</header>
+
+<main>
+  <a class="back" href="index.html">← Back to Home</a>
+
+  <h2>Select Your Class</h2>
+  <div class="classes" id="classButtons"></div>
+
+  <div id="curriculum"></div>
+</main>
+
+<footer>
+  <p>© 2026 EduSyllabus | Learn and Succeed</p>
+</footer>
+
+<script>
+const curriculum = {
+  SS1: {
+    "First Term": [
+      ["Introduction to Human Anatomy", "Anatomy is the study of the structure of the human body and the relationships between its parts.", "Example: Studying the bones of the arm is part of anatomy."],
+      ["Levels of Body Organisation", "The body is organised into cells, tissues, organs and organ systems.", "Example: Muscle cells form muscle tissue, which contributes to organs and body movement."],
+      ["Cells and Tissues", "Cells are basic units of life. Similar cells work together to form tissues.", "Example: Nerve cells are specialised to transmit electrical signals."],
+      ["The Skeletal System", "The skeleton supports the body, protects organs and helps movement.", "Example: The skull protects the brain."]
+    ],
+    "Second Term": [
+      ["The Muscular System", "Muscles help move body parts, maintain posture and produce heat.", "Example: The biceps helps bend the elbow."],
+      ["The Digestive System", "The digestive system breaks food into substances that the body can absorb and use.", "Example: The stomach helps digest food."],
+      ["The Respiratory System", "The respiratory system brings oxygen into the body and removes carbon dioxide.", "Example: The lungs contain alveoli where gas exchange occurs."],
+      ["The Circulatory System", "The circulatory system transports blood, oxygen, nutrients and waste products around the body.", "Example: The heart pumps blood through blood vessels."]
+    ],
+    "Third Term": [
+      ["The Nervous System", "The nervous system receives information and coordinates the body's responses.", "Example: Nerves carry signals between the brain and other body parts."],
+      ["The Urinary System", "The urinary system removes certain wastes and helps regulate water and salt balance.", "Example: The kidneys filter blood to produce urine."],
+      ["The Skin", "The skin protects the body and helps regulate temperature and sensation.", "Example: Sweating helps cool the body."],
+      ["Sense Organs", "Sense organs detect information such as light, sound, smell, taste and touch.", "Example: The eyes detect light."]
+    ]
+  },
+
+  SS2: {
+    "First Term": [
+      ["The Human Heart", "The heart is a muscular organ with four chambers that pumps blood through the pulmonary and systemic circulations.", "Example: The right side pumps blood toward the lungs."],
+      ["Blood Vessels", "Arteries carry blood away from the heart, veins return blood to the heart, and capillaries allow exchange with tissues.", "Example: Capillaries allow oxygen and nutrients to pass to body cells."],
+      ["Blood and Its Components", "Blood contains plasma, red blood cells, white blood cells and platelets.", "Example: Red blood cells carry oxygen using haemoglobin."],
+      ["The Lungs and Breathing", "The lungs contain branching airways and alveoli where oxygen and carbon dioxide are exchanged.", "Example: The diaphragm contracts during normal inhalation."]
+    ],
+    "Second Term": [
+      ["The Brain", "The brain processes information and helps control movement, memory, emotions and many body functions.", "Example: The cerebellum helps coordinate movement and balance."],
+      ["The Spinal Cord", "The spinal cord carries signals between the brain and body and participates in reflex actions.", "Example: A reflex may cause a quick withdrawal from a hot object."],
+      ["The Endocrine System", "Endocrine glands release hormones that regulate body processes.", "Example: The thyroid gland produces hormones involved in metabolism."],
+      ["The Reproductive System", "The reproductive system includes organs involved in human reproduction and the production of reproductive cells.", "Example: The ovaries produce egg cells."]
+    ],
+    "Third Term": [
+      ["The Digestive Organs", "The mouth, oesophagus, stomach, intestines and accessory organs work together in digestion and absorption.", "Example: Most nutrient absorption occurs in the small intestine."],
+      ["The Liver and Pancreas", "The liver processes nutrients and produces bile. The pancreas produces digestive enzymes and hormones.", "Example: Insulin helps regulate blood glucose."],
+      ["The Kidneys", "The kidneys filter blood, remove wastes and help maintain fluid and electrolyte balance.", "Example: They help regulate water levels in the body."],
+      ["The Joints", "Joints are places where bones meet. Their structure determines the type and range of movement possible.", "Example: The shoulder is a ball-and-socket joint."]
+    ]
+  },
+
+  SS3: {
+    "First Term": [
+      ["The Axial Skeleton", "The axial skeleton includes the skull, vertebral column, ribs and sternum. It supports the body's central axis.", "Example: The rib cage helps protect the heart and lungs."],
+      ["The Appendicular Skeleton", "The appendicular skeleton includes the limbs and the shoulder and pelvic girdles.", "Example: The femur is a bone of the lower limb."],
+      ["Muscle Structure and Movement", "Skeletal muscles attach to bones and contract to produce movement.", "Example: The biceps and triceps work together to bend and straighten the elbow."],
+      ["The Structure of the Eye", "The eye contains structures that focus light and convert it into nerve signals.", "Example: The retina contains light-sensitive cells."]
+    ],
+    "Second Term": [
+      ["The Structure of the Ear", "The ear is involved in hearing and balance. It includes the outer, middle and inner ear.", "Example: The cochlea is important for hearing."],
+      ["The Structure of the Kidney", "Each kidney contains nephrons, which filter blood and help form urine.", "Example: The nephron reabsorbs useful substances from the filtrate."],
+      ["The Male Reproductive Anatomy", "The male reproductive system includes the testes, reproductive ducts and accessory glands.", "Example: The testes produce sperm cells."],
+      ["The Female Reproductive Anatomy", "The female reproductive system includes the ovaries, uterine tubes, uterus and vagina.", "Example: The uterus is where a pregnancy normally develops."]
+    ],
+    "Third Term": [
+      ["Homeostasis", "Homeostasis is the regulation of internal conditions within suitable limits.", "Example: The body regulates temperature through sweating and other responses."],
+      ["Anatomy and Common Diseases", "Understanding body structures can help explain how some diseases affect organs. Diagnosis and treatment require qualified health professionals.", "Example: Damage to heart muscle can affect the heart's pumping ability."],
+      ["Body Systems Working Together", "Organ systems interact to keep the body functioning.", "Example: The respiratory and circulatory systems work together to deliver oxygen to tissues."],
+      ["Revision and Practical Identification", "Review body organs, their structures, locations and functions using diagrams and models.", "Example: Identify the femur on a labelled skeleton diagram."]
+    ]
+  }
+};
+
+const classNames = ["SS1", "SS2", "SS3"];
+const classButtons = document.getElementById("classButtons");
+const output = document.getElementById("curriculum");
+
+function showClass(className) {
+  document.querySelectorAll(".classes button").forEach(function(button) {
+    button.classList.toggle("active", button.dataset.class === className);
+  });
+
+  output.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = className + " Human Anatomy Curriculum";
+  output.appendChild(heading);
+
+  Object.keys(curriculum[className]).forEach(function(termName) {
+    const termButton = document.createElement("button");
+    termButton.className = "term-button";
+    termButton.textContent = termName + " ▼";
+
+    const termContent = document.createElement("div");
+    termContent.className = "term-content";
+    termContent.hidden = true;
+
+    termButton.addEventListener("click", function() {
+      termContent.hidden = !termContent.hidden;
+      termButton.textContent =
+        termName + (termContent.hidden ? " ▼" : " ▲");
+    });
+
+    curriculum[className][termName].forEach(function(topic) {
+      const lessonButton = document.createElement("button");
+      lessonButton.className = "lesson-button";
+      lessonButton.textContent = topic[0] + " +";
+
+      const lesson = document.createElement("div");
+      lesson.className = "lesson";
+      lesson.hidden = true;
+
+      const explanation = document.createElement("p");
+      explanation.textContent = topic[1];
+
+      const example = document.createElement("p");
+      example.textContent = topic[2];
+
+      lesson.appendChild(explanation);
+      lesson.appendChild(example);
+
+      lessonButton.addEventListener("click", function() {
+        lesson.hidden = !lesson.hidden;
+        lessonButton.textContent =
+          topic[0] + (lesson.hidden ? " +" : " −");
+      });
+
+      termContent.appendChild(lessonButton);
+      termContent.appendChild(lesson);
+    });
+
+    output.appendChild(termButton);
+    output.appendChild(termContent);
+  });
+}
+
+classNames.forEach(function(className) {
+  const button = document.createElement("button");
+  button.textContent = className;
+  button.dataset.class = className;
+
+  button.addEventListener("click", function() {
+    showClass(className);
+  });
+
+  classButtons.appendChild(button);
+});
+
+showClass("SS1");
+</script>
+
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTY<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Civic Education - EduSyllabus</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f7f2;color:#24372b;line-height:1.6}
+header{background:#075b3b;color:white;text-align:center;padding:25px 12px}
+nav{background:#06472f;padding:12px;text-align:center}
+nav a{color:white;text-decoration:none;margin:8px;display:inline-block}
+main{max-width:900px;margin:auto;padding:15px}
+.card,.lesson{background:white;padding:18px;margin:16px 0;border-radius:12px;box-shadow:0 3px 10px #0000000c}
+h2,h3{color:#075b3b}
+label{display:block;font-weight:bold;margin:8px 0}
+select,input[type="search"]{width:100%;padding:13px;border:1px solid #b8cbbd;border-radius:8px;font-size:16px;margin:5px 0 12px}
+button{background:#087849;color:white;border:0;padding:11px 15px;border-radius:7px;font-size:15px;cursor:pointer;margin:5px 0}
+button:hover{background:#06472f}
+.lesson p{margin-bottom:8px}
+.small{color:#647568;font-size:14px}
+footer{text-align:center;background:#06472f;color:white;padding:18px}
+</style>
+</head>
+<body>
+<header>
+<h1>EduSyllabus</h1>
+<p>Civic Education Learning Centre</p>
+<p>Learn your rights, duties and responsibilities.</p>
+</header>
+<nav>
+<a href="index.html">Home</a>
+<a href="curriculum.html">Curriculum</a>
+<a href="quiz.html">Quiz</a>
+<a href="ai-teacher.html">AI Teacher</a>
+</nav>
+<main>
+<section class="card">
+<h2>Welcome to Civic Education</h2>
+<p>Learn about citizenship, human rights, democracy, national values, the rule of law and responsible participation in society.</p>
+</section>
+<section class="card">
+<h2>Choose Your Curriculum</h2>
+<label for="classSelect">Class</label>
+<select id="classSelect">
+<option>JSS1</option><option>JSS2</option><option>JSS3</option>
+<option>SS1</option><option>SS2</option><option>SS3</option>
+</select>
+<label for="termSelect">Term</label>
+<select id="termSelect">
+<option value="1">First Term</option><option value="2">Second Term</option><option value="3">Third Term</option>
+</select>
+<label for="search">Search topics</label>
+<input id="search" type="search" placeholder="e.g. citizenship, democracy">
+<p id="status" role="status">Loading curriculum...</p>
+</section>
+<section>
+<h2 id="heading">Civic Education Curriculum</h2>
+<div id="lessons"></div>
+</section>
+<section class="card">
+<h2>Practice Quiz</h2>
+<p id="question"></p>
+<div id="options"></div>
+<p id="feedback" role="status"></p>
+<button id="check" type="button">Check Answer</button>
+<button id="next" type="button" hidden>Next Question</button>
+</section>
+</main>
+<footer><p>EduSyllabus &copy; 2026</p><p>Learning today, leading tomorrow.</p></footer>
+<script>
+const topics = {
+JSS1: [
+[
+["Meaning of Civic Education","Civic Education teaches citizens their rights, duties and responsibilities."],
+["National Values","Values include honesty, discipline, tolerance, fairness and respect."],
+["Family and Society","Families teach cooperation, responsibility, care and respect."]
+],
+[
+["Citizenship","Citizenship is legal membership of a country."],
+["Rights and Duties","Rights are recognised freedoms; duties are responsibilities."],
+["Peaceful Living","People can resolve disagreements through dialogue and respect."]
+],
+[
+["National Identity","National identity creates a sense of belonging to a country."],
+["Community Development","Communities improve through cooperation and shared projects."],
+["Rules and Regulations","Rules help maintain safety, fairness and order."]
+]
+],
+JSS2: [
+[
+["Democracy","Democracy allows people to participate in choosing leaders and public decisions."],
+["Human Rights","Human rights protect human dignity, freedom and equality."],
+["Rule of Law","Everyone, including leaders, is subject to the law."]
+],
+[
+["National Symbols","National symbols represent a country's identity."],
+["Responsible Leadership","Good leaders act honestly and serve the public interest."],
+["Conflict Resolution","Dialogue and negotiation can help resolve disagreements."]
+],
+[
+["Drug Abuse Awareness","Harmful substance use can affect health, learning and communities."],
+["Community Safety","Citizens can help promote safety and reject violence."],
+["Environmental Responsibility","Proper waste disposal helps protect the environment."]
+]
+],
+JSS3: [
+[
+["The Constitution","A constitution sets out the basic framework for governing a country."],
+["Arms of Government","The legislature makes laws, the executive implements them and the judiciary interprets them."],
+["Elections","Elections allow eligible voters to choose representatives."]
+],
+[
+["Electoral Malpractice","Electoral malpractice undermines the fairness of elections."],
+["Corruption","Corruption is the abuse of entrusted power for improper benefit."],
+["Public Service","Public services are intended to meet community needs."]
+],
+[
+["National Unity","National unity involves cooperation among people from different backgrounds."],
+["Peaceful Coexistence","Respect and dialogue help people live peacefully."],
+["Citizens in Democracy","Citizens contribute through informed, lawful participation."]
+]
+],
+SS1: [
+[
+["Citizenship and Civic Education","Civic Education develops knowledge and skills for responsible public participation."],
+["Fundamental Human Rights","Human rights protect dignity and freedom under relevant legal frameworks."],
+["Democratic Principles","Democracy involves participation, accountability and fair elections."]
+],
+[
+["Constitutional Democracy","Constitutional democracy limits government power through constitutional rules."],
+["National Integration","National integration encourages cooperation across communities."],
+["Civic Participation","Citizens can contribute through lawful public and community activities."]
+],
+[
+["Accountability","Accountability means being answerable for decisions and actions."],
+["Media and Public Opinion","People should check information before sharing it."],
+["Community Service","Community service improves the wellbeing of others."]
+]
+],
+SS2: [
+[
+["Nigerian Constitution","Nigeria's Constitution establishes government structures and important rights."],
+["Rule of Law and Justice","The rule of law requires fair legal processes."],
+["Leadership and Followership","Responsible leaders serve the public and citizens participate constructively."]
+],
+[
+["Corruption and Society","Corruption can weaken institutions and waste public resources."],
+["Public Accountability","Public accountability supports transparency and responsible governance."],
+["Civil Society Organisations","Civil society organisations work on public and community issues."]
+],
+[
+["National Development","National development improves social, economic and institutional wellbeing."],
+["Digital Citizenship","Responsible digital citizenship includes privacy, respect and fact-checking."],
+["Human Trafficking Awareness","Public awareness and safe reporting can help protect people from exploitation."]
+]
+],
+SS3: [
+[
+["Democratic Institutions","Democratic institutions support elections, lawmaking, justice and accountability."],
+["Electoral Process","The electoral process includes registration, voting, counting and dispute resolution."],
+["Political Parties and Pressure Groups","Political parties seek political office; pressure groups advocate for particular issues."]
+],
+[
+["Human Rights Protection","Laws and institutions can protect rights and provide remedies."],
+["Public Policy","Public policy addresses issues affecting society."],
+["Peacebuilding","Peacebuilding helps address causes of conflict and support lasting peace."]
+],
+[
+["Civic Responsibility","Responsible citizens respect others and contribute to their communities."],
+["Integrity and Ethics","Integrity means acting honestly and consistently with sound principles."],
+["Revision of Civic Education","Review citizenship, rights, duties, governance and democratic participation."]
+]
+]
+};
+
+const classSelect = document.getElementById("classSelect");
+const termSelect = document.getElementById("termSelect");
+const search = document.getElementById("search");
+const lessons = document.getElementById("lessons");
+const status = document.getElementById("status");
+const heading = document.getElementById("heading");
+
+function renderCurriculum() {
+  const className = classSelect.value;
+  const termIndex = Number(termSelect.value) - 1;
+  const query = search.value.trim().toLowerCase();
+  const list = topics[className][termIndex];
+
+  heading.textContent = className + " Civic Education - " +
+    ["First", "Second", "Third"][termIndex] + " Term";
+  lessons.replaceChildren();
+
+  const filtered = list.filter(item =>
+    (item[0] + " " + item[1]).toLowerCase().includes(query)
+  );
+
+  if (filtered.length === 0) {
+    lessons.innerHTML = "<div class='card'>No matching topics. Try another search.</div>";
+    status.textContent = "No matching lessons found.";
+    return;
+  }
+
+  filtered.forEach((item, index) => {
+    const article = document.createElement("article");
+    article.className = "lesson";
+    const title = document.createElement("h3");
+    title.textContent = (index + 1) + ". " + item[0];
+    const explanation = document.createElement("p");
+    explanation.textContent = item[1];
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = "Study this lesson";
+    const details = document.createElement("p");
+    details.className = "small";
+    details.hidden = true;
+    details.textContent = "Revision task: Explain " + item[0] +
+      " in your own words and give two examples.";
+    button.addEventListener("click", () => {
+      details.hidden = !details.hidden;
+      button.textContent = details.hidden ? "Study this lesson" : "Hide revision task";
+    });
+    article.append(title, explanation, button, details);
+    lessons.appendChild(article);
+  });
+  status.textContent = filtered.length + " lessons available.";
+}
+
+classSelect.addEventListener("change", renderCurriculum);
+termSelect.addEventListener("change", renderCurriculum);
+search.addEventListener("input", renderCurriculum);
+
+const questions = [
+{q:"What does Civic Education teach?",a:["Only mathematics","Rights and responsibilities","Only sports"],correct:1},
+{q:"Which arm of government makes laws?",a:["Legislature","Judiciary","Executive"],correct:0},
+{q:"What is a peaceful way to resolve conflict?",a:["Threats","Dialogue","Fighting"],correct:1}
+];
+let questionIndex = 0;
+let answered = false;
+
+function showQuestion() {
+  answered = false;
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("check").hidden = false;
+  document.getElementById("next").hidden = true;
+  const item = questions[questionIndex];
+  document.getElementById("question").textContent =
+    "Question " + (questionIndex + 1) + ": " + item.q;
+  const options = document.getElementById("options");
+  options.replaceChildren();
+  item.a.forEach((answer, index) => {
+    const label = document.createElement("label");
+    label.style.fontWeight = "normal";
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = "answer";
+    radio.value = index;
+    radio.style.marginRight = "8px";
+    label.append(radio, document.createTextNode(answer));
+    options.appendChild(label);
+  });
+}
+
+document.getElementById("check").addEventListener("click", () => {
+  if (answered) return;
+  const selected = document.querySelector('input[name="answer"]:checked');
+  if (!selected) {
+    document.getElementById("feedback").textContent = "Choose an answer first.";
+    return;
+  }
+  answered = true;
+  const item = questions[questionIndex];
+  document.getElementById("feedback").textContent =
+    Number(selected.value) === item.correct ? "Correct! Well done." :
+    "Correct answer: " + item.a[item.correct];
+  document.getElementById("check").hidden = true;
+  if (questionIndex < questions.length - 1) {
+    document.getElementById("next").hidden = false;
+  } else {
+    document.getElementById("feedback").textContent += " Quiz completed!";
+  }
+});
+
+document.getElementById("next").addEventListener("click", () => {
+  questionIndex = (questionIndex + 1) % questions.length;
+  showQuestion();
+});
+
+renderCurriculum();
+showQuestion();
+</script>
+</body>
+</html>

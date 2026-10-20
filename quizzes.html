@@ -1,0 +1,61 @@
+<
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduSyllabus AI | Quizzes</title>
+  <link rel="stylesheet" href="quizzes.css">
+  <script src="quizzes.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>EduSyllabus AI</h1>
+    <p>Learn, Practise and Test Your Knowledge</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="curriculum.html">Curriculum</a>
+    <a href="ai-teacher.html">AI Teacher</a>
+  </nav>
+
+  <main class="container">
+    <section class="panel" id="setup">
+      <h2>Choose Your Quiz</h2>
+      <label for="classSelect">Select Class</label>
+      <select id="classSelect">
+        <option value="">-- Select Class --</option>
+        <option>JSS1</option><option>JSS2</option><option>JSS3</option>
+        <option>SS1</option><option>SS2</option><option>SS3</option>
+      </select>
+
+      <label for="subjectSelect">Select Subject</label>
+      <select id="subjectSelect">
+        <option value="">-- Select Subject --</option>
+      </select>
+
+      <button id="startBtn" type="button">Start Quiz</button>
+      <p class="small">Answer all questions and submit to see your score.</p>
+    </section>
+
+    <section class="panel" id="quizArea" hidden>
+      <h2 id="quizTitle">Quiz</h2>
+      <p id="quizInfo"></p>
+      <form id="quizForm"></form>
+      <button id="submitBtn" type="button">Submit Answers</button>
+      <button id="cancelBtn" class="secondary" type="button">Choose Another Quiz</button>
+    </section>
+
+    <section class="panel" id="result" hidden>
+      <h2>Your Result</h2>
+      <p id="scoreText" class="score"></p>
+      <p id="resultMessage"></p>
+      <div id="answerReview"></div>
+      <button id="retryBtn" type="button">Try Another Quiz</button>
+    </section>
+  </main>
+
+  <footer>EduSyllabus AI — Your Learning Companion</footer>
+</body>
+</html>

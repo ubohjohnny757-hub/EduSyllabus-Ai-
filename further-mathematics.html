@@ -1,0 +1,343 @@
+<!DOCTYPE ht
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Further Mathematics - EduSyllabus</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f0ff;color:#292341}
+header{background:#5836a5;color:white;text-align:center;padding:22px 12px}
+header h1{margin:0 0 8px}
+.container{max-width:900px;margin:auto;padding:15px}
+.panel{background:white;padding:16px;margin-bottom:16px;border-radius:12px;box-shadow:0 2px 8px #00000012}
+label{display:block;margin:12px 0 6px;font-weight:bold}
+select{width:100%;padding:12px;border:1px solid #c9bde8;border-radius:7px;background:white;font-size:16px}
+button{padding:12px;border:none;border-radius:7px;font-size:15px;cursor:pointer}
+.topic{display:block;width:100%;text-align:left;margin:8px 0;background:#eee8ff;color:#432881;border:1px solid #d9cdfa}
+.topic:hover{background:#dfd4ff}
+.primary{background:#5836a5;color:white;margin:5px 3px 5px 0}
+.secondary{background:#ece8f5;color:#292341;margin:5px 3px 5px 0}
+#lesson{line-height:1.8}
+#lesson h2,#lesson h3{color:#5836a5}
+.formula{background:#f2edff;padding:12px;border-radius:7px;font-size:17px;overflow-wrap:anywhere}
+.hidden{display:none}
+footer{text-align:center;padding:20px;color:#62577d}
+</style>
+</head>
+
+<body>
+<header>
+<h1>📐 EduSyllabus</h1>
+<p>Further Mathematics Curriculum and Lessons</p>
+<p>SS1 – SS3 | All Three Terms</p>
+</header>
+
+<div class="container">
+
+<div class="panel">
+<h2>Choose Class and Term</h2>
+
+<label for="classSelect">Class</label>
+<select id="classSelect" onchange="updateCurriculum()">
+<option value="SS1">SS1</option>
+<option value="SS2">SS2</option>
+<option value="SS3">SS3</option>
+</select>
+
+<label for="termSelect">Term</label>
+<select id="termSelect" onchange="updateCurriculum()">
+<option value="1">First Term</option>
+<option value="2">Second Term</option>
+<option value="3">Third Term</option>
+</select>
+</div>
+
+<div class="panel" id="curriculumPanel">
+<h2 id="curriculumTitle">SS1 Further Mathematics</h2>
+<p id="termTitle">First Term Curriculum</p>
+<div id="topicList">
+<button class="topic" onclick="openLesson(0)">1. Sets and Number Systems</button>
+<button class="topic" onclick="openLesson(1)">2. Indices and Surds</button>
+<button class="topic" onclick="openLesson(2)">3. Logarithms</button>
+<button class="topic" onclick="openLesson(3)">4. Quadratic Equations</button>
+<button class="topic" onclick="openLesson(4)">5. Functions and Relations</button>
+<button class="topic" onclick="openLesson(5)">6. Coordinate Geometry</button>
+</div>
+</div>
+
+<div class="panel hidden" id="lessonPanel">
+<button class="secondary" onclick="backToCurriculum()">← Back to Curriculum</button>
+<div id="lesson"></div>
+<button class="primary" onclick="previousLesson()">Previous Lesson</button>
+<button class="primary" onclick="nextLesson()">Next Lesson</button>
+</div>
+
+<div class="panel">
+<h2>Practice Questions</h2>
+<p id="questionText">Solve: x² - 5x + 6 = 0.</p>
+<button class="primary" onclick="showAnswer()">Show Answer</button>
+<p id="answerText" class="hidden"></p>
+<button class="secondary" onclick="nextQuestion()">Next Question</button>
+</div>
+
+<button class="secondary" onclick="goHome()">← Back to EduSyllabus Home</button>
+</div>
+
+<footer>EduSyllabus — Learn, Calculate and Succeed</footer>
+
+<script>
+var curriculumData={
+SS1:{
+1:[
+"Sets and Number Systems",
+"Indices and Surds",
+"Logarithms",
+"Quadratic Equations",
+"Functions and Relations",
+"Coordinate Geometry"
+],
+2:[
+"Sequences and Series",
+"Binomial Expansions",
+"Permutations and Combinations",
+"Trigonometric Ratios",
+"Vectors",
+"Linear Inequalities"
+],
+3:[
+"Polynomials",
+"Remainder and Factor Theorems",
+"Simultaneous Equations",
+"Statistics and Data Representation",
+"Probability",
+"Introduction to Differentiation"
+]
+},
+SS2:{
+1:[
+"Advanced Quadratic Equations",
+"Mathematical Induction",
+"Complex Numbers",
+"Advanced Trigonometry",
+"Arithmetic and Geometric Progressions",
+"Binomial Theorem"
+],
+2:[
+"Permutations and Combinations",
+"Probability Distributions",
+"Vectors in Two Dimensions",
+"Matrices and Determinants",
+"Coordinate Geometry of a Circle",
+"Differentiation"
+],
+3:[
+"Applications of Differentiation",
+"Integration",
+"Rates of Change",
+"Advanced Sequences and Series",
+"Statistics and Variance",
+"Linear Programming"
+]
+},
+SS3:{
+1:[
+"Advanced Functions",
+"Complex Numbers and Argand Diagrams",
+"De Moivre's Theorem",
+"Advanced Differentiation",
+"Integration Techniques",
+"Applications of Integration"
+],
+2:[
+"Vectors in Three Dimensions",
+"Matrices and Linear Transformations",
+"Conic Sections",
+"Differential Equations",
+"Probability Distributions",
+"Statistical Inference"
+],
+3:[
+"Advanced Probability",
+"Numerical Methods",
+"Mechanics and Motion",
+"Optimization Problems",
+"Revision of Calculus",
+"Revision and Examination Practice"
+]
+}
+};
+
+var currentTopics=[];
+var currentIndex=0;
+var questionIndex=0;
+
+var questions=[
+{q:"Solve: x² - 5x + 6 = 0.",a:"Factorise: (x - 2)(x - 3) = 0. Therefore, x = 2 or x = 3."},
+{q:"Simplify: 2³ × 2⁴.",a:"For the same base, add the powers: 2³ × 2⁴ = 2⁷ = 128."},
+{q:"Find the gradient of the line through (1, 2) and (3, 6).",a:"Gradient = (6 - 2)/(3 - 1) = 4/2 = 2."},
+{q:"Differentiate y = x³.",a:"Using d(xⁿ)/dx = nxⁿ⁻¹, dy/dx = 3x²."},
+{q:"Evaluate log₁₀ 1000.",a:"Since 10³ = 1000, log₁₀ 1000 = 3."},
+{q:"Find the sum of the first 5 positive integers.",a:"Sum = 1 + 2 + 3 + 4 + 5 = 15."},
+{q:"If sin θ = 1/2 and θ is acute, find θ.",a:"θ = 30°."},
+{q:"Find the determinant of [[2, 1], [3, 4]].",a:"Determinant = (2 × 4) - (1 × 3) = 8 - 3 = 5."},
+{q:"Integrate 2x with respect to x.",a:"∫2x dx = x² + C, where C is the constant of integration."},
+{q:"A fair coin is tossed once. What is the probability of getting heads?",a:"There is one favourable outcome out of two equally likely outcomes. Probability = 1/2."}
+];
+
+var lessonDetails={
+"Sets and Number Systems":{
+meaning:"A set is a well-defined collection of objects. Number systems classify numbers according to their properties.",
+points:["Natural numbers: 1, 2, 3, ...","Integers include negative numbers, zero and positive whole numbers.","Rational numbers can be written as fractions of integers.","Irrational numbers cannot be expressed as such fractions."],
+example:"If A = {1, 2, 3} and B = {3, 4, 5}, then A ∩ B = {3}."
+},
+"Indices and Surds":{
+meaning:"Indices represent repeated multiplication. Surds are roots that cannot be simplified to rational numbers.",
+points:["aᵐ × aⁿ = aᵐ⁺ⁿ","aᵐ ÷ aⁿ = aᵐ⁻ⁿ, where a is non-zero.","(aᵐ)ⁿ = aᵐⁿ","√12 = 2√3."],
+example:"2³ × 2² = 2⁵ = 32."
+},
+"Logarithms":{
+meaning:"A logarithm gives the power to which a base must be raised to obtain a number.",
+points:["If aˣ = N, then logₐ N = x.","logₐ(MN) = logₐ M + logₐ N.","logₐ(M/N) = logₐ M - logₐ N.","The base must be positive and different from 1."],
+example:"log₁₀ 100 = 2 because 10² = 100."
+},
+"Quadratic Equations":{
+meaning:"A quadratic equation is an equation of degree two, usually written as ax² + bx + c = 0, where a is not zero.",
+points:["Quadratic equations can be solved by factorisation.","The quadratic formula is x = [-b ± √(b² - 4ac)]/(2a).","Completing the square is another method.","The discriminant is b² - 4ac."],
+example:"Solve x² - 5x + 6 = 0. Factorise: (x - 2)(x - 3) = 0. Therefore, x = 2 or x = 3."
+},
+"Functions and Relations":{
+meaning:"A relation connects elements of sets. A function assigns exactly one output to each input in its domain.",
+points:["The domain is the set of allowed inputs.","The range is the set of actual outputs.","Functions may be written as f(x).","For f(x) = 2x + 1, substitute a value of x to find the output."],
+example:"If f(x) = 2x + 1, then f(3) = 2(3) + 1 = 7."
+},
+"Coordinate Geometry":{
+meaning:"Coordinate geometry uses algebra and coordinates to study points, lines and shapes on a plane.",
+points:["Gradient m = (y₂ - y₁)/(x₂ - x₁).","The midpoint is ((x₁+x₂)/2, (y₁+y₂)/2).","Distance = √[(x₂-x₁)² + (y₂-y₁)²].","A straight line can be written as y = mx + c."],
+example:"The gradient between (1, 2) and (3, 6) is (6-2)/(3-1) = 2."
+},
+"Sequences and Series":{
+meaning:"A sequence is an ordered list of numbers. A series is the sum of terms in a sequence.",
+points:["An arithmetic sequence has a constant difference.","An arithmetic nth term is a + (n-1)d.","An arithmetic series sum is Sₙ = n/2[2a+(n-1)d].","A geometric sequence has a constant ratio."],
+example:"For 2, 5, 8, 11, the common difference is 3."
+},
+"Complex Numbers":{
+meaning:"A complex number is written as a + bi, where i² = -1 and a and b are real numbers.",
+points:["a is the real part.","b is the coefficient of the imaginary part.","i² = -1.","Complex numbers can be added, subtracted and multiplied using algebra."],
+example:"(2 + 3i) + (4 + i) = 6 + 4i."
+},
+"Differentiation":{
+meaning:"Differentiation measures the rate at which a function changes and can be used to find gradients of curves.",
+points:["d(xⁿ)/dx = nxⁿ⁻¹.","The derivative of a constant is zero.","Differentiate each term of a polynomial separately.","Differentiation is useful in finding stationary points."],
+example:"If y = x³ + 2x, then dy/dx = 3x² + 2."
+},
+"Integration":{
+meaning:"Integration is used to find antiderivatives and to calculate areas under curves.",
+points:["∫xⁿ dx = xⁿ⁺¹/(n+1) + C, for n not equal to -1.","C is the constant of integration.","Definite integrals have upper and lower limits.","Integration can reverse differentiation."],
+example:"∫2x dx = x² + C."
+},
+"Matrices and Determinants":{
+meaning:"A matrix is a rectangular arrangement of numbers in rows and columns.",
+points:["Matrices can represent data and systems of equations.","Matrices can be added when their dimensions match.","For a 2 × 2 matrix [[a,b],[c,d]], determinant = ad - bc.","A matrix with a non-zero determinant has an inverse."],
+example:"For [[2,1],[3,4]], determinant = 2(4) - 1(3) = 5."
+},
+"Probability Distributions":{
+meaning:"A probability distribution describes the possible outcomes of a random variable and their probabilities.",
+points:["Probabilities lie between 0 and 1.","The probabilities of all possible outcomes sum to 1.","A discrete random variable has countable possible values.","Expected value is the probability-weighted mean."],
+example:"For a fair coin, the probability of heads is 1/2."
+}
+};
+
+function updateCurriculum(){
+var className=document.getElementById("classSelect").value;
+var term=document.getElementById("termSelect").value;
+currentTopics=curriculumData[className][term];
+currentIndex=0;
+
+document.getElementById("curriculumTitle").innerHTML=className+" Further Mathematics";
+
+var names={"1":"First Term","2":"Second Term","3":"Third Term"};
+document.getElementById("termTitle").innerHTML=names[term]+" Curriculum";
+
+var html="";
+for(var i=0;i<currentTopics.length;i++){
+html+='<button class="topic" onclick="openLesson('+i+')">'+(i+1)+". "+currentTopics[i]+"</button>";
+}
+document.getElementById("topicList").innerHTML=html;
+document.getElementById("curriculumPanel").className="panel";
+document.getElementById("lessonPanel").className="panel hidden";
+}
+
+function openLesson(index){
+if(typeof index==="number"){currentIndex=index;}
+var topic=currentTopics[currentIndex];
+var detail=lessonDetails[topic];
+var html="<h2>"+topic+"</h2><h3>Explanation</h3><p>";
+
+if(detail){html+=detail.meaning;}
+else{html+=topic+" is an important Further Mathematics topic. Study its definitions, rules, formulas and applications carefully.";}
+
+html+="</p><h3>Key Points</h3><ul>";
+
+if(detail){
+for(var i=0;i<detail.points.length;i++){html+="<li>"+detail.points[i]+"</li>";}
+}else{
+html+="<li>Learn the definitions and relevant mathematical formulas.</li>";
+html+="<li>Practise applying the formulas to worked problems.</li>";
+html+="<li>Check each calculation and include appropriate units where needed.</li>";
+}
+
+html+="</ul><h3>Worked Example</h3><div class='formula'>";
+
+if(detail){html+=detail.example;}
+else{html+="Write down the relevant formula, substitute the given values, and simplify the result step by step.";}
+
+html+="</div><h3>Practice Questions</h3><ol>";
+html+="<li>Define "+topic+".</li>";
+html+="<li>State two important rules or properties related to this topic.</li>";
+html+="<li>Solve one example using the method explained above.</li></ol>";
+
+document.getElementById("lesson").innerHTML=html;
+document.getElementById("curriculumPanel").className="panel hidden";
+document.getElementById("lessonPanel").className="panel";
+window.scrollTo(0,0);
+}
+
+function backToCurriculum(){
+document.getElementById("lessonPanel").className="panel hidden";
+document.getElementById("curriculumPanel").className="panel";
+}
+
+function nextLesson(){
+if(currentIndex<currentTopics.length-1){currentIndex++;openLesson(currentIndex);}
+else{alert("You have reached the last topic in this term.");}
+}
+
+function previousLesson(){
+if(currentIndex>0){currentIndex--;openLesson(currentIndex);}
+else{alert("This is the first topic in this term.");}
+}
+
+function showAnswer(){
+document.getElementById("answerText").innerHTML=questions[questionIndex].a;
+document.getElementById("answerText").className="";
+}
+
+function nextQuestion(){
+questionIndex++;
+if(questionIndex>=questions.length){questionIndex=0;}
+document.getElementById("questionText").innerHTML=questions[questionIndex].q;
+document.getElementById("answerText").innerHTML="";
+document.getElementById("answerText").className="hidden";
+}
+
+function goHome(){
+window.location.href="index.html";
+}
+
+updateCurriculum();
+</script>
+</body>
+</html>

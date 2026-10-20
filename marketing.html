@@ -1,0 +1,438 @@
+<!DOCTYP
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketing - EduSyllabus</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+header {
+  background: #7c2d12;
+  color: white;
+  padding: 22px 12px;
+  text-align: center;
+}
+
+main {
+  width: 92%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 6px #0000000d;
+}
+
+h2 { color: #9a3412; }
+
+.classes {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.classes button {
+  flex: 1;
+  padding: 13px 5px;
+  border: none;
+  border-radius: 7px;
+  background: #ffedd5;
+  color: #9a3412;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.classes button.active {
+  background: #9a3412;
+  color: white;
+}
+
+.term-button {
+  width: 100%;
+  padding: 15px;
+  margin: 7px 0;
+  border: none;
+  border-radius: 8px;
+  background: #ffedd5;
+  color: #9a3412;
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.term-button span {
+  float: right;
+}
+
+.term-content {
+  padding: 12px;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.lesson-button {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  text-align: left;
+  border: 1px solid #cbd5e1;
+  background: white;
+  border-radius: 6px;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.lesson-button:active {
+  background: #ffedd5;
+}
+
+.lesson {
+  padding: 12px;
+  background: #fff7ed;
+  border-radius: 6px;
+  margin: 5px 0 12px;
+  line-height: 1.7;
+}
+
+.lesson[hidden], .term-content[hidden] {
+  display: none !important;
+}
+
+.back {
+  display: inline-block;
+  background: #9a3412;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  border-radius: 7px;
+}
+
+footer {
+  text-align: center;
+  background: #7c2d12;
+  color: white;
+  padding: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>EduSyllabus</h1>
+  <p>Marketing</p>
+  <p>SS1 - SS3 Curriculum and Lessons</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Marketing Curriculum</h2>
+    <p>Select your class, open a term, and tap any lesson to study it.</p>
+  </section>
+
+  <div class="classes">
+    <button type="button" class="active" onclick="showClass('SS1',this)">SS1</button>
+    <button type="button" onclick="showClass('SS2',this)">SS2</button>
+    <button type="button" onclick="showClass('SS3',this)">SS3</button>
+  </div>
+
+  <section class="card" id="curriculum"></section>
+
+  <a class="back" href="index.html">← Back to Home</a>
+</main>
+
+<footer>
+  <p>EduSyllabus © 2026</p>
+  <p>Learn • Practise • Succeed</p>
+</footer>
+
+<script>
+const courses = {
+  SS1: {
+    "First Term": [
+      ["Meaning of Marketing",
+       "Marketing involves identifying customer needs and satisfying them through products, services and exchanges.",
+       "Example: A bakery studies what customers want before deciding which bread to produce."],
+      ["Importance of Marketing",
+       "Marketing helps businesses attract customers, increase sales, understand demand and compete effectively.",
+       "Example: A shop advertises its products to inform customers that they are available."],
+      ["Needs, Wants and Demand",
+       "A need is something essential, a want is a preferred way to satisfy a need, and demand is a want supported by willingness and ability to pay.",
+       "Example: Food is a need; a particular snack is a want; being ready and able to buy it creates demand."],
+      ["Types of Markets",
+       "Markets can be classified by the customers they serve, the products traded and the location of transactions.",
+       "Example: A local food market serves buyers and sellers in a community."],
+      ["Marketing Environment",
+       "The marketing environment includes internal and external factors that influence marketing decisions.",
+       "Example: Changes in customer income can affect demand for a product."],
+      ["Market Research",
+       "Market research involves collecting and analysing information about customers, competitors and markets.",
+       "Example: A business asks students which notebook designs they prefer."]
+    ],
+    "Second Term": [
+      ["Market Segmentation",
+       "Market segmentation divides a broad market into groups with similar characteristics or needs.",
+       "Example: A clothing business groups customers by age or clothing preferences."],
+      ["Target Market",
+       "A target market is the group of customers a business chooses to serve.",
+       "Example: A school-supplies shop may focus on students and teachers."],
+      ["Consumer Behaviour",
+       "Consumer behaviour examines how people choose, buy, use and evaluate products.",
+       "Example: Price, quality and recommendations can influence a customer's choice."],
+      ["The Marketing Mix",
+       "The traditional marketing mix consists of product, price, place and promotion.",
+       "Example: A business chooses a suitable product, sets a price, selects shops and advertises."],
+      ["Product Classification",
+       "Products can be classified into consumer products and industrial products, among other categories.",
+       "Example: Toothpaste is commonly a consumer product; machinery used in a factory is an industrial product."],
+      ["Product Packaging and Branding",
+       "Packaging protects and presents a product. Branding helps customers identify it.",
+       "Example: A distinctive logo helps customers recognise a company's bottled water."]
+    ],
+    "Third Term": [
+      ["Pricing",
+       "Pricing is the process of deciding how much customers will pay for a product or service.",
+       "Example: A shop considers costs, competitors and customer demand when setting a price."],
+      ["Channels of Distribution",
+       "Distribution channels are the routes through which products move from producers to consumers.",
+       "Example: A manufacturer may sell through a wholesaler and then a retailer."],
+      ["Wholesalers and Retailers",
+       "Wholesalers generally sell in bulk to businesses. Retailers sell goods to final consumers.",
+       "Example: A wholesaler supplies cartons of drinks to a neighbourhood shop."],
+      ["Promotion and Advertising",
+       "Promotion communicates product information and encourages customers to consider buying.",
+       "Example: A business advertises a new product on a poster."],
+      ["Personal Selling",
+       "Personal selling involves direct communication between a salesperson and a potential customer.",
+       "Example: A salesperson explains the features of a phone to a customer."],
+      ["Revision and Assessment",
+       "Review the term's topics and practise questions on marketing principles.",
+       "Activity: Explain the four elements of the traditional marketing mix."]
+    ]
+  },
+
+  SS2: {
+    "First Term": [
+      ["Marketing Management",
+       "Marketing management involves planning, organising, implementing and controlling marketing activities.",
+       "Example: A manager plans a campaign for a new product."],
+      ["Marketing Objectives",
+       "Marketing objectives are measurable results a business wants to achieve through its marketing activities.",
+       "Example: A business aims to increase sales over a specified period."],
+      ["Product Life Cycle",
+       "The product life cycle describes stages commonly experienced by products: introduction, growth, maturity and decline.",
+       "Example: Sales may rise as more customers discover a new product."],
+      ["New Product Development",
+       "New product development involves generating ideas, evaluating them, developing products and testing them before launch.",
+       "Example: A food company tests a new flavour before selling it widely."],
+      ["Pricing Strategies",
+       "Pricing strategies are approaches businesses use to set prices according to objectives and market conditions.",
+       "Example: A business may introduce a product at a low price to attract customers."],
+      ["Competition",
+       "Competition occurs when businesses seek customers who may choose among alternative products or suppliers.",
+       "Example: Two phone shops compete through price, service and product selection."]
+    ],
+    "Second Term": [
+      ["Advertising Media",
+       "Advertising media are channels used to deliver advertising messages to an audience.",
+       "Example: Radio, newspapers, posters and online advertisements are different media."],
+      ["Sales Promotion",
+       "Sales promotion uses short-term incentives to encourage purchases or support sales.",
+       "Example: A shop offers a temporary discount on selected goods."],
+      ["Public Relations",
+       "Public relations helps an organisation build and maintain relationships with the public.",
+       "Example: A company communicates openly with customers about a service change."],
+      ["Personal Selling Process",
+       "The personal selling process may include finding prospects, presenting a product, answering objections and following up.",
+       "Example: A salesperson answers a customer's questions before a purchase."],
+      ["Physical Distribution",
+       "Physical distribution concerns storing, handling and transporting products to customers.",
+       "Example: A distributor uses delivery vehicles to supply shops."],
+      ["Inventory Management",
+       "Inventory management involves monitoring stock to help ensure products are available without excessive stockholding.",
+       "Example: A shop checks stock records before placing a new order."]
+    ],
+    "Third Term": [
+      ["Marketing Research Methods",
+       "Marketing research may use surveys, interviews, observation and existing information.",
+       "Example: A survey collects customer opinions about a new product."],
+      ["International Marketing",
+       "International marketing involves marketing products or services across national borders.",
+       "Example: A Nigerian producer sells packaged food to customers in another country."],
+      ["E-Commerce",
+       "E-commerce involves buying and selling goods or services electronically.",
+       "Example: A customer orders school supplies through an online store."],
+      ["Customer Service",
+       "Customer service helps customers before, during and after a purchase.",
+       "Example: A business assists a customer who receives the wrong item."],
+      ["Ethics in Marketing",
+       "Marketing ethics involves acting honestly and fairly when promoting and selling products.",
+       "Example: An advert should not make false claims about a product."],
+      ["Revision and Assessment",
+       "Review the term's topics and practise applying marketing concepts to business examples.",
+       "Activity: Compare advertising, personal selling and sales promotion."]
+    ]
+  },
+
+  SS3: {
+    "First Term": [
+      ["Strategic Marketing Planning",
+       "Strategic marketing planning sets long-term marketing objectives and identifies ways to achieve them.",
+       "Example: A company plans how to reach a new group of customers."],
+      ["Market Analysis",
+       "Market analysis examines customers, competitors, demand and other market conditions.",
+       "Example: A business studies competing products before entering a new market."],
+      ["Brand Positioning",
+       "Brand positioning describes how a business wants customers to perceive its brand compared with alternatives.",
+       "Example: A brand may aim to be known for durability and reliability."],
+      ["Integrated Marketing Communications",
+       "Integrated marketing communications coordinates different promotional methods to deliver a consistent message.",
+       "Example: A company uses the same key message in its posters and online adverts."],
+      ["Marketing Budget",
+       "A marketing budget estimates the money allocated to marketing activities.",
+       "Example: A business plans spending for advertising, research and promotions."],
+      ["Marketing Performance",
+       "Marketing performance is assessed by comparing results with marketing objectives.",
+       "Example: A business measures sales and customer enquiries after a campaign."]
+    ],
+    "Second Term": [
+      ["Digital Marketing",
+       "Digital marketing uses digital channels and technologies to reach and engage customers.",
+       "Example: A business shares product information on its official website."],
+      ["Social Media Marketing",
+       "Social media marketing uses social platforms to communicate with audiences and promote products or services.",
+       "Example: A bakery posts its menu and opening hours on its business page."],
+      ["Services Marketing",
+       "Services marketing focuses on promoting intangible offerings such as banking, education and transport.",
+       "Example: A school communicates its courses and facilities to prospective students."],
+      ["Relationship Marketing",
+       "Relationship marketing focuses on developing lasting customer relationships rather than only individual sales.",
+       "Example: A business follows up to check whether customers are satisfied."],
+      ["Export Marketing",
+       "Export marketing involves preparing and promoting products for customers in foreign markets.",
+       "Example: A local producer researches packaging and regulations before exporting."],
+      ["Marketing Regulations",
+       "Marketing regulations establish requirements intended to protect customers and promote fair business practices.",
+       "Example: Businesses should provide accurate product descriptions."]
+    ],
+    "Third Term": [
+      ["Marketing Case Studies",
+       "Case studies use real or realistic business situations to examine marketing decisions and their results.",
+       "Activity: Explain why a local shop might change its pricing strategy."],
+      ["Business Plan and Marketing Plan",
+       "A business plan describes a venture, while its marketing plan explains how it will reach and serve customers.",
+       "Activity: Prepare a simple marketing plan for a school stationery business."],
+      ["Entrepreneurship and Marketing",
+       "Entrepreneurs use marketing to identify opportunities, understand customers and promote their businesses.",
+       "Example: A student selling handmade items surveys potential buyers before production."],
+      ["Marketing Research Project",
+       "A marketing research project investigates a question using collected and analysed information.",
+       "Activity: Survey preferences for different notebook sizes and summarise the results."],
+      ["Examination Preparation",
+       "Revision and practice help students apply definitions, principles and examples to examination questions.",
+       "Activity: Explain market segmentation and give two examples."],
+      ["General Revision",
+       "Review the major concepts covered in SS1, SS2 and SS3.",
+       "Activity: Describe the marketing mix and explain how its elements work together."]
+    ]
+  }
+};
+
+function showClass(className, button) {
+  document.querySelectorAll(".classes button").forEach(function(btn) {
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  const container = document.getElementById("curriculum");
+  container.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = className + " Marketing Curriculum";
+  container.appendChild(heading);
+
+  Object.entries(courses[className]).forEach(function(entry) {
+    const termName = entry[0];
+    const lessons = entry[1];
+
+    const termButton = document.createElement("button");
+    termButton.type = "button";
+    termButton.className = "term-button";
+    termButton.innerHTML = termName + " <span>+</span>";
+
+    const termContent = document.createElement("div");
+    termContent.className = "term-content";
+    termContent.hidden = true;
+
+    termButton.addEventListener("click", function() {
+      termContent.hidden = !termContent.hidden;
+      termButton.querySelector("span").textContent =
+        termContent.hidden ? "+" : "−";
+    });
+
+    lessons.forEach(function(lesson, index) {
+      const lessonButton = document.createElement("button");
+      lessonButton.type = "button";
+      lessonButton.className = "lesson-button";
+      lessonButton.textContent = (index + 1) + ". " + lesson[0];
+
+      const lessonContent = document.createElement("div");
+      lessonContent.className = "lesson";
+      lessonContent.hidden = true;
+
+      const explanation = document.createElement("p");
+      explanation.textContent = lesson[1];
+
+      const example = document.createElement("p");
+      example.textContent = lesson[2];
+
+      lessonContent.append(explanation, example);
+
+      lessonButton.addEventListener("click", function() {
+        lessonContent.hidden = !lessonContent.hidden;
+      });
+
+      termContent.append(lessonButton, lessonContent);
+    });
+
+    container.append(termButton, termContent);
+  });
+}
+
+showClass("SS1", document.querySelector(".classes button"));
+</script>
+
+</body>
+</html>
+E html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  
+</body>
+
+</html>

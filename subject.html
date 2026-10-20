@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <t
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Subjects | EduSyllabus</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+    }
+
+    header {
+      background: #075985;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    header h1 {
+      margin: 0 0 8px;
+    }
+
+    nav {
+      background: #0c4a6e;
+      text-align: center;
+      padding: 12px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 5px 10px;
+      display: inline-block;
+      font-weight: bold;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 15px;
+    }
+
+    .intro {
+      background: white;
+      padding: 18px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .search-box {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #94a3b8;
+      border-radius: 8px;
+      font-size: 16px;
+      margin: 10px 0 20px;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 14px;
+    }
+
+    .subject-card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100px;
+      padding: 15px;
+      background: white;
+      color: #075985;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 2px 6px #00000010;
+      transition: 0.2s;
+    }
+
+    .subject-card:hover,
+    .subject-card:focus {
+      background: #e0f2fe;
+      border-color: #0284c7;
+      transform: translateY(-2px);
+    }
+
+    .count {
+      color: #475569;
+      margin-bottom: 15px;
+    }
+
+    #noResults {
+      display: none;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    footer {
+      background: #075985;
+      color: white;
+      text-align: center;
+      padding: 16px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>EduSyllabus</h1>
+    <p>Explore Subjects and Their Curricula</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="jss1.html">JSS1</a>
+    <a href="jss2.html">JSS2</a>
+    <a href="jss3.html">JSS3</a>
+    <a href="ss1.html">SS1</a>
+    <a href="ss2.html">SS2</a>
+    <a href="ss3.html">SS3</a>
+  </nav>
+
+  <main>
+    <section class="intro">
+      <h2>All Subjects</h2>
+      <p>
+        Welcome to the EduSyllabus subject library. Select a subject
+        to open its learning page and explore available curriculum topics.
+      </p>
+
+      <input
+        type="search"
+        id="subjectSearch"
+        class="search-box"
+        placeholder="Search for a subject..."
+        aria-label="Search subjects"
+      >
+
+      <p class="count" id="subjectCount">Showing 30 subjects</p>
+    </section>
+
+    <section class="subject-grid" id="subjectGrid">
+
+      <a class="subject-card" href="physical-and-health-education.html">Physical Health Education</a>
+
+      <a class="subject-card" href="social-studies.html">Social Studies</a>
+
+      <a class="subject-card" href="business-studies.html">Business Studies</a>
+
+      <a class="subject-card" href="cultural-and-creative-arts.html">Cultural and Creative Arts</a>
+
+      <a class="subject-card" href="igbo-language.html">Igbo Language</a>
+
+      <a class="subject-card" href="french.html">French</a>
+
+      <a class="subject-card" href="history.html">History</a>
+
+      <a class="subject-card" href="home-economics.html">Home Economics</a>
+
+      <a class="subject-card" href="islamic-religious-studies.html">Islamic Religious Studies</a>
+
+      <a class="subject-card" href="physical-education.html">Physical Education</a>
+
+      <a class="subject-card" href="chemistry.html">Chemistry</a>
+
+      <a class="subject-card" href="biology.html">Biology</a>
+
+      <a class="subject-card" href="geography.html">Geography</a>
+
+      <a class="subject-card" href="mathematics.html">Mathematics</a>
+
+      <a class="subject-card" href="english.html">English Language</a>
+
+      <a class="subject-card" href="civic-education.html">Civic Education</a>
+
+      <a class="subject-card" href="physics.html">Physics</a>
+
+      <a class="subject-card" href="literature.html">Literature</a>
+
+      <a class="subject-card" href="agricultural-science.html">Agriculture</a>
+
+      <a class="subject-card" href="commerce.html">Commerce</a>
+
+      <a class="subject-card" href="further-mathematics.html">Further Mathematics</a>
+
+      <a class="subject-card" href="financial-accounting.html">Financial Accounting</a>
+
+      <a class="subject-card" href="marketing.html">Marketing</a>
+
+      <a class="subject-card" href="crs.html">CRS</a>
+
+      <a class="subject-card" href="calculus.html">Calculus</a>
+
+      <a class="subject-card" href="basic-science.html">Basic Science</a>
+
+      <a class="subject-card" href="anatomy.html">Anatomy</a>
+
+      <a class="subject-card" href="basic-technology.html">Basic Technology</a>
+
+      <a class="subject-card" href="government.html">Government</a>
+
+      <a class="subject-card" href="computer-science.html">Computer Science</a>
+
+    </section>
+
+    <p id="noResults">No matching subject found. Try another search.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 EduSyllabus | Learn, Practise, Succeed</p>
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById("subjectSearch");
+    const subjectCards = document.querySelectorAll(".subject-card");
+    const subjectCount = document.getElementById("subjectCount");
+    const noResults = document.getElementById("noResults");
+
+    searchInput.addEventListener("input", function () {
+      const searchText = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      subjectCards.forEach(function (card) {
+        const subjectName = card.textContent.toLowerCase();
+        const matches = subjectName.includes(searchText);
+
+        card.style.display = matches ? "flex" : "none";
+
+        if (matches) {
+          visibleCount++;
+        }
+      });
+
+      subjectCount.textContent =
+        "Showing " + visibleCount +
+        (visibleCount === 1 ? " subject" : " subjects");
+
+      noResults.style.display =
+        visibleCount === 0 ? "block" : "none";
+    });
+  </script>
+
+</body>
+</html>
+itle></title>
+</head>
+
+<body>
+  
+</body>
+
+</html>

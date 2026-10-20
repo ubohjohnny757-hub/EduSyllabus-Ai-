@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Literature | EduSyllabus AI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f0f5ff;color:#172554;line-height:1.6}
+header{background:#123c80;color:white;text-align:center;padding:22px 12px}
+header h1{margin:0;font-size:28px}
+nav{background:#082f65;padding:12px;text-align:center}
+nav a{color:white;text-decoration:none;margin:8px}
+main{width:92%;max-width:850px;margin:22px auto}
+.card{background:white;padding:18px;border-radius:12px;margin-bottom:18px;box-shadow:0 3px 10px #0001}
+h2,h3{color:#123c80}
+.buttons{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}
+button{padding:12px;border:0;border-radius:7px;font-size:15px;cursor:pointer;font-weight:bold}
+.classBtn{background:#1763c6;color:white;flex:1}
+.termBtn{background:#e0ecff;color:#123c80;flex:1}
+.active{background:#15803d!important;color:white!important}
+.topic{display:block;width:100%;text-align:left;background:#f0f6ff;color:#173767;border:1px solid #c8dcfa;margin:8px 0}
+.topic:hover{background:#dceaff}
+#lesson{display:none}
+.back{background:#475569;color:white;margin-bottom:12px}
+.action{background:#1763c6;color:white;margin:4px}
+.note{background:#eff6ff;padding:13px;border-radius:8px;margin:12px 0}
+footer{background:#082f65;color:white;text-align:center;padding:18px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>EduSyllabus AI</h1>
+<p>Literature in English | SS1 to SS3</p>
+<p>Read • Understand • Analyse</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="#classes">Classes</a>
+<a href="#curriculum">Curriculum</a>
+</nav>
+
+<main>
+<section class="card" id="classes">
+<h2>Welcome to Literature in English</h2>
+<p>Choose your class and term. Tap any topic to open its lesson.</p>
+<div class="buttons">
+<button class="classBtn active" onclick="changeClass('SS1',this)">SS1</button>
+<button class="classBtn" onclick="changeClass('SS2',this)">SS2</button>
+<button class="classBtn" onclick="changeClass('SS3',this)">SS3</button>
+</div>
+</section>
+
+<section class="card" id="curriculum">
+<h2 id="heading">SS1 Literature Curriculum</h2>
+<div class="buttons">
+<button class="termBtn active" onclick="changeTerm(1,this)">First Term</button>
+<button class="termBtn" onclick="changeTerm(2,this)">Second Term</button>
+<button class="termBtn" onclick="changeTerm(3,this)">Third Term</button>
+</div>
+<h3 id="termHeading">SS1 - First Term</h3>
+
+<!-- Initial topics remain visible even before JavaScript runs -->
+<div id="topicList">
+<button class="topic" onclick="openLesson(0)">1. Introduction to Literature in English → Open lesson</button>
+<button class="topic" onclick="openLesson(1)">2. Meaning and Functions of Literature → Open lesson</button>
+<button class="topic" onclick="openLesson(2)">3. Genres of Literature → Open lesson</button>
+<button class="topic" onclick="openLesson(3)">4. Introduction to Prose → Open lesson</button>
+<button class="topic" onclick="openLesson(4)">5. Introduction to Poetry → Open lesson</button>
+<button class="topic" onclick="openLesson(5)">6. Introduction to Drama → Open lesson</button>
+<button class="topic" onclick="openLesson(6)">7. Plot and Plot Structure → Open lesson</button>
+<button class="topic" onclick="openLesson(7)">8. Setting in Literature → Open lesson</button>
+<button class="topic" onclick="openLesson(8)">9. Characterisation → Open lesson</button>
+<button class="topic" onclick="openLesson(9)">10. Theme and Subject Matter → Open lesson</button>
+<button class="topic" onclick="openLesson(10)">11. Literary Appreciation → Open lesson</button>
+</div>
+</section>
+
+<section class="card" id="lesson">
+<button class="back" onclick="backToList()">← Back to Curriculum</button>
+<h2 id="lessonTitle"></h2>
+<p id="lessonLevel"></p>
+
+<div class="note">
+<h3>Lesson Notes</h3>
+<div id="notes"></div>
+</div>
+
+<div class="note">
+<h3>Example</h3>
+<p id="example"></p>
+<p id="exampleAnswer"></p>
+</div>
+
+<div class="note">
+<h3>Practice Question</h3>
+<p id="question"></p>
+<button class="action" onclick="showAnswer()">Show Answer</button>
+<p id="answer"></p>
+</div>
+
+<button class="action" onclick="moveTopic(-1)">← Previous Lesson</button>
+<button class="action" onclick="moveTopic(1)">Next Lesson →</button>
+</section>
+</main>
+
+<footer>
+<p>© 2026 EduSyllabus AI</p>
+<p>Supporting Secondary School Learning</p>
+</footer>
+
+<script>
+var data = {
+SS1: {
+1: [
+"Introduction to Literature in English","Meaning and Functions of Literature",
+"Genres of Literature","Introduction to Prose","Introduction to Poetry",
+"Introduction to Drama","Plot and Plot Structure","Setting in Literature",
+"Characterisation","Theme and Subject Matter","Literary Appreciation"
+],
+2: [
+"Types of Prose","Short Stories and Novels","Narrative Techniques",
+"Point of View and Narration","Types of Characters","Conflict in Literature",
+"Introduction to Figures of Speech","Simile and Metaphor",
+"Personification and Hyperbole","Oral Literature","Folktales, Myths and Legends"
+],
+3: [
+"Elements of Poetry","Types of Poems","Speaker and Persona",
+"Rhyme and Rhyme Scheme","Rhythm and Sound Devices","Imagery and Symbolism",
+"Alliteration, Assonance and Onomatopoeia","Elements of Drama",
+"Dialogue and Stage Directions","Comedy and Tragedy","Basic Literary Criticism"
+]
+},
+SS2: {
+1: [
+"Advanced Prose Study","Plot Development and Structure",
+"Character Types and Character Development","Theme and Moral Lessons",
+"Narrative Point of View","Style and Language in Prose",
+"Advanced Poetry Appreciation","Tone, Mood and Atmosphere",
+"Imagery and Symbolism in Poetry","Poetic Structure and Form",
+"Comparative Literary Analysis"
+],
+2: [
+"Drama and Dramatic Structure","Acts, Scenes and Dialogue",
+"Tragedy and Comic Drama","Conflict and Suspense in Drama",
+"Characterisation in Drama","Stagecraft and Dramatic Techniques",
+"Satire and Irony","Figures of Speech in Context",
+"Literature and Society","Oral Literature and Cultural Values",
+"Critical Appreciation of Set Texts"
+],
+3: [
+"Detailed Prose Text Analysis","Detailed Poetry Text Analysis",
+"Detailed Drama Text Analysis","Themes and Motifs","Character Relationships",
+"Language, Diction and Style","Literary Devices in Set Texts",
+"Comparing Literary Genres","Writing a Literary Essay",
+"Textual Evidence and Interpretation","Examination Practice"
+]
+},
+SS3: {
+1: [
+"Comprehensive Prose Appreciation","Prose Themes and Social Issues",
+"Character Development and Motivation","Plot, Structure and Narrative Style",
+"Comprehensive Poetry Appreciation","Poetic Persona, Tone and Mood",
+"Imagery, Symbolism and Allusion","Poetic Sound and Structure",
+"Comprehensive Drama Appreciation","Dramatic Conflict and Climax",
+"Comparative Study of Literary Texts"
+],
+2: [
+"Critical Analysis of Prescribed Prose","Critical Analysis of Prescribed Poetry",
+"Critical Analysis of Prescribed Drama","Major and Minor Themes",
+"Characterisation and Relationships","Language and Literary Techniques",
+"Historical and Cultural Context","Satire, Irony and Social Commentary",
+"Literary Essay Writing","Quotations and Textual Evidence",
+"WAEC and NECO Literature Practice"
+],
+3: [
+"Revision of Prose","Revision of Poetry","Revision of Drama",
+"Literary Terms and Definitions","Figures of Speech Revision",
+"Plot, Setting, Theme and Character Revision",
+"Unseen Poetry Appreciation","Unseen Prose Appreciation",
+"Essay Planning and Answer Structure","Past Questions and Model Answers",
+"Final Examination Revision"
+]
+}
+};
+
+var currentClass = "SS1";
+var currentTerm = 1;
+var currentIndex = 0;
+
+var lessonData = {
+"Introduction to Literature in English": [
+"Literature is the artistic use of language to express human experiences, ideas, feelings and imagination.",
+"The three major genres are prose, poetry and drama.",
+"Literature can entertain, educate, preserve culture and encourage people to think about society.",
+"Example: A story about honesty may entertain readers while teaching a moral lesson.",
+"Why do we study literature?",
+"Literature helps us understand human experiences, develop imagination and appreciate language and culture."
+],
+"Meaning and Functions of Literature": [
+"Literature presents human experiences through stories, poems, plays and oral traditions.",
+"It can entertain, educate, preserve culture and criticise social problems.",
+"It can help readers understand different people and situations.",
+"Example: A play exposing corruption may encourage people to think about good leadership.",
+"State two functions of literature.",
+"Two functions are entertainment and education. Other answers include cultural preservation and social criticism."
+],
+"Genres of Literature": [
+"The three major genres are prose, poetry and drama.",
+"Prose includes novels and short stories.",
+"Poetry often uses imagery, rhythm and carefully selected words.",
+"Drama is written mainly for performance through dialogue and action.",
+"Give one example of each major genre.",
+"Prose: a novel. Poetry: a poem. Drama: a stage play."
+],
+"Introduction to Prose": [
+"Prose uses ordinary sentences and paragraphs.",
+"Common forms include novels, novellas and short stories.",
+"Prose may contain plot, setting, characters, conflict and themes.",
+"Example: A short story about a student's school experience is prose.",
+"Name two forms of prose.",
+"Novels and short stories."
+],
+"Introduction to Poetry": [
+"Poetry expresses ideas, feelings and experiences through carefully chosen language.",
+"A line is one row of a poem; a stanza is a group of lines.",
+"Poetry may use rhyme, rhythm, imagery, repetition and figurative language.",
+"The speaker in a poem is not necessarily the poet.",
+"What is a stanza?",
+"A stanza is a group of lines in a poem."
+],
+"Introduction to Drama": [
+"Drama is a literary genre written mainly for performance.",
+"Dialogue is speech between characters.",
+"Stage directions guide actors' actions and movements.",
+"Plays are commonly divided into acts and scenes.",
+"What is dialogue?",
+"Dialogue is speech exchanged between characters."
+],
+"Plot and Plot Structure": [
+"Plot is the sequence of events in a story or play.",
+"Exposition introduces characters and setting.",
+"Rising action develops conflict, while the climax is the major turning point.",
+"Falling action follows the climax, and resolution brings the main conflict toward an ending.",
+"What is the climax?",
+"It is the major turning point or moment of greatest tension."
+],
+"Setting in Literature": [
+"Setting refers to the time and place of a literary work.",
+"It may include historical, social and cultural conditions.",
+"Setting can influence characters, conflict, mood and theme.",
+"Example: A story set during a drought may feature conflict over water.",
+"State two aspects of setting.",
+"Time and place."
+],
+"Characterisation": [
+"Characterisation is how a writer presents and develops characters.",
+"Direct characterisation tells readers about a character.",
+"Indirect characterisation reveals qualities through actions, speech and thoughts.",
+"The protagonist is a central character; an antagonist opposes the protagonist's aims.",
+"What is characterisation?",
+"It is the way a writer presents and develops characters."
+],
+"Theme and Subject Matter": [
+"Subject matter is the basic topic or events of a literary work.",
+"Theme is a central idea explored through the work.",
+"Examples of themes include courage, betrayal, injustice, love and greed.",
+"Explain themes by referring to characters and events.",
+"What is a theme?",
+"A central idea explored in a literary work."
+],
+"Literary Appreciation": [
+"Literary appreciation means carefully reading and interpreting a literary work.",
+"Consider plot, setting, character, theme, language and structure.",
+"Support interpretations with examples from the text.",
+"Explain how the writer's choices affect meaning and the reader.",
+"Name three elements to consider when appreciating a story.",
+"Plot, setting and character are three possible answers."
+]
+};
+
+function changeClass(level, button) {
+ currentClass = level;
+ document.querySelectorAll(".classBtn").forEach(function(b) {
+  b.classList.remove("active");
+ });
+ button.classList.add("active");
+ document.getElementById("heading").textContent = level + " Literature Curriculum";
+ renderTopics();
+}
+
+function changeTerm(term, button) {
+ currentTerm = term;
+ document.querySelectorAll(".termBtn").forEach(function(b) {
+  b.classList.remove("active");
+ });
+ button.classList.add("active");
+ renderTopics();
+}
+
+function renderTopics() {
+ document.getElementById("curriculum").style.display = "block";
+ document.getElementById("lesson").style.display = "none";
+ document.getElementById("termHeading").textContent =
+ currentClass + " - " + ["First Term","Second Term","Third Term"][currentTerm - 1];
+
+ var list = document.getElementById("topicList");
+ list.replaceChildren();
+
+ data[currentClass][currentTerm].forEach(function(topic, index) {
+  var button = document.createElement("button");
+  button.className = "topic";
+  button.textContent = (index + 1) + ". " + topic + " → Open lesson";
+  button.onclick = function() { openLesson(index); };
+  list.appendChild(button);
+ });
+}
+
+function openLesson(index) {
+ currentIndex = index;
+ var topic = data[currentClass][currentTerm][index];
+ var details = lessonData[topic];
+
+ if (!details) {
+  details = [
+   topic + " is an important topic in Literature in English.",
+   "Study the meaning, important features and purpose of this topic.",
+   "Use examples from a story, poem, play or your prescribed text.",
+   "Explain how the topic helps readers understand a literary work.",
+   "Define " + topic + " and give an example.",
+   "Give a clear definition and support it with an appropriate literary example."
+  ];
+ }
+
+ document.getElementById("curriculum").style.display = "none";
+ document.getElementById("lesson").style.display = "block";
+ document.getElementById("lessonTitle").textContent = topic;
+ document.getElementById("lessonLevel").textContent =
+ currentClass + " | " + ["First Term","Second Term","Third Term"][currentTerm - 1];
+
+ var notes = document.getElementById("notes");
+ notes.replaceChildren();
+
+ for (var i = 0; i < 3; i++) {
+  var p = document.createElement("p");
+  p.textContent = details[i];
+  notes.appendChild(p);
+ }
+
+ document.getElementById("example").textContent = details[3];
+ document.getElementById("exampleAnswer").textContent = "";
+ document.getElementById("question").textContent = details[4];
+ document.getElementById("answer").textContent = "";
+ document.getElementById("answer").dataset.answer = details[5];
+
+ window.scrollTo(0, 0);
+}
+
+function showAnswer() {
+ document.getElementById("answer").textContent =
+ document.getElementById("answer").dataset.answer;
+}
+
+function backToList() {
+ document.getElementById("lesson").style.display = "none";
+ document.getElementById("curriculum").style.display = "block";
+ window.scrollTo(0, 0);
+}
+
+function moveTopic(direction) {
+ var next = currentIndex + direction;
+ if (next >= 0 && next < data[currentClass][currentTerm].length) {
+  openLesson(next);
+ } else {
+  alert("You have reached the end of this term's topics.");
+ }
+}
+
+renderTopics();
+</script>
+</body>
+</html>
+1">
+  <title></title>
+</head>
+
+<body>
+  
+</body>
+
+</html>

@@ -1,0 +1,381 @@
+<!DOCTYPE ht
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geography | EduSyllabus</title>
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+header {
+  background: #166534;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+}
+
+nav {
+  background: #14532d;
+  padding: 12px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 7px;
+  display: inline-block;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 18px;
+}
+
+.panel, .topic, .lesson {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 7px #00000010;
+}
+
+label { display: block; margin-top: 10px; }
+
+select, input {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 16px;
+}
+
+button {
+  background: #15803d;
+  color: white;
+  padding: 11px 15px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover { background: #166534; }
+
+.topic h3 { color: #166534; margin-top: 0; }
+.topic p, .lesson p, .lesson li { line-height: 1.7; }
+.hidden { display: none; }
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #14532d;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>EduSyllabus Geography</h1>
+  <p>Explore the Earth, people, places and environment</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="curriculum.html">Curriculum</a>
+  <a href="biology.html">Biology</a>
+  <a href="chemistry.html">Chemistry</a>
+  <a href="quiz.html">Quiz</a>
+</nav>
+
+<main>
+  <section class="panel">
+    <h2>Find a Geography Lesson</h2>
+
+    <label for="classSelect">Select class</label>
+    <select id="classSelect">
+      <option value="SS1">SS1</option>
+      <option value="SS2">SS2</option>
+      <option value="SS3">SS3</option>
+    </select>
+
+    <label for="termSelect">Select term</label>
+    <select id="termSelect">
+      <option>First Term</option>
+      <option>Second Term</option>
+      <option>Third Term</option>
+    </select>
+
+    <label for="searchInput">Search topics</label>
+    <input id="searchInput" type="search"
+      placeholder="e.g. weather, maps, population">
+
+    <button id="searchButton" type="button">Find Topics</button>
+  </section>
+
+  <section>
+    <h2 id="topicHeading">SS1 Geography Topics</h2>
+    <div id="topicList"></div>
+    <p id="noResults" class="hidden">
+      No topics found. Try another class, term or search word.
+    </p>
+  </section>
+
+  <section id="lessonBox" class="lesson hidden">
+    <h2 id="lessonTitle"></h2>
+    <div id="lessonNotes"></div>
+    <button id="closeLesson" type="button">Close Lesson</button>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 EduSyllabus AI</p>
+  <p>Learn about our world.</p>
+</footer>
+
+<script>
+const lessons = [
+  {
+    cls: "SS1", term: "First Term",
+    title: "Meaning and Scope of Geography",
+    notes: `<p><b>Geography</b> is the study of the Earth's physical features, people, places and the relationships between humans and their environment.</p>
+    <p><b>Main branches:</b> Physical geography studies natural features and processes. Human geography studies people and their activities.</p>
+    <p>Geography helps us understand climate, settlement, farming, transport and environmental problems.</p>`
+  },
+  {
+    cls: "SS1", term: "First Term",
+    title: "The Solar System",
+    notes: `<p>The solar system consists of the Sun and the objects held by its gravity, including eight planets, moons, asteroids and comets.</p>
+    <p>The planets in order from the Sun are Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus and Neptune.</p>
+    <p>Earth rotates on its axis, producing day and night, and revolves around the Sun over approximately one year.</p>`
+  },
+  {
+    cls: "SS1", term: "First Term",
+    title: "Latitudes and Longitudes",
+    notes: `<p><b>Latitude</b> measures distance north or south of the Equator. The Equator is at 0° latitude.</p>
+    <p><b>Longitude</b> measures distance east or west of the Prime Meridian, which is at 0° longitude.</p>
+    <p>Latitude and longitude help us locate places on the Earth's surface.</p>`
+  },
+  {
+    cls: "SS1", term: "First Term",
+    title: "Maps and Map Reading",
+    notes: `<p>A map is a representation of all or part of the Earth's surface drawn to a chosen scale.</p>
+    <p>Important map elements include the title, scale, key or legend, direction and symbols.</p>
+    <p>Map scales show the relationship between distance on a map and distance on the ground.</p>`
+  },
+  {
+    cls: "SS1", term: "Second Term",
+    title: "Weather and Climate",
+    notes: `<p><b>Weather</b> is the condition of the atmosphere at a place over a short period. <b>Climate</b> describes average weather conditions over a long period, commonly 30 years.</p>
+    <p>Weather elements include temperature, rainfall, wind, humidity, air pressure and cloud cover.</p>
+    <p>A thermometer measures temperature, while a rain gauge measures rainfall.</p>`
+  },
+  {
+    cls: "SS1", term: "Second Term",
+    title: "The Earth's Structure",
+    notes: `<p>Earth has three main internal layers:</p>
+    <ul><li><b>Crust:</b> The thin, outer solid layer.</li>
+    <li><b>Mantle:</b> The thick layer beneath the crust.</li>
+    <li><b>Core:</b> The central region, consisting mainly of iron and nickel.</li></ul>
+    <p>Heat inside Earth helps drive processes that shape the surface.</p>`
+  },
+  {
+    cls: "SS1", term: "Second Term",
+    title: "Rocks and Minerals",
+    notes: `<p>Rocks are naturally occurring solid materials made of one or more minerals.</p>
+    <ul><li><b>Igneous rocks:</b> Form when molten rock cools.</li>
+    <li><b>Sedimentary rocks:</b> Form from deposited material that becomes compacted or cemented.</li>
+    <li><b>Metamorphic rocks:</b> Form when existing rocks change under heat and pressure.</li></ul>
+    <p>Examples include granite, sandstone and marble.</p>`
+  },
+  {
+    cls: "SS1", term: "Third Term",
+    title: "Weathering and Erosion",
+    notes: `<p><b>Weathering</b> is the breakdown of rocks in place. <b>Erosion</b> involves the removal and transport of material by agents such as water, wind and ice.</p>
+    <p>Weathering can be physical, chemical or biological.</p>
+    <p>Vegetation cover and careful land management can help reduce soil erosion.</p>`
+  },
+  {
+    cls: "SS1", term: "Third Term",
+    title: "The Hydrological Cycle",
+    notes: `<p>The hydrological cycle is the continuous movement of water between the Earth's surface and the atmosphere.</p>
+    <ul><li><b>Evaporation:</b> Liquid water becomes water vapour.</li>
+    <li><b>Condensation:</b> Water vapour cools to form droplets.</li>
+    <li><b>Precipitation:</b> Water falls as rain or other forms.</li>
+    <li><b>Runoff and infiltration:</b> Water flows over land or enters the soil.</li></ul>`
+  },
+  {
+    cls: "SS2", term: "First Term",
+    title: "Climate of Nigeria",
+    notes: `<p>Nigeria has different climatic conditions across its regions.</p>
+    <p>Rainfall is generally higher in the south and lower in many northern areas. Seasonal changes are influenced by air masses and the movement of the Intertropical Convergence Zone.</p>
+    <p>Climate affects farming, vegetation, water supply and settlement.</p>`
+  },
+  {
+    cls: "SS2", term: "First Term",
+    title: "Vegetation Zones of Nigeria",
+    notes: `<p>Nigeria's major vegetation zones include mangrove and freshwater swamp forests, tropical rainforests, derived savanna, Guinea savanna, Sudan savanna and Sahel savanna.</p>
+    <p>Rainfall, temperature, soil and human activities influence vegetation patterns.</p>`
+  },
+  {
+    cls: "SS2", term: "First Term",
+    title: "Population and Settlement",
+    notes: `<p>Population refers to the number of people living in a place. Population density is the number of people per unit area.</p>
+    <p>Settlements may be rural or urban. Their locations are influenced by water, relief, jobs, transport, security and access to services.</p>`
+  },
+  {
+    cls: "SS2", term: "Second Term",
+    title: "Agriculture",
+    notes: `<p>Agriculture involves crop cultivation and livestock rearing.</p>
+    <p>Subsistence farming mainly produces food for the farmer's household, while commercial farming focuses on production for sale.</p>
+    <p>Climate, soil, labour, capital, technology and transport affect agricultural output.</p>`
+  },
+  {
+    cls: "SS2", term: "Second Term",
+    title: "Mineral Resources",
+    notes: `<p>Mineral resources are naturally occurring materials that can be extracted and used.</p>
+    <p>Examples found in Nigeria include crude oil, natural gas, limestone, coal, tin and iron ore.</p>
+    <p>Mining can provide jobs and raw materials, but poor management can cause pollution and land degradation.</p>`
+  },
+  {
+    cls: "SS2", term: "Second Term",
+    title: "Transportation and Communication",
+    notes: `<p>Transportation moves people and goods, while communication transfers information.</p>
+    <p>Transport modes include road, rail, water and air. Communication includes mobile networks, radio, television and the internet.</p>
+    <p>These systems connect markets, support trade and improve access to services.</p>`
+  },
+  {
+    cls: "SS2", term: "Third Term",
+    title: "Industries and Industrialisation",
+    notes: `<p>An industry produces goods or provides services. Industries may process raw materials, manufacture products or provide services.</p>
+    <p>Industrial locations are influenced by raw materials, power, labour, transport, markets and government policy.</p>`
+  },
+  {
+    cls: "SS2", term: "Third Term",
+    title: "Environmental Problems",
+    notes: `<p>Environmental problems include deforestation, erosion, flooding, desertification, pollution and waste accumulation.</p>
+    <p>Solutions include planting trees, proper waste management, protecting waterways, sustainable farming and enforcing environmental rules.</p>`
+  },
+  {
+    cls: "SS3", term: "First Term",
+    title: "Population Distribution in Africa",
+    notes: `<p>Population distribution describes how people are spread across an area.</p>
+    <p>People often concentrate in places with fertile soils, reliable water, jobs and good transport. Deserts, steep mountains and areas with limited services may have fewer people.</p>`
+  },
+  {
+    cls: "SS3", term: "First Term",
+    title: "World Climate Regions",
+    notes: `<p>Major world climate regions include equatorial, tropical, desert, Mediterranean, temperate and polar climates.</p>
+    <p>Climate is influenced by latitude, altitude, distance from the sea, ocean currents, winds and relief.</p>`
+  },
+  {
+    cls: "SS3", term: "Second Term",
+    title: "Regional Geography of Africa",
+    notes: `<p>Africa contains varied physical environments, cultures, economies and resources.</p>
+    <p>Regional study examines relief, climate, population, agriculture, minerals, industries, transport and trade in different parts of the continent.</p>`
+  },
+  {
+    cls: "SS3", term: "Second Term",
+    title: "International Trade",
+    notes: `<p>International trade is the exchange of goods and services between countries.</p>
+    <p><b>Exports</b> are goods and services sold to other countries. <b>Imports</b> are goods and services bought from other countries.</p>
+    <p>Trade allows countries to obtain goods they cannot produce efficiently themselves.</p>`
+  },
+  {
+    cls: "SS3", term: "Third Term",
+    title: "Geographical Information Systems",
+    notes: `<p>A Geographic Information System (GIS) is a computer-based system for collecting, storing, analysing and displaying information linked to locations.</p>
+    <p>GIS is useful for mapping roads, monitoring land use, planning cities and studying environmental change.</p>`
+  },
+  {
+    cls: "SS3", term: "Third Term",
+    title: "Environmental Conservation",
+    notes: `<p>Environmental conservation means protecting natural resources and ecosystems.</p>
+    <p>Methods include forest protection, wildlife conservation, soil management, recycling, reducing pollution and using resources sustainably.</p>
+    <p>Individuals, communities, businesses and governments all have roles in conservation.</p>`
+  }
+];
+
+const classSelect = document.getElementById("classSelect");
+const termSelect = document.getElementById("termSelect");
+const searchInput = document.getElementById("searchInput");
+const topicList = document.getElementById("topicList");
+const topicHeading = document.getElementById("topicHeading");
+const noResults = document.getElementById("noResults");
+const lessonBox = document.getElementById("lessonBox");
+const lessonTitle = document.getElementById("lessonTitle");
+const lessonNotes = document.getElementById("lessonNotes");
+
+function displayTopics() {
+  const selectedClass = classSelect.value;
+  const selectedTerm = termSelect.value;
+  const search = searchInput.value.trim().toLowerCase();
+
+  topicHeading.textContent =
+    selectedClass + " Geography - " + selectedTerm;
+
+  const filtered = lessons.filter(function(lesson) {
+    return lesson.cls === selectedClass &&
+      lesson.term === selectedTerm &&
+      lesson.title.toLowerCase().includes(search);
+  });
+
+  topicList.innerHTML = "";
+
+  filtered.forEach(function(lesson) {
+    const card = document.createElement("article");
+    card.className = "topic";
+
+    const heading = document.createElement("h3");
+    heading.textContent = lesson.title;
+
+    const button = document.createElement("button");
+    button.textContent = "Open Lesson";
+    button.type = "button";
+
+    button.addEventListener("click", function() {
+      lessonTitle.textContent = lesson.title;
+      lessonNotes.innerHTML = lesson.notes;
+      lessonBox.classList.remove("hidden");
+      lessonBox.scrollIntoView({ behavior: "smooth" });
+    });
+
+    card.appendChild(heading);
+    card.appendChild(button);
+    topicList.appendChild(card);
+  });
+
+  noResults.classList.toggle("hidden", filtered.length !== 0);
+}
+
+document.getElementById("searchButton")
+  .addEventListener("click", displayTopics);
+
+classSelect.addEventListener("change", displayTopics);
+termSelect.addEventListener("change", displayTopics);
+
+searchInput.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") displayTopics();
+});
+
+document.getElementById("closeLesson")
+  .addEventListener("click", function() {
+    lessonBox.classList.add("hidden");
+  });
+
+displayTopics();
+</script>
+
+</body>
+</html>

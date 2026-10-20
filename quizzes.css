@@ -1,0 +1,154 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f6ff;
+  color: #17233c;
+}
+
+header {
+  background: #102a72;
+  color: white;
+  padding: 22px 15px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 8px;
+}
+
+header p {
+  margin: 0;
+}
+
+nav {
+  background: #091d52;
+  padding: 12px;
+  text-align: center;
+}
+
+nav a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  margin: 5px 10px;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 850px;
+  margin: 22px auto;
+  padding: 18px;
+}
+
+.panel {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 3px 12px #00000012;
+  margin-bottom: 18px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+label {
+  display: block;
+  margin: 14px 0 7px;
+  font-weight: bold;
+}
+
+select, button {
+  width: 100%;
+  padding: 13px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+select {
+  border: 1px solid #bbc7dc;
+  background: white;
+}
+
+button {
+  border: none;
+  background: #1769e0;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 14px;
+}
+
+button:hover {
+  background: #0e4eaf;
+}
+
+.secondary {
+  background: #64748b;
+}
+
+.question {
+  border: 1px solid #dbe4f4;
+  padding: 15px;
+  margin: 16px 0;
+  border-radius: 10px;
+}
+
+.question h3 {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 11px;
+  margin: 8px 0;
+  border-radius: 8px;
+  background: #f3f6fc;
+  cursor: pointer;
+  font-weight: normal;
+}
+
+.option input {
+  margin-top: 3px;
+}
+
+.small {
+  color: #596781;
+  font-size: 14px;
+}
+
+.score {
+  font-size: 28px;
+  color: #1769e0;
+  font-weight: bold;
+}
+
+#answerReview p {
+  padding: 9px;
+  border-bottom: 1px solid #dbe4f4;
+  overflow-wrap: anywhere;
+}
+
+footer {
+  text-align: center;
+  padding: 22px;
+  color: #596781;
+}
+
+@media (max-width: 500px) {
+  .container {
+    padding: 12px;
+  }
+
+  .panel {
+    padding: 15px;
+  }
+}

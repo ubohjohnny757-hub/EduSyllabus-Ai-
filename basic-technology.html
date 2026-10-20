@@ -1,0 +1,299 @@
+<!
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basic Technology | EduSyllabus</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+header {
+  background: #1d4ed8;
+  color: white;
+  text-align: center;
+  padding: 22px 12px;
+}
+
+header h1 {
+  margin: 0 0 8px;
+}
+
+header p {
+  margin: 5px 0;
+}
+
+main {
+  width: 94%;
+  max-width: 850px;
+  margin: 20px auto;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #1d4ed8;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+h2 {
+  color: #1d4ed8;
+}
+
+.classes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.classes button {
+  padding: 13px 5px;
+  border: none;
+  border-radius: 6px;
+  background: #dbeafe;
+  color: #1e40af;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.classes button.active {
+  background: #1d4ed8;
+  color: white;
+}
+
+.term-button {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+  background: #1e40af;
+  color: white;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.term-content {
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.lesson-button {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  border: 1px solid #bfdbfe;
+  border-radius: 5px;
+  background: #eff6ff;
+  color: #1e40af;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.lesson {
+  background: #f8fafc;
+  border-left: 4px solid #3b82f6;
+  padding: 12px;
+  margin: 5px 0 12px;
+  border-radius: 4px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+footer {
+  background: #1d4ed8;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>EduSyllabus</h1>
+  <p>Basic Technology</p>
+  <p>Junior Secondary School: JSS1 – JSS3</p>
+</header>
+
+<main>
+  <a class="back" href="index.html">← Back to Home</a>
+
+  <h2>Select Your Class</h2>
+  <div class="classes" id="classButtons"></div>
+
+  <div id="curriculum"></div>
+</main>
+
+<footer>
+  <p>© 2026 EduSyllabus | Learn and Succeed</p>
+</footer>
+
+<script>
+const curriculum = {
+  JSS1: {
+    "First Term": [
+      ["Introduction to Technology", "Technology involves using knowledge, skills, tools and processes to solve practical problems.", "Example: A wheelbarrow helps people move heavy loads."],
+      ["Safety in the Workshop", "Workshop safety involves following rules, using tools correctly and wearing suitable protective equipment.", "Example: Wear safety goggles when a task may produce flying particles."],
+      ["Materials and Their Uses", "Materials have properties that make them suitable for different products.", "Example: Wood is used for furniture, while metals are used for many tools."],
+      ["Drawing Instruments", "Technical drawing instruments help produce accurate drawings.", "Example: A ruler measures straight lines, while a compass draws circles."]
+    ],
+    "Second Term": [
+      ["Technical Drawing", "Technical drawing communicates the shape, size and features of an object using agreed drawing methods.", "Example: A dimensioned drawing can show the measurements of a table."],
+      ["Lines in Technical Drawing", "Different line types communicate different information in a drawing.", "Example: A thick continuous line commonly represents a visible edge."],
+      ["Woodwork Tools", "Woodwork tools are used to measure, cut, shape and join wood.", "Example: A saw cuts wood, while a plane smooths its surface."],
+      ["Metalwork Tools", "Metalwork tools are used to measure, hold, cut and shape metal.", "Example: A file smooths rough metal edges."]
+    ],
+    "Third Term": [
+      ["Building Materials", "Building materials are used to construct structures such as houses, roads and bridges.", "Example: Cement, sand and gravel can be used to make concrete."],
+      ["Simple Machines", "Simple machines make work easier by changing the size or direction of a force.", "Example: A pulley can help lift a load."],
+      ["Levers", "A lever is a rigid bar that turns around a pivot called a fulcrum.", "Example: A seesaw is an example of a lever."],
+      ["Care of Tools", "Tools last longer and work more safely when cleaned, stored and maintained properly.", "Example: Clean and dry metal tools before storing them."]
+    ]
+  },
+
+  JSS2: {
+    "First Term": [
+      ["Workshop Safety Signs", "Safety signs communicate hazards, instructions and emergency information.", "Example: A warning sign alerts people to a possible danger."],
+      ["Properties of Materials", "Materials can be compared by strength, hardness, flexibility, durability and other properties.", "Example: Rubber is flexible, while glass is generally brittle."],
+      ["Wood and Timber", "Timber is wood prepared for construction, furniture and other uses.", "Example: Timber may be used to make doors and desks."],
+      ["Metal Materials", "Metals are used in engineering because many are strong and can be shaped.", "Example: Steel is commonly used in building structures."]
+    ],
+    "Second Term": [
+      ["Orthographic Projection", "Orthographic projection represents an object using separate views, such as front, plan and side views.", "Example: A front view shows the object as seen from the front."],
+      ["Isometric Drawing", "Isometric drawing represents a three-dimensional object on a two-dimensional surface.", "Example: A box can be drawn using three principal directions."],
+      ["Measurement and Marking Out", "Measurement and marking out help ensure materials are cut or shaped to the required dimensions.", "Example: Mark a cutting line with a suitable measuring and marking tool."],
+      ["Joining Materials", "Materials can be joined using methods such as screws, nails, welding, adhesives and bolts.", "Example: Screws can join wooden components."]
+    ],
+    "Third Term": [
+      ["Introduction to Electricity", "Electricity involves electric charge and its effects. Electrical systems must be handled safely.", "Example: A battery can supply energy to a small circuit."],
+      ["Simple Electrical Circuits", "A circuit provides a conducting path for current when it is complete.", "Example: A closed battery-and-bulb circuit can light the bulb."],
+      ["Energy and Power", "Energy is the capacity to do work. Power is the rate at which energy is transferred or work is done.", "Example: A higher-power appliance transfers energy more quickly when operating under its rated conditions."],
+      ["Maintenance of Machines", "Machine maintenance includes inspection, cleaning and suitable servicing to keep equipment working properly.", "Example: Follow the manufacturer's maintenance instructions for a machine."]
+    ]
+  },
+
+  JSS3: {
+    "First Term": [
+      ["Engineering Materials", "Engineering materials are selected according to their strength, cost, durability and intended use.", "Example: Steel is used in many structural applications."],
+      ["Plastics and Ceramics", "Plastics are polymers with varied properties, while ceramics are generally hard and heat-resistant but often brittle.", "Example: Plastic is used for containers, while ceramics are used for tiles."],
+      ["Technical Drawing and Dimensioning", "Dimensioning communicates measurements needed to understand or manufacture an object.", "Example: A drawing may show a component's length, width and height."],
+      ["Development of Surfaces", "Surface development represents the flat pattern that can be folded to form a three-dimensional object.", "Example: A cardboard box can be made from a developed net."]
+    ],
+    "Second Term": [
+      ["Forces and Structures", "Structures are designed to support loads and resist forces such as tension and compression.", "Example: A bridge must support its own weight and the loads placed on it."],
+      ["Gears and Pulleys", "Gears and pulleys transmit movement or force between components.", "Example: Gears can change rotational speed and direction."],
+      ["Transmission of Motion", "Mechanical systems transfer motion from one component to another.", "Example: A belt drive transfers rotation between pulleys."],
+      ["Basic Electronics", "Electronics uses components to control electrical signals and current.", "Example: A resistor limits current in a suitable circuit."]
+    ],
+    "Third Term": [
+      ["Building Construction", "Building construction involves planning and assembling structural elements using appropriate materials and methods.", "Example: Foundations transfer building loads to the ground."],
+      ["Road and Bridge Technology", "Roads and bridges support transportation and require suitable design, materials and maintenance.", "Example: Drainage helps protect roads from water damage."],
+      ["Technology and the Environment", "Technology can solve problems but may also create waste, pollution and resource challenges.", "Example: Reusing suitable materials can reduce waste."],
+      ["Revision and Practical Projects", "Practical projects apply design, measurement, material selection and safe working methods.", "Example: A student can design a small cardboard bridge and test its stability using safe, light loads."]
+    ]
+  }
+};
+
+const classNames = ["JSS1", "JSS2", "JSS3"];
+const classButtons = document.getElementById("classButtons");
+const output = document.getElementById("curriculum");
+
+function showClass(className) {
+  document.querySelectorAll(".classes button").forEach(function(button) {
+    button.classList.toggle("active", button.dataset.class === className);
+  });
+
+  output.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = className + " Basic Technology Curriculum";
+  output.appendChild(heading);
+
+  Object.keys(curriculum[className]).forEach(function(termName) {
+    const termButton = document.createElement("button");
+    termButton.className = "term-button";
+    termButton.textContent = termName + " ▼";
+
+    const termContent = document.createElement("div");
+    termContent.className = "term-content";
+    termContent.hidden = true;
+
+    termButton.addEventListener("click", function() {
+      termContent.hidden = !termContent.hidden;
+      termButton.textContent =
+        termName + (termContent.hidden ? " ▼" : " ▲");
+    });
+
+    curriculum[className][termName].forEach(function(topic) {
+      const lessonButton = document.createElement("button");
+      lessonButton.className = "lesson-button";
+      lessonButton.textContent = topic[0] + " +";
+
+      const lesson = document.createElement("div");
+      lesson.className = "lesson";
+      lesson.hidden = true;
+
+      const explanation = document.createElement("p");
+      explanation.textContent = topic[1];
+
+      const example = document.createElement("p");
+      example.textContent = topic[2];
+
+      lesson.appendChild(explanation);
+      lesson.appendChild(example);
+
+      lessonButton.addEventListener("click", function() {
+        lesson.hidden = !lesson.hidden;
+        lessonButton.textContent =
+          topic[0] + (lesson.hidden ? " +" : " −");
+      });
+
+      termContent.appendChild(lessonButton);
+      termContent.appendChild(lesson);
+    });
+
+    output.appendChild(termButton);
+    output.appendChild(termContent);
+  });
+}
+
+classNames.forEach(function(className) {
+  const button = document.createElement("button");
+  button.textContent = className;
+  button.dataset.class = className;
+
+  button.addEventListener("click", function() {
+    showClass(className);
+  });
+
+  classButtons.appendChild(button);
+});
+
+showClass("JSS1");
+</script>
+
+</body>
+</html>

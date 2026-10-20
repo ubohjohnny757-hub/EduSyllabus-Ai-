@@ -1,0 +1,299 @@
+<!DOCT
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basic Science | EduSyllabus</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+header {
+  background: #087f5b;
+  color: white;
+  text-align: center;
+  padding: 22px 12px;
+}
+
+header h1 {
+  margin: 0 0 8px;
+}
+
+header p {
+  margin: 5px 0;
+}
+
+main {
+  width: 94%;
+  max-width: 850px;
+  margin: 20px auto;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #087f5b;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+h2 {
+  color: #087f5b;
+}
+
+.classes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.classes button {
+  padding: 13px 5px;
+  border: none;
+  border-radius: 6px;
+  background: #d1fae5;
+  color: #065f46;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.classes button.active {
+  background: #087f5b;
+  color: white;
+}
+
+.term-button {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+  background: #065f46;
+  color: white;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.term-content {
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.lesson-button {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  border: 1px solid #a7f3d0;
+  border-radius: 5px;
+  background: #ecfdf5;
+  color: #065f46;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.lesson {
+  background: #f8fafc;
+  border-left: 4px solid #10b981;
+  padding: 12px;
+  margin: 5px 0 12px;
+  border-radius: 4px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+footer {
+  background: #087f5b;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>EduSyllabus</h1>
+  <p>Basic Science</p>
+  <p>Junior Secondary School: JSS1 – JSS3</p>
+</header>
+
+<main>
+  <a class="back" href="index.html">← Back to Home</a>
+
+  <h2>Select Your Class</h2>
+  <div class="classes" id="classButtons"></div>
+
+  <div id="curriculum"></div>
+</main>
+
+<footer>
+  <p>© 2026 EduSyllabus | Learn and Succeed</p>
+</footer>
+
+<script>
+const curriculum = {
+  JSS1: {
+    "First Term": [
+      ["Living and Non-living Things", "Living things carry out life processes such as nutrition, respiration, growth and reproduction. Non-living things do not carry out all these processes.", "Example: A growing plant is living, while a stone is non-living."],
+      ["Characteristics of Living Things", "Living things move, respire, feed, grow, reproduce, excrete and respond to stimuli.", "Example: A plant bends towards light."],
+      ["The Human Body", "The human body contains different organs and systems that work together to keep a person alive.", "Example: The heart pumps blood around the body."],
+      ["The Environment", "The environment includes living organisms and non-living things around them.", "Example: Soil, water, air, plants and animals form parts of an environment."]
+    ],
+    "Second Term": [
+      ["Matter", "Matter is anything that has mass and occupies space.", "Example: Water, air and stones are forms of matter."],
+      ["States of Matter", "The three familiar states of matter are solid, liquid and gas.", "Example: Ice is solid water, liquid water is a liquid, and water vapour is a gas."],
+      ["Changes of State", "Matter can change state when heat is gained or lost.", "Example: Ice melts into liquid water when heated."],
+      ["Energy", "Energy is the ability to do work or cause change.", "Example: Electrical energy powers a fan."]
+    ],
+    "Third Term": [
+      ["Forms of Energy", "Energy occurs in forms such as heat, light, sound, electrical, chemical and mechanical energy.", "Example: A battery stores chemical energy."],
+      ["Force and Motion", "A force is a push or pull that can change an object's motion or shape.", "Example: Kicking a stationary ball makes it move."],
+      ["Air and Water", "Air is a mixture of gases, while water is essential for life and many natural processes.", "Example: Humans need oxygen from air for respiration."],
+      ["Personal Hygiene", "Personal hygiene means keeping the body clean to support health and reduce the spread of germs.", "Example: Washing hands with soap helps prevent the spread of infection."]
+    ]
+  },
+
+  JSS2: {
+    "First Term": [
+      ["The Cell", "The cell is the basic structural and functional unit of living organisms.", "Example: Plant cells usually have a cell wall, while animal cells do not."],
+      ["Cell Structure and Functions", "Cell structures perform different functions. The nucleus contains genetic material, and the cell membrane controls movement of substances in and out.", "Example: Chloroplasts enable photosynthesis in many plant cells."],
+      ["Classification of Living Things", "Living things can be grouped according to shared characteristics.", "Example: Mammals are animals that have mammary glands."],
+      ["Nutrition in Plants", "Green plants make food through photosynthesis using light, carbon dioxide and water.", "Example: Photosynthesis produces glucose and releases oxygen."]
+    ],
+    "Second Term": [
+      ["The Digestive System", "The digestive system breaks down food into smaller substances that the body can absorb.", "Example: The small intestine absorbs most digested nutrients."],
+      ["The Respiratory System", "Respiration releases energy from food in cells. Breathing supplies oxygen and removes carbon dioxide.", "Example: Humans use their lungs for gas exchange."],
+      ["Reproduction in Plants", "Plants reproduce sexually through structures such as flowers, and some plants also reproduce vegetatively.", "Example: Pollination transfers pollen to a flower's stigma."],
+      ["Soil and Soil Formation", "Soil forms through the breakdown of rocks and the decomposition of organic matter.", "Example: Sandy soil generally drains water faster than clay soil."]
+    ],
+    "Third Term": [
+      ["Simple Machines", "Simple machines make tasks easier by changing the size or direction of a force.", "Example: A lever can help lift a heavy load."],
+      ["Electricity", "Electric current is the flow of electric charge through a suitable conducting path.", "Example: A battery can power a small circuit containing a bulb."],
+      ["Magnetism", "Magnetism is a force associated with magnets and magnetic fields.", "Example: A magnet can attract an iron nail."],
+      ["Pollution", "Pollution occurs when harmful substances or forms of energy contaminate the environment.", "Example: Smoke from burning waste can pollute the air."]
+    ]
+  },
+
+  JSS3: {
+    "First Term": [
+      ["The Human Reproductive System", "The reproductive system contains organs involved in producing reproductive cells and supporting human reproduction.", "Example: The ovaries produce egg cells."],
+      ["Puberty and Adolescence", "Puberty is the period when the body develops towards sexual maturity. Adolescence includes physical, emotional and social development.", "Example: Growth spurts can occur during puberty."],
+      ["Heredity", "Heredity is the passing of genetic characteristics from parents to offspring.", "Example: A child may inherit certain traits from both parents."],
+      ["Genetics and Variation", "Genetic information contributes to similarities and differences among individuals.", "Example: People can have different natural eye colours."]
+    ],
+    "Second Term": [
+      ["Chemical Changes", "A chemical change produces one or more new substances with different properties.", "Example: Rust forming on iron is a chemical change."],
+      ["Acids, Bases and Indicators", "Acids and bases have different chemical properties. Indicators help identify whether a substance is acidic or basic.", "Example: Blue litmus paper turns red in an acidic solution."],
+      ["Electric Circuits", "An electric circuit is a complete conducting path through which current can flow.", "Example: A closed circuit can light a bulb."],
+      ["Heat Transfer", "Heat transfers through conduction, convection and radiation.", "Example: Heat travels along a metal spoon by conduction."]
+    ],
+    "Third Term": [
+      ["The Solar System", "The solar system consists of the Sun and objects held by its gravity, including planets and smaller bodies.", "Example: Earth is the third planet from the Sun."],
+      ["Weather and Climate", "Weather describes short-term atmospheric conditions, while climate describes long-term patterns.", "Example: A rainy afternoon is weather; average rainfall patterns over many years contribute to climate."],
+      ["Environmental Conservation", "Environmental conservation involves protecting natural resources and ecosystems.", "Example: Planting trees and reducing waste can support conservation."],
+      ["Science, Technology and Society", "Science develops knowledge, while technology applies knowledge to solve practical problems.", "Example: Water filters can help remove certain impurities from water."]
+    ]
+  }
+};
+
+const classNames = ["JSS1", "JSS2", "JSS3"];
+const classButtons = document.getElementById("classButtons");
+const output = document.getElementById("curriculum");
+
+function showClass(className) {
+  document.querySelectorAll(".classes button").forEach(function(button) {
+    button.classList.toggle("active", button.dataset.class === className);
+  });
+
+  output.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = className + " Basic Science Curriculum";
+  output.appendChild(heading);
+
+  Object.keys(curriculum[className]).forEach(function(termName) {
+    const termButton = document.createElement("button");
+    termButton.className = "term-button";
+    termButton.textContent = termName + " ▼";
+
+    const termContent = document.createElement("div");
+    termContent.className = "term-content";
+    termContent.hidden = true;
+
+    termButton.addEventListener("click", function() {
+      termContent.hidden = !termContent.hidden;
+      termButton.textContent =
+        termName + (termContent.hidden ? " ▼" : " ▲");
+    });
+
+    curriculum[className][termName].forEach(function(topic) {
+      const lessonButton = document.createElement("button");
+      lessonButton.className = "lesson-button";
+      lessonButton.textContent = topic[0] + " +";
+
+      const lesson = document.createElement("div");
+      lesson.className = "lesson";
+      lesson.hidden = true;
+
+      const explanation = document.createElement("p");
+      explanation.textContent = topic[1];
+
+      const example = document.createElement("p");
+      example.textContent = topic[2];
+
+      lesson.appendChild(explanation);
+      lesson.appendChild(example);
+
+      lessonButton.addEventListener("click", function() {
+        lesson.hidden = !lesson.hidden;
+        lessonButton.textContent =
+          topic[0] + (lesson.hidden ? " +" : " −");
+      });
+
+      termContent.appendChild(lessonButton);
+      termContent.appendChild(lesson);
+    });
+
+    output.appendChild(termButton);
+    output.appendChild(termContent);
+  });
+}
+
+classNames.forEach(function(className) {
+  const button = document.createElement("button");
+  button.textContent = className;
+  button.dataset.class = className;
+
+  button.addEventListener("click", function() {
+    showClass(className);
+  });
+
+  classButtons.appendChild(button);
+});
+
+showClass("JSS1");
+</script>
+
+</body>
+</html>

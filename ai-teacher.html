@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Teacher - EduSyllabus AI</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f5ff;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #073b70;
+            color: white;
+            text-align: center;
+            padding: 22px 12px;
+        }
+
+        header h1 {
+            font-size: 27px;
+        }
+
+        header p {
+            font-size: 14px;
+            margin-top: 6px;
+        }
+
+        nav {
+            background: #0756a3;
+            padding: 12px 5px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px 9px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffe082;
+        }
+
+        .page {
+            width: 94%;
+            max-width: 850px;
+            margin: 24px auto;
+        }
+
+        .intro {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .intro h2 {
+            color: #0756a3;
+            margin-bottom: 8px;
+        }
+
+        .intro p {
+            color: #555;
+        }
+
+        .settings {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            background: white;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            box-shadow: 0 3px 10px #0000000d;
+        }
+
+        .settings label {
+            display: block;
+            font-weight: bold;
+            color: #073b70;
+            margin-bottom: 6px;
+        }
+
+        select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #c8d5e5;
+            border-radius: 7px;
+            background: white;
+            font-size: 14px;
+        }
+
+        .chat-box {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px #00000012;
+        }
+
+        .chat-header {
+            background: #087fca;
+            color: white;
+            padding: 15px;
+        }
+
+        .chat-header h3 {
+            font-size: 18px;
+        }
+
+        .status {
+            font-size: 12px;
+            margin-top: 4px;
+            opacity: 0.95;
+        }
+
+        .messages {
+            height: 360px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f8fbff;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message.user {
+            align-items: flex-end;
+        }
+
+        .message.teacher {
+            align-items: flex-start;
+        }
+
+        .bubble {
+            max-width: 88%;
+            padding: 12px 14px;
+            border-radius: 12px;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .teacher .bubble {
+            background: #e4efff;
+            color: #172d49;
+            border-bottom-left-radius: 3px;
+        }
+
+        .user .bubble {
+            background: #087fca;
+            color: white;
+            border-bottom-right-radius: 3px;
+        }
+
+        .sender {
+            font-size: 11px;
+            color: #667;
+            margin-bottom: 4px;
+        }
+
+        .suggestions {
+            padding: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-top: 1px solid #e1e9f2;
+        }
+
+        .suggestions button {
+            background: #eef6ff;
+            border: 1px solid #c8ddf5;
+            color: #0756a3;
+            padding: 8px 10px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .suggestions button:hover {
+            background: #d8eaff;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid #e1e9f2;
+            background: white;
+        }
+
+        #question {
+            flex: 1;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid #c8d5e5;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        #question:focus {
+            border-color: #087fca;
+        }
+
+        #sendBtn {
+            background: #0756a3;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #sendBtn:disabled {
+            background: #8ca7c2;
+            cursor: not-allowed;
+        }
+
+        .notice {
+            padding: 13px;
+            background: #fff7df;
+            color: #694d00;
+            border-radius: 8px;
+            margin-top: 16px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .clear-btn {
+            display: block;
+            margin: 14px auto;
+            background: white;
+            color: #0756a3;
+            border: 1px solid #0756a3;
+            padding: 9px 17px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .home-btn {
+            display: block;
+            width: fit-content;
+            margin: 20px auto;
+            padding: 11px 20px;
+            background: #073b70;
+            color: white;
+            border-radius: 7px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        footer {
+            background: #073b70;
+            color: white;
+            text-align: center;
+            padding: 18px 10px;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 480px) {
+            .settings {
+                grid-template-columns: 1fr;
+            }
+
+            .messages {
+                height: 340px;
+            }
+
+            .bubble {
+                max-width: 95%;
+            }
+
+            #sendBtn {
+                padding: 0 13px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>EduSyllabus AI</h1>
+        <p>Your Personal Learning Assistant</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="quizzes.html">Quiz Centre</a>
+    </nav>
+
+    <main class="page">
+
+        <section class="intro">
+            <h2>AI Teacher</h2>
+            <p>Ask questions, explore subjects and learn step by step.</p>
+        </section>
+
+        <section class="settings">
+            <div>
+                <label for="schoolClass">Choose your class</label>
+                <select id="schoolClass">
+                    <option>JSS1</option>
+                    <option>JSS2</option>
+                    <option>JSS3</option>
+                    <option>SS1</option>
+                    <option>SS2</option>
+                    <option>SS3</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="subject">Choose your subject</label>
+                <select id="subject">
+                    <option>General</option>
+                    <option>Mathematics</option>
+                    <option>English Language</option>
+                    <option>Basic Science</option>
+                    <option>Physics</option>
+                    <option>Chemistry</option>
+                    <option>Biology</option>
+                    <option>Agricultural Science</option>
+                    <option>Computer Science</option>
+                    <option>Basic Technology</option>
+                    <option>Geography</option>
+                    <option>History</option>
+                    <option>Government</option>
+                    <option>Civic Education</option>
+                    <option>Social Studies</option>
+                    <option>Business Studies</option>
+                    <option>Commerce</option>
+                    <option>Financial Accounting</option>
+                    <option>Further Mathematics</option>
+                    <option>Literature</option>
+                    <option>Christian Religious Studies</option>
+                    <option>Islamic Religious Studies</option>
+                    <option>French</option>
+                    <option>Igbo Language</option>
+                    <option>Home Economics</option>
+                    <option>Physical Health Education</option>
+                    <option>Physical Education</option>
+                    <option>Cultural and Creative Arts</option>
+                    <option>Marketing</option>
+                    <option>Calculus</option>
+                    <option>Anatomy</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="chat-box">
+
+            <div class="chat-header">
+                <h3>EduSyllabus Learning Chat</h3>
+                <p class="status">Ready to help you learn</p>
+            </div>
+
+            <div class="messages" id="messages" aria-live="polite">
+                <div class="message teacher">
+                    <span class="sender">EduSyllabus Teacher</span>
+                    <div class="bubble">Hello, student! Welcome to EduSyllabus AI.
+
+Choose your class and subject above, then ask me a question.
+
+You can also try one of the suggested questions below.</div>
+                </div>
+            </div>
+
+            <div class="suggestions">
+                <button type="button" data-question="Explain quadratic equations">Quadratic equations</button>
+                <button type="button" data-question="What is photosynthesis?">Photosynthesis</button>
+                <button type="button" data-question="Explain the parts of speech">Parts of speech</button>
+                <button type="button" data-question="What is a computer?">Computer basics</button>
+            </div>
+
+            <form class="input-area" id="chatForm">
+                <input
+                    type="text"
+                    id="question"
+                    placeholder="Ask your teacher a question..."
+                    autocomplete="off"
+                    aria-label="Your question"
+                    required
+                >
+                <button type="submit" id="sendBtn">Send</button>
+            </form>
+
+        </section>
+
+        <button type="button" class="clear-btn" id="clearBtn">
+            Clear Conversation
+        </button>
+
+        <div class="notice">
+            <strong>Learning note:</strong> This version uses built-in
+            sample explanations for a few topics. It is not yet connected
+            to a live AI service, so it cannot answer every question.
+            A backend and AI API connection will be needed for full
+            AI teaching.
+        </div>
+
+        <a href="index.html" class="home-btn">Back to Home</a>
+
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> EduSyllabus AI</p>
+        <p>Learn Better. Study Smarter. Achieve More.</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById("chatForm");
+        const questionInput = document.getElementById("question");
+        const messages = document.getElementById("messages");
+        const sendBtn = document.getElementById("sendBtn");
+        const subjectSelect = document.getElementById("subject");
+        const classSelect = document.getElementById("schoolClass");
+        const clearBtn = document.getElementById("clearBtn");
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+
+        function addMessage(sender, text) {
+            const wrapper = document.createElement("div");
+            wrapper.className = "message " + sender;
+
+            const name = document.createElement("span");
+            name.className = "sender";
+            name.textContent = sender === "user"
+                ? "You"
+                : "EduSyllabus Teacher";
+
+            const bubble = document.createElement("div");
+            bubble.className = "bubble";
+            bubble.textContent = text;
+
+            wrapper.appendChild(name);
+            wrapper.appendChild(bubble);
+            messages.appendChild(wrapper);
+
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function getAnswer(question, subject, schoolClass) {
+            const q = question.toLowerCase().trim();
+
+            if (
+                q.includes("hello") ||
+                q.includes("hi ") ||
+                q === "hi" ||
+                q.includes("good morning") ||
+                q.includes("good afternoon")
+            ) {
+                return "Hello! I am ready to help you learn. Ask me a question about " +
+                    subject + ", or choose another subject from the list.";
+            }
+
+            if (
+                q.includes("quadratic equation") ||
+                q.includes("quadratic equations")
+            ) {
+                return "QUADRATIC EQUATIONS\n\n" +
+                    "A quadratic equation is an equation whose highest power of the variable is 2.\n\n" +
+                    "Its general form is ax² + bx + c = 0, where a is not zero.\n\n" +
+                    "Example: x² - 5x + 6 = 0.\n\n" +
+                    "Factorising gives (x - 2)(x - 3) = 0.\n\n" +
+                    "Therefore, x = 2 or x = 3.\n\n" +
+                    "Remember: you can solve quadratic equations by factorisation, completing the square, or the quadratic formula.";
+            }
+
+            if (
+                q.includes("photosynthesis")
+            ) {
+                return "PHOTOSYNTHESIS\n\n" +
+                    "Photosynthesis is the process by which green plants use light energy to make food from carbon dioxide and water.\n\n" +
+                    "Plants use chlorophyll to absorb light energy.\n\n" +
+                    "Word equation:\n" +
+                    "Carbon dioxide + Water → Glucose + Oxygen\n\n" +
+                    "Light energy is required for this process.\n\n" +
+                    "Photosynthesis helps plants make food and releases oxygen into the atmosphere.";
+            }
+
+            if (
+                q.includes("parts of speech") ||
+                q.includes("noun") ||
+                q.includes("verb") ||
+                q.includes("adjective")
+            ) {
+                return "PARTS OF SPEECH\n\n" +
+                    "Parts of speech describe how words function in a sentence.\n\n" +
+                    "1. Noun: names a person, place, animal or thing. Example: teacher.\n\n" +
+                    "2. Pronoun: replaces a noun. Example: she.\n\n" +
+                    "3. Verb: expresses an action or state. Example: run.\n\n" +
+                    "4. Adjective: describes a noun. Example: beautiful.\n\n" +
+                    "5. Adverb: describes a verb, adjective or another adverb. Example: quickly.\n\n" +
+                    "6. Preposition: shows a relationship. Example: under.\n\n" +
+                    "7. Conjunction: joins words or clauses. Example: and.\n\n" +
+                    "8. Interjection: expresses sudden feeling. Example: Wow!";
+            }
+
+            if (
+                q.includes("what is a computer") ||
+                q.includes("computer basics")
+            ) {
+                return "WHAT IS A COMPUTER?\n\n" +
+                    "A computer is an electronic device that accepts data, processes it, stores it and produces information.\n\n" +
+                    "The four basic operations are:\n\n" +
+                    "1. Input: entering data.\n" +
+                    "2. Processing: working on the data.\n" +
+                    "3. Output: presenting information.\n" +
+                    "4. Storage: saving data and information.\n\n" +
+                    "Examples of computers include desktop computers, laptops and tablets.";
+            }
+
+            if (
+                q.includes("what is") &&
+                (q.includes("mathematics") || subject === "Mathematics")
+            ) {
+                return "Let's work on your Mathematics question step by step.\n\n" +
+                    "Please include the complete question, numbers or equation so I can give a more useful explanation.\n\n" +
+                    "For example: Solve 2x + 4 = 12.";
+            }
+
+            if (
+                q.includes("thank you") ||
+                q.includes("thanks")
+            ) {
+                return "You're welcome! Keep practising and asking questions. Learning becomes easier with regular practice.";
+            }
+
+            return "Thank you for your question about " + subject + ".\n\n" +
+                "You are studying " + schoolClass + ".\n\n" +
+                "This basic version does not yet have a live AI connection, so I cannot reliably answer this question yet.\n\n" +
+                "Try asking about quadratic equations, photosynthesis, parts of speech, or computer basics. For answers to other questions, we will need to connect this page to the EduSyllabus AI backend.";
+        }
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const question = questionInput.value.trim();
+
+            if (!question) {
+                return;
+            }
+
+            const subject = subjectSelect.value;
+            const schoolClass = classSelect.value;
+
+            addMessage("user", question);
+            questionInput.value = "";
+            sendBtn.disabled = true;
+            sendBtn.textContent = "...";
+
+            const answer = getAnswer(
+                question,
+                subject,
+                schoolClass
+            );
+
+            addMessage("teacher", answer);
+
+            sendBtn.disabled = false;
+            sendBtn.textContent = "Send";
+            questionInput.focus();
+        });
+
+        document.querySelectorAll(".suggestions button")
+            .forEach(function(button) {
+                button.addEventListener("click", function() {
+                    questionInput.value =
+                        button.getAttribute("data-question");
+
+                    questionInput.focus();
+                });
+            });
+
+        clearBtn.addEventListener("click", function() {
+            messages.replaceChildren();
+
+            addMessage(
+                "teacher",
+                "Conversation cleared! Choose a subject and ask a new question."
+            );
+        });
+    </script>
+
+</body>
+</html>

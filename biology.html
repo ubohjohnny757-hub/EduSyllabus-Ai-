@@ -1,0 +1,568 @@
+<!DOCTY
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biology | EduSyllabus AI</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f0f8f2;
+  color: #24352a;
+  line-height: 1.6;
+}
+
+header {
+  background: #126b3a;
+  color: white;
+  padding: 24px 12px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  color: #e5ff9a;
+}
+
+nav {
+  background: #084c29;
+  padding: 13px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hero {
+  text-align: center;
+  background: #d8f3df;
+  padding: 25px 15px;
+}
+
+main {
+  max-width: 950px;
+  margin: auto;
+  padding: 16px;
+}
+
+.section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 8px #0000000d;
+}
+
+h2, h3 {
+  color: #126b3a;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 12px;
+}
+
+select, input {
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0 12px;
+  border: 1px solid #b7cdbd;
+  border-radius: 6px;
+  font-size: 16px;
+  background: white;
+}
+
+button {
+  background: #126b3a;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #084c29;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.topic-card {
+  padding: 15px;
+  border: 1px solid #d7e9dc;
+  background: #f8fff9;
+  border-radius: 8px;
+}
+
+.topic-card h3 {
+  margin-top: 0;
+}
+
+.topic-card button {
+  width: 100%;
+}
+
+#lessonContent {
+  background: #f8fff9;
+  padding: 15px;
+  border-left: 4px solid #126b3a;
+  border-radius: 6px;
+}
+
+footer {
+  background: #084c29;
+  color: white;
+  text-align: center;
+  padding: 18px;
+}
+
+footer a {
+  color: #e5ff9a;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>EduSyllabus AI</h1>
+  <p>Biology Learning Centre</p>
+  <p>Explore Life. Understand Nature.</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="curriculum.html">Curriculum</a>
+  <a href="quiz.html">Quizzes</a>
+  <a href="ai-teacher.html">AI Teacher</a>
+</nav>
+
+<div class="hero">
+  <h2>Senior Secondary Biology</h2>
+  <p>Biology lessons for SS1, SS2 and SS3 students.</p>
+</div>
+
+<main>
+
+<section class="section">
+  <h2>Choose Your Class and Term</h2>
+
+  <label for="classLevel">Class</label>
+  <select id="classLevel">
+    <option value="SS1">SS1</option>
+    <option value="SS2">SS2</option>
+    <option value="SS3">SS3</option>
+  </select>
+
+  <label for="term">School Term</label>
+  <select id="term">
+    <option value="First Term">First Term</option>
+    <option value="Second Term">Second Term</option>
+    <option value="Third Term">Third Term</option>
+  </select>
+
+  <label for="search">Search a topic</label>
+  <input id="search" type="search"
+    placeholder="Example: cells, ecology, genetics">
+
+  <p>Select a topic to open its lesson notes.</p>
+</section>
+
+<section class="section">
+  <h2 id="topicHeading">SS1 Biology Topics</h2>
+  <div class="grid" id="topicGrid"></div>
+  <p id="noResults" hidden>No topics match your search.</p>
+</section>
+
+<section class="section" id="lesson">
+  <h2>Lesson Notes</h2>
+  <div id="lessonContent">
+    Choose a topic above to read the lesson.
+  </div>
+</section>
+
+<section class="section">
+  <h2>Study Resources</h2>
+  <p>Need help understanding a Biology topic?</p>
+  <p><a href="quiz.html">Practise with quizzes</a></p>
+  <p><a href="ai-teacher.html">Visit the AI Teacher</a></p>
+  <p><a href="curriculum.html">Explore the curriculum</a></p>
+</section>
+
+</main>
+
+<footer>
+  <p>&copy; 2026 EduSyllabus AI</p>
+  <p>Learning for every student.</p>
+  <a href="index.html">Back to Home</a>
+</footer>
+
+<script>
+const lessons = [
+  {
+    class: "SS1",
+    term: "First Term",
+    title: "Characteristics of Living Things",
+    summary: "The basic characteristics of organisms",
+    notes: `
+      <h3>Characteristics of Living Things</h3>
+      <p>Living things carry out life processes commonly
+      summarized as MRS GREN:</p>
+      <ul>
+        <li>Movement</li>
+        <li>Respiration</li>
+        <li>Sensitivity</li>
+        <li>Growth</li>
+        <li>Reproduction</li>
+        <li>Excretion</li>
+        <li>Nutrition</li>
+      </ul>
+      <p>Examples of living things include plants, animals,
+      fungi and microorganisms.</p>
+    `
+  },
+  {
+    class: "SS1",
+    term: "First Term",
+    title: "Cell Structure and Functions",
+    summary: "Cell organelles and their roles",
+    notes: `
+      <h3>Cell Structure and Functions</h3>
+      <p>The cell is the basic structural and functional unit of life.</p>
+      <ul>
+        <li><b>Cell membrane:</b> Controls the movement of substances.</li>
+        <li><b>Cytoplasm:</b> Site of many chemical reactions.</li>
+        <li><b>Nucleus:</b> Contains genetic material.</li>
+        <li><b>Mitochondria:</b> Important in aerobic respiration.</li>
+        <li><b>Cell wall:</b> Supports plant cells.</li>
+        <li><b>Chloroplasts:</b> Carry out photosynthesis in plants.</li>
+      </ul>
+    `
+  },
+  {
+    class: "SS1",
+    term: "First Term",
+    title: "Classification of Organisms",
+    summary: "Grouping organisms by shared features",
+    notes: `
+      <h3>Classification of Organisms</h3>
+      <p>Classification is the systematic grouping of organisms
+      according to similarities and differences.</p>
+      <p>It helps scientists identify organisms and understand
+      their relationships. Modern classification considers
+      physical features, cells and genetic evidence.</p>
+    `
+  },
+  {
+    class: "SS1",
+    term: "Second Term",
+    title: "Nutrition in Plants",
+    summary: "Photosynthesis and plant food",
+    notes: `
+      <h3>Nutrition in Plants</h3>
+      <p>Green plants manufacture glucose through photosynthesis.</p>
+      <p>Carbon dioxide and water are used, light provides energy,
+      and chlorophyll absorbs the light.</p>
+      <p><b>Word equation:</b> Carbon dioxide + water → glucose
+      + oxygen, in the presence of light and chlorophyll.</p>
+    `
+  },
+  {
+    class: "SS1",
+    term: "Second Term",
+    title: "Nutrition in Animals",
+    summary: "Food classes and balanced diets",
+    notes: `
+      <h3>Nutrition in Animals</h3>
+      <p>Animals obtain nutrients by feeding on plants or other animals.</p>
+      <p>The main nutrient groups are carbohydrates, proteins,
+      fats and oils, vitamins, minerals and water. Dietary fibre
+      also supports healthy digestion.</p>
+      <p>A balanced diet provides nutrients in suitable amounts.</p>
+    `
+  },
+  {
+    class: "SS1",
+    term: "Second Term",
+    title: "Transport Systems",
+    summary: "Transport in plants and animals",
+    notes: `
+      <h3>Transport Systems</h3>
+      <p>Blood transports oxygen, nutrients, hormones and waste
+      products around the human body.</p>
+      <p>Xylem transports water and mineral salts in plants.
+      Phloem transports sugars and other organic substances.</p>
+    `
+  },
+  {
+    class: "SS1",
+    term: "Third Term",
+    title: "Respiration",
+    summary: "Energy release in cells",
+    notes: `
+      <h3>Respiration</h3>
+      <p>Cellular respiration releases usable energy from food.</p>
+      <p>Aerobic respiration uses oxygen to break down glucose,
+      producing carbon dioxide, water and usable energy.</p>
+      <p>Respiration occurs in living cells.</p>
+    `
+  },
+  {
+    class: "SS1",
+    term: "Third Term",
+    title: "Excretion",
+    summary: "Removal of metabolic wastes",
+    notes: `
+      <h3>Excretion</h3>
+      <p>Excretion is the removal of metabolic waste products.</p>
+      <p>Human kidneys filter blood and help regulate water
+      and salt balance. The lungs remove carbon dioxide.</p>
+    `
+  },
+  {
+    class: "SS2",
+    term: "First Term",
+    title: "Ecology and Ecosystems",
+    summary: "Organisms and their environment",
+    notes: `
+      <h3>Ecology and Ecosystems</h3>
+      <p>Ecology studies relationships between organisms and
+      their environment.</p>
+      <p>An ecosystem includes living organisms and non-living
+      environmental factors. Food chains show energy transfer.</p>
+    `
+  },
+  {
+    class: "SS2",
+    term: "First Term",
+    title: "Food Chains and Food Webs",
+    summary: "Feeding relationships in ecosystems",
+    notes: `
+      <h3>Food Chains and Food Webs</h3>
+      <p>A food chain shows how energy passes between organisms
+      through feeding.</p>
+      <p>Producers make their own food. Consumers feed on other
+      organisms, while decomposers break down dead organic matter.</p>
+      <p>A food web consists of interconnected food chains.</p>
+    `
+  },
+  {
+    class: "SS2",
+    term: "First Term",
+    title: "Reproduction in Plants",
+    summary: "Pollination, fertilisation and seeds",
+    notes: `
+      <h3>Reproduction in Plants</h3>
+      <p>Flowers are the reproductive structures of flowering plants.</p>
+      <p>Pollination is the transfer of pollen from anther to stigma.
+      Fertilisation occurs when male and female gametes fuse.</p>
+      <p>After fertilisation, the ovule usually develops into a seed.</p>
+    `
+  },
+  {
+    class: "SS2",
+    term: "Second Term",
+    title: "Genetics and Heredity",
+    summary: "Genes and inherited characteristics",
+    notes: `
+      <h3>Genetics and Heredity</h3>
+      <p>Genetics is the study of genes and inheritance.</p>
+      <p>DNA carries genetic information. Genes influence traits
+      passed from parents to offspring.</p>
+      <p>Inherited characteristics can be studied using genetic crosses.</p>
+    `
+  },
+  {
+    class: "SS2",
+    term: "Second Term",
+    title: "Variation",
+    summary: "Differences between individuals",
+    notes: `
+      <h3>Variation</h3>
+      <p>Variation refers to differences between individuals
+      of the same species.</p>
+      <p>Some variations are continuous, such as height.
+      Others are discontinuous, such as blood group.</p>
+      <p>Genes and environmental factors can influence variation.</p>
+    `
+  },
+  {
+    class: "SS2",
+    term: "Third Term",
+    title: "Coordination and Hormones",
+    summary: "Nervous and chemical coordination",
+    notes: `
+      <h3>Coordination and Hormones</h3>
+      <p>The nervous system coordinates rapid responses using
+      electrical impulses.</p>
+      <p>Hormones are chemical messengers carried to target tissues.
+      They help regulate processes such as growth and metabolism.</p>
+    `
+  },
+  {
+    class: "SS3",
+    term: "First Term",
+    title: "Evolution",
+    summary: "Changes in populations over generations",
+    notes: `
+      <h3>Evolution</h3>
+      <p>Evolution is change in inherited characteristics of
+      populations over generations.</p>
+      <p>Natural selection can make inherited traits that improve
+      reproductive success more common over time.</p>
+      <p>Evidence includes fossils, DNA and comparative anatomy.</p>
+    `
+  },
+  {
+    class: "SS3",
+    term: "First Term",
+    title: "Adaptation",
+    summary: "Features that help organisms survive",
+    notes: `
+      <h3>Adaptation</h3>
+      <p>Adaptations are inherited characteristics that can help
+      organisms survive and reproduce in their environments.</p>
+      <p>Examples include specialised beaks in birds and water-saving
+      features in plants that live in dry habitats.</p>
+    `
+  },
+  {
+    class: "SS3",
+    term: "Second Term",
+    title: "Conservation of Natural Resources",
+    summary: "Protecting habitats and biodiversity",
+    notes: `
+      <h3>Conservation of Natural Resources</h3>
+      <p>Conservation means protecting natural resources and biodiversity.</p>
+      <p>Methods include protecting habitats, planting trees,
+      preventing pollution and using resources sustainably.</p>
+    `
+  },
+  {
+    class: "SS3",
+    term: "Second Term",
+    title: "Pollution and Environmental Health",
+    summary: "Causes and effects of pollution",
+    notes: `
+      <h3>Pollution and Environmental Health</h3>
+      <p>Pollution is the introduction of harmful substances or
+      energy into the environment.</p>
+      <p>Air, water and soil pollution can harm organisms.
+      Waste management and pollution prevention help protect health.</p>
+    `
+  },
+  {
+    class: "SS3",
+    term: "Third Term",
+    title: "Population Studies",
+    summary: "Population size and distribution",
+    notes: `
+      <h3>Population Studies</h3>
+      <p>A population consists of organisms of the same species
+      living in a particular area.</p>
+      <p>Population size can be affected by births, deaths,
+      immigration and emigration.</p>
+      <p>Food, water, space, disease and predators can affect
+      population growth.</p>
+    `
+  },
+  {
+    class: "SS3",
+    term: "Third Term",
+    title: "Biology and Human Welfare",
+    summary: "Applications of Biology in society",
+    notes: `
+      <h3>Biology and Human Welfare</h3>
+      <p>Biology contributes to medicine, agriculture,
+      food production and environmental protection.</p>
+      <p>Biological knowledge helps people understand disease
+      prevention, biodiversity and sustainable resource use.</p>
+    `
+  }
+];
+
+const classLevel = document.getElementById("classLevel");
+const term = document.getElementById("term");
+const search = document.getElementById("search");
+const topicGrid = document.getElementById("topicGrid");
+const topicHeading = document.getElementById("topicHeading");
+const noResults = document.getElementById("noResults");
+const lessonContent = document.getElementById("lessonContent");
+
+function displayTopics() {
+  const selectedClass = classLevel.value;
+  const selectedTerm = term.value;
+  const query = search.value.toLowerCase().trim();
+
+  topicGrid.replaceChildren();
+
+  topicHeading.textContent =
+    selectedClass + " Biology - " + selectedTerm;
+
+  const filtered = lessons.filter(lesson =>
+    lesson.class === selectedClass &&
+    lesson.term === selectedTerm &&
+    (lesson.title.toLowerCase().includes(query) ||
+     lesson.summary.toLowerCase().includes(query))
+  );
+
+  filtered.forEach(lesson => {
+    const card = document.createElement("article");
+    card.className = "topic-card";
+
+    const heading = document.createElement("h3");
+    heading.textContent = lesson.title;
+
+    const description = document.createElement("p");
+    description.textContent = lesson.summary;
+
+    const button = document.createElement("button");
+    button.textContent = "Read Lesson";
+
+    button.addEventListener("click", () => {
+      lessonContent.innerHTML = lesson.notes;
+      document.getElementById("lesson").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+
+    card.append(heading, description, button);
+    topicGrid.appendChild(card);
+  });
+
+  noResults.hidden = filtered.length > 0;
+
+  if (filtered.length === 0) {
+    noResults.textContent =
+      "No topics found for this class and term. Try another term or search.";
+  }
+}
+
+classLevel.addEventListener("change", displayTopics);
+term.addEventListener("change", displayTopics);
+search.addEventListener("input", displayTopics);
+
+displayTopics();
+</script>
+
+</body>
+</html>

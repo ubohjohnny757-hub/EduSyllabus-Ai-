@@ -1,0 +1,296 @@
+<!DOCTYPE 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Physics - EduSyllabus AI</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f0f5ff;color:#172554;line-height:1.65}
+header{background:#123c80;color:white;text-align:center;padding:22px 10px}
+header h1{margin:0;font-size:29px}
+nav{background:#082f65;padding:13px;text-align:center}
+nav a{color:white;text-decoration:none;margin:10px;font-weight:bold}
+main{width:92%;max-width:850px;margin:22px auto}
+.card{background:white;padding:20px;border-radius:14px;margin-bottom:20px;box-shadow:0 3px 12px #0001}
+h2{color:#123c80}
+button{cursor:pointer;border:0;border-radius:8px;padding:13px;font-size:15px;font-weight:bold}
+.classes,.terms{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+.classes button{background:#1763c6;color:white;flex:1}
+.terms button{background:#e0ecff;color:#123c80;flex:1}
+button.active{background:#15803d!important;color:white!important}
+.topic{width:100%;text-align:left;background:#f0f6ff;color:#173767;border:1px solid #c8dcfa;margin:6px 0;line-height:1.5}
+.topic:hover{background:#dceaff}
+#lesson{display:none}
+.back{background:#475569;color:white;margin-bottom:15px}
+.next{background:#1763c6;color:white;margin:5px 3px 5px 0}
+.box{background:#eff6ff;padding:14px;border-radius:8px;margin:15px 0}
+footer{background:#082f65;color:white;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>EduSyllabus AI</h1>
+<p>Physics Curriculum: SS1 to SS3</p>
+<p>Learn • Practise • Understand</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="#classes">Classes</a>
+<a href="#curriculum">Curriculum</a>
+</nav>
+
+<main>
+<section class="card" id="classes">
+<h2>Welcome to Physics</h2>
+<p>Select your class, choose a term and tap any topic to open its lesson.</p>
+<div class="classes">
+<button class="active" onclick="chooseClass('SS1',this)">SS1 Physics</button>
+<button onclick="chooseClass('SS2',this)">SS2 Physics</button>
+<button onclick="chooseClass('SS3',this)">SS3 Physics</button>
+</div>
+</section>
+
+<section class="card" id="curriculum">
+<h2 id="heading">SS1 Physics Curriculum</h2>
+<div class="terms">
+<button class="active" onclick="chooseTerm(1,this)">First Term</button>
+<button onclick="chooseTerm(2,this)">Second Term</button>
+<button onclick="chooseTerm(3,this)">Third Term</button>
+</div>
+<h3 id="termHeading">SS1 - First Term</h3>
+<div id="topicList"></div>
+</section>
+
+<section class="card" id="lesson">
+<button class="back" onclick="showCurriculum()">← Back to Curriculum</button>
+<h2 id="lessonHeading"></h2>
+<p id="lessonLevel"></p>
+<div class="box">
+<h3>Lesson Notes</h3>
+<div id="lessonNotes"></div>
+</div>
+<div class="box">
+<h3>Worked Example</h3>
+<p id="lessonExample"></p>
+<p id="lessonAnswer"></p>
+</div>
+<div class="box">
+<h3>Practice Question</h3>
+<p id="practice"></p>
+<button class="next" onclick="revealAnswer()">Show Answer</button>
+<p id="practiceAnswer"></p>
+</div>
+<button class="next" onclick="moveLesson(-1)">← Previous Lesson</button>
+<button class="next" onclick="moveLesson(1)">Next Lesson →</button>
+</section>
+</main>
+
+<footer>
+<p>© 2026 EduSyllabus AI</p>
+<p>Supporting Secondary School Learning</p>
+</footer>
+
+<script>
+const curriculum = {
+SS1: {
+1: ["Introduction to Physics and its importance","Physical quantities and units","Fundamental and derived quantities","Measurement of length, mass and time","Measuring instruments and their uses","Position, distance and displacement","Scalars and vectors","Motion and types of motion","Speed, velocity and acceleration","Graphs of motion","Friction and its applications"],
+2: ["Force and its effects","Newton's laws of motion","Mass and weight","Gravitational force","Work, energy and power","Forms and transformation of energy","Simple machines","Pressure in solids and fluids","Atmospheric pressure","Density and relative density","Elasticity and Hooke's law"],
+3: ["Heat and temperature","Thermometers and temperature scales","Expansion of solids, liquids and gases","Specific heat capacity","Change of state and latent heat","Methods of heat transfer","Waves and wave motion","Types of waves","Properties of waves","Sound waves and their properties","Reflection of sound and echoes"]
+},
+SS2: {
+1: ["Review of motion and Newton's laws","Equations of uniformly accelerated motion","Projectile motion","Circular motion","Simple harmonic motion","Gravitational field","Work, energy and conservation of energy","Power and efficiency","Machines and mechanical advantage","Momentum and impulse","Conservation of linear momentum"],
+2: ["Waves and wave characteristics","Reflection and refraction of waves","Sound and its applications","Resonance and vibration","Light and rectilinear propagation","Reflection of light","Plane and curved mirrors","Refraction of light","Lenses and image formation","Optical instruments","Dispersion of white light"],
+3: ["Electrostatics","Electric charges and their properties","Electric fields","Electric potential and potential difference","Electric current and circuits","Conductors and insulators","Ohm's law","Resistance and resistivity","Series and parallel circuits","Electrical energy and power","Magnetic fields and magnets","Electromagnets and applications"]
+},
+SS3: {
+1: ["Revision of electricity and magnetism","Electromagnetic induction","Faraday's laws of electromagnetic induction","Alternating and direct current","Transformers and their applications","Electric generators","Electric motors","Semiconductors and electronic devices","Diodes and rectification","Transistors and their applications","Electrical safety"],
+2: ["Atomic structure","Electrons, protons and neutrons","Radioactivity and radioactive emissions","Alpha, beta and gamma radiation","Half-life and radioactive decay","Nuclear fission and fusion","Applications of nuclear energy","Photoelectric effect","Wave-particle duality","Introduction to quantum physics","X-rays and their applications"],
+3: ["Electromagnetic spectrum","Communication systems","The solar system and gravitation","Satellite motion","Energy resources and electricity generation","Renewable and non-renewable energy","Thermodynamics","Revision of mechanics","Revision of waves and optics","Revision of electricity and magnetism","SSCE Physics examination practice"]
+}
+};
+
+let selectedClass = "SS1";
+let selectedTerm = 1;
+let selectedTopic = 0;
+
+function chooseClass(level, button) {
+ selectedClass = level;
+ document.querySelectorAll(".classes button").forEach(b => b.classList.remove("active"));
+ button.classList.add("active");
+ document.getElementById("heading").textContent = level + " Physics Curriculum";
+ renderTopics();
+}
+
+function chooseTerm(term, button) {
+ selectedTerm = term;
+ document.querySelectorAll(".terms button").forEach(b => b.classList.remove("active"));
+ button.classList.add("active");
+ renderTopics();
+}
+
+function renderTopics() {
+ document.getElementById("curriculum").style.display = "block";
+ document.getElementById("lesson").style.display = "none";
+ document.getElementById("termHeading").textContent =
+ selectedClass + " - " + ["First Term","Second Term","Third Term"][selectedTerm - 1];
+
+ const list = document.getElementById("topicList");
+ list.replaceChildren();
+
+ curriculum[selectedClass][selectedTerm].forEach((topic, index) => {
+  const button = document.createElement("button");
+  button.className = "topic";
+  button.textContent = (index + 1) + ". " + topic + "  → Open lesson";
+  button.onclick = function() { openLesson(index); };
+  list.appendChild(button);
+ });
+}
+
+function openLesson(index) {
+ selectedTopic = index;
+ const topic = curriculum[selectedClass][selectedTerm][index];
+ document.getElementById("curriculum").style.display = "none";
+ document.getElementById("lesson").style.display = "block";
+ document.getElementById("lessonHeading").textContent = topic;
+ document.getElementById("lessonLevel").textContent =
+ selectedClass + " | " + ["First Term","Second Term","Third Term"][selectedTerm - 1];
+
+ const lessons = {
+ "Ohm's law": {
+  notes: ["Ohm's law states that current is directly proportional to potential difference when physical conditions, especially temperature, remain constant.","Formula: V = IR.","V is voltage in volts, I is current in amperes, and R is resistance in ohms."],
+  example: "A 6 Ω resistor is connected to a 12 V supply. Calculate the current.",
+  answer: "I = V/R = 12/6 = 2 A.",
+  question: "A 4 Ω resistor is connected to 8 V. Find the current.",
+  practiceAnswer: "I = V/R = 8/4 = 2 A."
+ },
+ "Electric current and circuits": {
+  notes: ["Electric current is the rate of flow of electric charge.","Formula: I = Q/t.","Current is measured in amperes (A). A complete circuit provides a closed path for current."],
+  example: "12 C of charge passes a point in 3 seconds. Find the current.",
+  answer: "I = Q/t = 12/3 = 4 A.",
+  question: "6 C of charge passes in 2 seconds. Find the current.",
+  practiceAnswer: "I = 6/2 = 3 A."
+ },
+ "Speed, velocity and acceleration": {
+  notes: ["Speed is distance travelled per unit time.","Velocity is displacement per unit time and has direction.","Acceleration is change in velocity divided by time.","Speed = distance/time. Acceleration = (final velocity − initial velocity)/time."],
+  example: "A runner covers 100 m in 20 seconds. Find the average speed.",
+  answer: "Speed = 100/20 = 5 m/s.",
+  question: "A car travels 60 m in 10 seconds. Find its average speed.",
+  practiceAnswer: "Speed = 60/10 = 6 m/s."
+ },
+ "Work, energy and power": {
+  notes: ["Work = force × displacement in the direction of the force.","Kinetic energy = ½mv².","Gravitational potential energy = mgh.","Power = work/time. Work and energy use joules; power uses watts."],
+  example: "A force of 10 N moves a box 3 m in the force's direction.",
+  answer: "Work = 10 × 3 = 30 J.",
+  question: "A force of 5 N moves an object 4 m. Find the work done.",
+  practiceAnswer: "Work = 5 × 4 = 20 J."
+ },
+ "Mass and weight": {
+  notes: ["Mass measures the amount of matter and is measured in kilograms.","Weight is the gravitational force on a body and is measured in newtons.","Weight = mass × gravitational field strength, W = mg."],
+  example: "Find the weight of a 5 kg object where g = 10 N/kg.",
+  answer: "W = 5 × 10 = 50 N.",
+  question: "Find the weight of a 2 kg object where g = 10 N/kg.",
+  practiceAnswer: "W = 2 × 10 = 20 N."
+ },
+ "Waves and wave motion": {
+  notes: ["Waves transfer energy without overall transfer of matter.","Transverse waves vibrate perpendicular to the direction of travel.","Longitudinal waves vibrate parallel to the direction of travel.","Wave speed = frequency × wavelength, v = fλ."],
+  example: "A wave has frequency 5 Hz and wavelength 2 m.",
+  answer: "Wave speed = 5 × 2 = 10 m/s.",
+  question: "A wave has frequency 4 Hz and wavelength 3 m. Find its speed.",
+  practiceAnswer: "v = 4 × 3 = 12 m/s."
+ },
+ "Heat and temperature": {
+  notes: ["Temperature tells how hot or cold something is.","Heat is energy transferred because of a temperature difference.","Heat transfers by conduction, convection and radiation."],
+  example: "How does heat from the Sun reach Earth?",
+  answer: "By radiation, which does not require a material medium.",
+  question: "Name the three methods of heat transfer.",
+  practiceAnswer: "Conduction, convection and radiation."
+ },
+ "Density and relative density": {
+  notes: ["Density is mass per unit volume.","Density = mass/volume.","The SI unit is kg/m³. Relative density is a ratio and has no unit."],
+  example: "A block has mass 200 g and volume 50 cm³.",
+  answer: "Density = 200/50 = 4 g/cm³.",
+  question: "A substance has mass 100 g and volume 20 cm³. Find its density.",
+  practiceAnswer: "Density = 100/20 = 5 g/cm³."
+ }
+ };
+
+ const data = lessons[topic] || {
+  notes: [
+   topic + " is an important area of Physics.",
+   "Learn the definition, main scientific principles, units and any relevant formulas.",
+   "Study diagrams and practical applications from your textbook and teacher's notes.",
+   "Connect the principles to real-life examples and solve related problems."
+  ],
+  example: "Explain " + topic + " and give one example of its application.",
+  answer: "Use the scientific definition and explain the relevant principle with a suitable example.",
+  question: "Define " + topic + " and state one application.",
+  practiceAnswer: "Check your answer against your class notes or textbook."
+ };
+
+ document.getElementById("lessonNotes").replaceChildren();
+ data.notes.forEach(note => {
+  const p = document.createElement("p");
+  p.textContent = note;
+  document.getElementById("lessonNotes").appendChild(p);
+ });
+ document.getElementById("lessonExample").textContent = data.example;
+ document.getElementById("lessonAnswer").textContent = data.answer;
+ document.getElementById("practice").textContent = data.question;
+ document.getElementById("practiceAnswer").textContent = "";
+ window.scrollTo(0,0);
+}
+
+function revealAnswer() {
+ const topic = curriculum[selectedClass][selectedTerm][selectedTopic];
+ const lessons = {
+ "Ohm's law": "I = V/R = 8/4 = 2 A.",
+ "Electric current and circuits": "I = Q/t = 6/2 = 3 A.",
+ "Speed, velocity and acceleration": "Speed = 60/10 = 6 m/s.",
+ "Work, energy and power": "Work = 5 × 4 = 20 J.",
+ "Mass and weight": "W = 2 × 10 = 20 N.",
+ "Waves and wave motion": "v = fλ = 4 × 3 = 12 m/s.",
+ "Heat and temperature": "Conduction, convection and radiation.",
+ "Density and relative density": "Density = 100/20 = 5 g/cm³."
+ };
+ document.getElementById("practiceAnswer").textContent =
+ lessons[topic] || "Review the lesson notes and check your response with your textbook or teacher.";
+}
+
+function showCurriculum() {
+ document.getElementById("lesson").style.display = "none";
+ document.getElementById("curriculum").style.display = "block";
+ window.scrollTo(0,0);
+}
+
+function moveLesson(direction) {
+ const topics = curriculum[selectedClass][selectedTerm];
+ const next = selectedTopic + direction;
+ if (next >= 0 && next < topics.length) {
+  openLesson(next);
+ } else {
+  alert("You have reached the end of the topics for this term.");
+ }
+}
+
+renderTopics();
+</script>
+</body>
+</html>
+html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  
+</body>
+
+</html>

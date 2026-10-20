@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRS Curriculum | EduSyllabus</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f0f6ff;
+  color: #183153;
+}
+
+header {
+  background: #123c69;
+  color: white;
+  text-align: center;
+  padding: 22px 12px;
+}
+
+header h1 {
+  margin: 0 0 8px;
+}
+
+header p {
+  margin: 0;
+}
+
+main {
+  max-width: 850px;
+  margin: 20px auto;
+  padding: 15px;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #123c69;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+h2 {
+  text-align: center;
+}
+
+.classes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  margin-bottom: 20px;
+}
+
+button {
+  cursor: pointer;
+  font-size: 15px;
+  border: none;
+  border-radius: 7px;
+  padding: 12px;
+}
+
+.classes button {
+  background: #d6e7ff;
+  color: #123c69;
+  font-weight: bold;
+}
+
+.classes button.active {
+  background: #123c69;
+  color: white;
+}
+
+.term-button {
+  width: 100%;
+  text-align: left;
+  margin: 7px 0;
+  background: #176b50;
+  color: white;
+  font-weight: bold;
+}
+
+.term-content {
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+
+.lesson-button {
+  width: 100%;
+  text-align: left;
+  margin: 5px 0;
+  background: #e5efff;
+  color: #123c69;
+}
+
+.lesson {
+  background: #f8fbff;
+  border-left: 4px solid #176b50;
+  padding: 12px;
+  margin: 5px 0 12px;
+  border-radius: 5px;
+  line-height: 1.6;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+footer {
+  text-align: center;
+  background: #123c69;
+  color: white;
+  padding: 15px;
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>EduSyllabus</h1>
+  <p>Christian Religious Studies (CRS)</p>
+  <p>Junior Secondary 1 to Senior Secondary 3</p>
+</header>
+
+<main>
+  <a class="back" href="index.html">← Back to Home</a>
+
+  <h2>Select Your Class</h2>
+  <div class="classes" id="classButtons"></div>
+
+  <div id="curriculum">
+    <p>Select a class to view its CRS curriculum.</p>
+  </div>
+</main>
+
+<footer>
+  <p>EduSyllabus — Learn, Understand and Succeed</p>
+</footer>
+
+<script>
+const curriculum = {
+  JSS1: {
+    "First Term": [
+      ["The Bible", "The Bible is the sacred book of Christians. It contains the Old Testament and the New Testament.", "The book of Genesis is in the Old Testament."],
+      ["God as Creator", "Christians believe that God created the heavens, the earth and all living things.", "Genesis 1 describes God's creation."],
+      ["The Creation Story", "The creation story explains how God created the world and everything in it.", "Genesis 1:1–31."],
+      ["Human Beings as God's Creation", "Human beings are created in God's image and are expected to care for creation.", "People can care for creation by keeping their environment clean."]
+    ],
+    "Second Term": [
+      ["Adam and Eve", "Adam and Eve are the first human beings described in the biblical creation account.", "Genesis 2:4–25."],
+      ["The Fall of Man", "The fall of man describes Adam and Eve's disobedience to God's instruction.", "Genesis 3."],
+      ["Cain and Abel", "Cain and Abel were sons of Adam and Eve. Their story teaches about jealousy, anger and responsibility.", "Genesis 4:1–16."],
+      ["Noah and the Flood", "Noah obeyed God's instructions and built an ark before the flood.", "Genesis 6–9."]
+    ],
+    "Third Term": [
+      ["Abraham's Call", "God called Abraham to leave his homeland and promised to bless him.", "Genesis 12:1–9."],
+      ["Abraham's Faith", "Abraham demonstrated faith by trusting God's promises.", "Genesis 15:1–6."],
+      ["Isaac, the Promised Son", "Isaac was the son God promised Abraham and Sarah.", "Genesis 21:1–7."],
+      ["Jacob and Esau", "Jacob and Esau were the twin sons of Isaac and Rebekah.", "Genesis 25:19–34."]
+    ]
+  },
+
+  JSS2: {
+    "First Term": [
+      ["Joseph and His Brothers", "Joseph's brothers became jealous of him because of their father's favour and his dreams.", "Genesis 37."],
+      ["Joseph in Egypt", "Joseph faced hardship in Egypt but remained faithful and eventually became a ruler under Pharaoh.", "Genesis 39–41."],
+      ["Joseph Forgives His Brothers", "Joseph forgave his brothers when they came to Egypt for food.", "Genesis 45:1–15."],
+      ["Moses' Birth and Early Life", "Moses was born when Pharaoh had ordered Hebrew baby boys to be killed. He was rescued and raised in Pharaoh's household.", "Exodus 2:1–10."]
+    ],
+    "Second Term": [
+      ["The Call of Moses", "God called Moses at the burning bush to lead the Israelites out of Egypt.", "Exodus 3."],
+      ["The Exodus", "The Exodus is the departure of the Israelites from slavery in Egypt.", "Exodus 12–14."],
+      ["The Ten Commandments", "God gave the Israelites commandments to guide their relationship with God and other people.", "Exodus 20:1–17."],
+      ["The Golden Calf", "The Israelites made a golden calf while Moses was on Mount Sinai, disobeying God's command.", "Exodus 32."]
+    ],
+    "Third Term": [
+      ["Joshua Succeeds Moses", "Joshua became the leader of the Israelites after Moses and led them toward the Promised Land.", "Joshua 1."],
+      ["The Fall of Jericho", "The Israelites followed God's instructions, and the walls of Jericho fell.", "Joshua 6."],
+      ["Gideon", "Gideon was called by God to deliver Israel from the Midianites.", "Judges 6–7."],
+      ["Ruth's Loyalty", "Ruth showed loyalty to Naomi and became part of the family line of King David.", "Ruth 1–4."]
+    ]
+  },
+
+  JSS3: {
+    "First Term": [
+      ["Samuel's Call", "Samuel was called by God while serving under Eli.", "1 Samuel 3."],
+      ["The Israelites Demand a King", "The Israelites asked for a king to rule them like other nations.", "1 Samuel 8."],
+      ["Saul Becomes King", "Saul was chosen as the first king of Israel but later disobeyed God's instructions.", "1 Samuel 9–15."],
+      ["David Is Anointed King", "Samuel anointed David, the youngest son of Jesse, to become king.", "1 Samuel 16."]
+    ],
+    "Second Term": [
+      ["David and Goliath", "David trusted God and defeated the Philistine warrior Goliath.", "1 Samuel 17."],
+      ["David as King", "David became king of Israel and established Jerusalem as an important royal city.", "2 Samuel 5."],
+      ["Solomon's Wisdom", "Solomon asked God for wisdom to govern his people well.", "1 Kings 3:5–15."],
+      ["Solomon Builds the Temple", "Solomon built a temple in Jerusalem as a place of worship.", "1 Kings 6–8."]
+    ],
+    "Third Term": [
+      ["Elijah and the Prophets of Baal", "Elijah challenged the prophets of Baal to demonstrate that the Lord is God.", "1 Kings 18:16–39."],
+      ["Elisha's Ministry", "Elisha continued the prophetic ministry after Elijah.", "2 Kings 2."],
+      ["Jonah's Mission", "God sent Jonah to Nineveh, where the people responded to his warning.", "Jonah 1–4."],
+      ["Daniel's Faithfulness", "Daniel remained faithful to God while living in a foreign land.", "Daniel 6."]
+    ]
+  },
+
+  SS1: {
+    "First Term": [
+      ["The Nature of God", "The Old Testament presents God as Creator, holy, just, loving and faithful.", "Study Genesis 1 and Psalm 103."],
+      ["Creation", "The creation account teaches that God created the universe and entrusted human beings with responsibility for it.", "Genesis 1:1–31."],
+      ["The Fall of Man", "The fall describes human disobedience and its consequences for humanity's relationship with God.", "Genesis 3."],
+      ["Cain and Abel", "The story explores jealousy, worship, anger and responsibility for one's actions.", "Genesis 4:1–16."]
+    ],
+    "Second Term": [
+      ["The Call of Abraham", "Abraham responded to God's call and received promises concerning land, descendants and blessing.", "Genesis 12:1–9."],
+      ["The Covenant with Abraham", "God made a covenant with Abraham, promising descendants and a special relationship.", "Genesis 15 and 17."],
+      ["Isaac and Jacob", "The stories of Isaac and Jacob continue the account of God's promises to Abraham's family.", "Genesis 25–28."],
+      ["Joseph in Egypt", "Joseph's life illustrates perseverance, forgiveness and trust in God despite hardship.", "Genesis 37–50."]
+    ],
+    "Third Term": [
+      ["The Call of Moses", "God called Moses to lead the Israelites out of Egyptian slavery.", "Exodus 3–4."],
+      ["The Exodus and Passover", "The Exodus tells how the Israelites left Egypt; Passover commemorates their deliverance.", "Exodus 12–14."],
+      ["The Sinai Covenant", "At Mount Sinai, God established a covenant with Israel and gave the people commandments.", "Exodus 19–20."],
+      ["The Ten Commandments", "The commandments provide religious and moral instructions for the Israelites.", "Exodus 20:1–17."]
+    ]
+  },
+
+  SS2: {
+    "First Term": [
+      ["Leadership in Israel", "Israel's leaders were expected to guide the people according to God's instructions.", "Study the leadership of Joshua and the judges."],
+      ["Samuel and Saul", "Samuel served as prophet and judge, while Saul became Israel's first king.", "1 Samuel 8–15."],
+      ["David's Reign", "David united Israel, established Jerusalem as his capital and received God's covenant promise.", "2 Samuel 5–7."],
+      ["Solomon's Reign", "Solomon was known for wisdom and built the temple, but later faced problems because of his choices.", "1 Kings 3–11."]
+    ],
+    "Second Term": [
+      ["The Division of the Kingdom", "After Solomon's reign, the kingdom divided into Israel in the north and Judah in the south.", "1 Kings 12."],
+      ["Elijah's Prophetic Ministry", "Elijah challenged idolatry and called Israel back to worship of the Lord.", "1 Kings 17–19."],
+      ["Elisha's Prophetic Ministry", "Elisha continued Elijah's work and ministered to individuals and communities.", "2 Kings 2–8."],
+      ["Amos and Social Justice", "Amos condemned injustice, exploitation of the poor and empty religious practices.", "Amos 5:10–24."]
+    ],
+    "Third Term": [
+      ["Hosea and God's Love", "Hosea used his family experience as a picture of Israel's unfaithfulness and God's continuing love.", "Hosea 1–3."],
+      ["Isaiah's Call", "Isaiah received a vision of God's holiness and was called to prophetic service.", "Isaiah 6."],
+      ["Jeremiah's Call", "Jeremiah was called to speak God's message and warn Judah about its conduct.", "Jeremiah 1."],
+      ["The Babylonian Exile", "The exile involved the deportation of many people from Judah to Babylon.", "2 Kings 24–25."]
+    ]
+  },
+
+  SS3: {
+    "First Term": [
+      ["The Birth of Jesus", "The Gospel accounts describe the birth of Jesus and the circumstances surrounding it.", "Matthew 1–2; Luke 1–2."],
+      ["The Baptism of Jesus", "Jesus was baptised by John the Baptist before beginning his public ministry.", "Matthew 3:13–17."],
+      ["The Temptation of Jesus", "Jesus resisted temptation in the wilderness and remained obedient to God.", "Matthew 4:1–11."],
+      ["The Calling of the Disciples", "Jesus called disciples to follow him and participate in his ministry.", "Matthew 4:18–22."]
+    ],
+    "Second Term": [
+      ["The Sermon on the Mount", "Jesus taught about character, righteousness, prayer and relationships with others.", "Matthew 5–7."],
+      ["The Parables of Jesus", "Jesus used familiar stories to communicate spiritual and moral lessons.", "Luke 15."],
+      ["Miracles of Jesus", "The Gospels record miracles that demonstrate Jesus' compassion and power.", "Mark 4:35–41."],
+      ["The Love of Neighbours", "Jesus taught that love of neighbour is an important expression of obedience to God.", "Luke 10:25–37."]
+    ],
+    "Third Term": [
+      ["The Last Supper", "Jesus shared a final meal with his disciples before his arrest.", "Luke 22:14–23."],
+      ["The Arrest and Trial of Jesus", "The Gospel accounts describe Jesus' arrest, questioning and trial.", "Matthew 26–27."],
+      ["The Crucifixion and Burial", "The Gospels describe the death and burial of Jesus.", "Luke 23:26–56."],
+      ["The Resurrection and Ascension", "Christians believe that Jesus rose from the dead and later ascended to heaven.", "Luke 24; Acts 1:1–11."]
+    ]
+  }
+};
+
+const classNames = ["JSS1", "JSS2", "JSS3", "SS1", "SS2", "SS3"];
+const classButtons = document.getElementById("classButtons");
+const output = document.getElementById("curriculum");
+
+function showClass(className) {
+  document.querySelectorAll(".classes button").forEach(function(button) {
+    button.classList.toggle("active", button.dataset.class === className);
+  });
+
+  output.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = className + " CRS Curriculum";
+  output.appendChild(heading);
+
+  const terms = curriculum[className];
+
+  Object.keys(terms).forEach(function(termName) {
+    const termButton = document.createElement("button");
+    termButton.className = "term-button";
+    termButton.textContent = termName + " ▼";
+
+    const termContent = document.createElement("div");
+    termContent.className = "term-content";
+    termContent.hidden = true;
+
+    termButton.addEventListener("click", function() {
+      termContent.hidden = !termContent.hidden;
+      termButton.textContent = termName + (termContent.hidden ? " ▼" : " ▲");
+    });
+
+    terms[termName].forEach(function(topic) {
+      const lessonButton = document.createElement("button");
+      lessonButton.className = "lesson-button";
+      lessonButton.textContent = topic[0] + " +";
+
+      const lesson = document.createElement("div");
+      lesson.className = "lesson";
+      lesson.hidden = true;
+
+      const explanation = document.createElement("p");
+      explanation.textContent = topic[1];
+
+      const reference = document.createElement("p");
+      reference.textContent = "Bible reference: " + topic[2];
+
+      lesson.appendChild(explanation);
+      lesson.appendChild(reference);
+
+      lessonButton.addEventListener("click", function() {
+        lesson.hidden = !lesson.hidden;
+        lessonButton.textContent = topic[0] + (lesson.hidden ? " +" : " −");
+      });
+
+      termContent.appendChild(lessonButton);
+      termContent.appendChild(lesson);
+    });
+
+    output.appendChild(termButton);
+    output.appendChild(termContent);
+  });
+}
+
+classNames.forEach(function(className) {
+  const button = document.createElement("button");
+  button.textContent = className;
+  button.dataset.class = className;
+  button.addEventListener("click", function() {
+    showClass(className);
+  });
+  classButtons.appendChild(button);
+});
+
+showClass("JSS1");
+</script>
+
+</body>
+</html>

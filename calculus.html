@@ -1,0 +1,282 @@
+<!DOC
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculus | EduSyllabus</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+header {
+  background: #4338ca;
+  color: white;
+  text-align: center;
+  padding: 22px 12px;
+}
+
+main {
+  width: 94%;
+  max-width: 850px;
+  margin: 20px auto;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #4338ca;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.classes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.classes button {
+  padding: 13px 5px;
+  border: none;
+  border-radius: 6px;
+  background: #ddd6fe;
+  color: #312e81;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.classes button.active {
+  background: #4338ca;
+  color: white;
+}
+
+.term-button {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+  background: #3730a3;
+  color: white;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.term-content {
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.lesson-button {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  border: 1px solid #c7d2fe;
+  border-radius: 5px;
+  background: #eef2ff;
+  color: #312e81;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lesson {
+  background: #f8fafc;
+  border-left: 4px solid #6366f1;
+  padding: 12px;
+  margin: 5px 0 12px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+footer {
+  background: #4338ca;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>EduSyllabus</h1>
+  <p>Calculus</p>
+  <p>Senior Secondary School: SS1 – SS3</p>
+</header>
+
+<main>
+  <a class="back" href="index.html">← Back to Home</a>
+
+  <h2>Select Your Class</h2>
+  <div class="classes" id="classButtons"></div>
+
+  <div id="curriculum"></div>
+</main>
+
+<footer>
+  <p>© 2026 EduSyllabus | Learn and Succeed</p>
+</footer>
+
+<script>
+const curriculum = {
+  SS1: {
+    "First Term": [
+      ["Functions and Relations", "A relation connects elements of two sets. A function assigns exactly one output to each input.", "Example: If f(x) = 2x + 1, then f(3) = 7."],
+      ["Coordinate Geometry", "Coordinates locate points on a plane using horizontal and vertical axes.", "Example: The point (2, 3) is 2 units right and 3 units up from the origin."],
+      ["Straight-Line Graphs", "A straight-line graph can represent a linear relationship.", "Example: For y = 2x, when x = 3, y = 6."],
+      ["Sequences and Series", "A sequence is an ordered list of numbers. A series is the sum of sequence terms.", "Example: 2, 4, 6 is a sequence; 2 + 4 + 6 = 12 is a series."]
+    ],
+    "Second Term": [
+      ["Limits: Introduction", "A limit describes the value a function approaches as its input approaches a particular number.", "Example: As x approaches 2, the expression x + 3 approaches 5."],
+      ["Gradient of a Curve", "The gradient measures how steep a graph is. A curve's gradient may change from point to point.", "Example: For a straight line y = 3x, the gradient is 3."],
+      ["Rates of Change", "Rate of change describes how one quantity changes compared with another.", "Example: If distance increases by 10 metres in 2 seconds, the average rate is 5 m/s."],
+      ["Introduction to Differentiation", "Differentiation is a method for finding derivatives, which describe instantaneous rates of change.", "Example: The derivative of x² is 2x."]
+    ],
+    "Third Term": [
+      ["Introduction to Integration", "Integration can be used to find accumulated quantities and areas under curves.", "Example: An antiderivative of 2x is x² + C."],
+      ["Area Under a Graph", "The area under a graph can represent an accumulated quantity and can be found using integration.", "Example: The area under y = 2 from x = 0 to x = 3 is 6 square units."],
+      ["Polynomial Functions", "A polynomial is an expression made from constants and non-negative integer powers of variables.", "Example: f(x) = x² + 3x + 2."],
+      ["Revision and Applications", "Review functions, graphs, rates of change and introductory calculus ideas.", "Example: If s(t) = t², then its derivative is 2t."]
+    ]
+  },
+
+  SS2: {
+    "First Term": [
+      ["Limits of Functions", "Limits describe the value a function approaches near a chosen input.", "Example: lim(x→2) (x + 4) = 6."],
+      ["Continuity of Functions", "A function is continuous at a point when its value agrees with its limit there.", "Example: Polynomial functions are continuous for all real numbers."],
+      ["Differentiation of Powers", "The power rule states that the derivative of xⁿ is nxⁿ⁻¹.", "Example: d(x³)/dx = 3x²."],
+      ["Differentiation of Polynomials", "Differentiate each term separately using the power rule and constant rule.", "Example: d(3x² + 2x + 5)/dx = 6x + 2."]
+    ],
+    "Second Term": [
+      ["Product Rule", "For differentiable functions u and v, the derivative of uv is u'v + uv'.", "Example: d(x² × x³)/dx = 5x⁴."],
+      ["Quotient Rule", "For differentiable functions u and v, the derivative of u/v is (u'v − uv')/v², where v is not zero.", "Example: Differentiate x²/x for x ≠ 0 by simplifying it to x; the derivative is 1."],
+      ["Chain Rule", "The chain rule differentiates a function inside another function.", "Example: d((2x + 1)²)/dx = 4(2x + 1)."],
+      ["Applications of Derivatives", "Derivatives can help determine gradients, stationary points and rates of change.", "Example: For y = x², the gradient at x = 3 is 6."]
+    ],
+    "Third Term": [
+      ["Indefinite Integration", "Indefinite integration finds a family of antiderivatives and includes a constant C.", "Example: ∫ 3x² dx = x³ + C."],
+      ["Integration of Polynomials", "Integrate each power by increasing its exponent by one and dividing by the new exponent.", "Example: ∫ 2x dx = x² + C."],
+      ["Definite Integrals", "A definite integral calculates a signed accumulated value between two limits.", "Example: ∫ from 0 to 2 of 2x dx = [x²] from 0 to 2 = 4."],
+      ["Area Between Simple Curves", "Integration can calculate the area between a curve and an axis or between two curves.", "Example: The area under y = x from x = 0 to x = 2 is 2 square units."]
+    ]
+  },
+
+  SS3: {
+    "First Term": [
+      ["Advanced Differentiation", "Use differentiation rules to find derivatives of more complicated functions.", "Example: d((x² + 1)³)/dx = 6x(x² + 1)²."],
+      ["Implicit Differentiation", "Implicit differentiation finds dy/dx when x and y appear together in an equation.", "Example: For x² + y² = 25, dy/dx = -x/y when y is not zero."],
+      ["Stationary Points", "Stationary points occur where the first derivative is zero or may be undefined.", "Example: For y = x², set 2x = 0 to obtain x = 0."],
+      ["Maximum and Minimum Values", "Derivatives help identify local maxima and minima of functions.", "Example: y = x² has a minimum value of 0 at x = 0."]
+    ],
+    "Second Term": [
+      ["Definite Integration", "Evaluate an antiderivative at the upper limit and subtract its value at the lower limit.", "Example: ∫ from 1 to 3 of 2x dx = 9 − 1 = 8."],
+      ["Area Under Curves", "A definite integral can find area when the curve is above the horizontal axis over the interval.", "Example: Area under y = x² from 0 to 2 is ∫₀² x² dx = 8/3."],
+      ["Kinematics: Velocity and Acceleration", "If displacement is a function of time, its first derivative gives velocity and its second derivative gives acceleration.", "Example: If s(t) = t², then v(t) = 2t and a(t) = 2."],
+      ["Differential Equations", "A differential equation contains an unknown function and one or more of its derivatives.", "Example: dy/dx = 2x has solutions y = x² + C."]
+    ],
+    "Third Term": [
+      ["Substitution in Integration", "Substitution simplifies an integral by replacing part of the expression with a new variable.", "Example: ∫ 2x(x² + 1)² dx = (x² + 1)³/3 + C."],
+      ["Integration by Parts", "Integration by parts uses the formula ∫u dv = uv − ∫v du.", "Example: ∫x eˣ dx = xeˣ − eˣ + C."],
+      ["Revision of Calculus", "Review limits, differentiation, integration and applications.", "Example: The derivative of x³ is 3x², and an antiderivative of 3x² is x³ + C."],
+      ["Calculus Problem Solving", "Apply calculus methods to problems involving motion, gradients, areas and optimisation.", "Example: For s(t) = 3t², velocity is 6t and acceleration is 6."]
+    ]
+  }
+};
+
+const classNames = ["SS1", "SS2", "SS3"];
+const classButtons = document.getElementById("classButtons");
+const output = document.getElementById("curriculum");
+
+function showClass(className) {
+  document.querySelectorAll(".classes button").forEach(function(button) {
+    button.classList.toggle("active", button.dataset.class === className);
+  });
+
+  output.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = className + " Calculus Curriculum";
+  output.appendChild(heading);
+
+  Object.keys(curriculum[className]).forEach(function(termName) {
+    const termButton = document.createElement("button");
+    termButton.className = "term-button";
+    termButton.textContent = termName + " ▼";
+
+    const termContent = document.createElement("div");
+    termContent.className = "term-content";
+    termContent.hidden = true;
+
+    termButton.addEventListener("click", function() {
+      termContent.hidden = !termContent.hidden;
+      termButton.textContent =
+        termName + (termContent.hidden ? " ▼" : " ▲");
+    });
+
+    curriculum[className][termName].forEach(function(topic) {
+      const lessonButton = document.createElement("button");
+      lessonButton.className = "lesson-button";
+      lessonButton.textContent = topic[0] + " +";
+
+      const lesson = document.createElement("div");
+      lesson.className = "lesson";
+      lesson.hidden = true;
+
+      const explanation = document.createElement("p");
+      explanation.textContent = topic[1];
+
+      const example = document.createElement("p");
+      example.textContent = topic[2];
+
+      lesson.appendChild(explanation);
+      lesson.appendChild(example);
+
+      lessonButton.addEventListener("click", function() {
+        lesson.hidden = !lesson.hidden;
+        lessonButton.textContent =
+          topic[0] + (lesson.hidden ? " +" : " −");
+      });
+
+      termContent.appendChild(lessonButton);
+      termContent.appendChild(lesson);
+    });
+
+    output.appendChild(termButton);
+    output.appendChild(termContent);
+  });
+}
+
+classNames.forEach(function(className) {
+  const button = document.createElement("button");
+  button.textContent = className;
+  button.dataset.class = className;
+
+  button.addEventListener("click", function() {
+    showClass(className);
+  });
+
+  classButtons.appendChild(button);
+});
+
+showClass("SS1");
+</script>
+
+</body>
+</html>

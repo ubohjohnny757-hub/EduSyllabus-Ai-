@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathematics - EduSyllabus</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f5f9;color:#1e293b}
+header{background:#1d4ed8;color:white;text-align:center;padding:25px 12px}
+nav{background:#1e40af;padding:12px;text-align:center}
+nav a{color:white;text-decoration:none;margin:6px;display:inline-block}
+main{max-width:900px;margin:auto;padding:16px}
+.panel,.topic,.lesson{background:white;padding:16px;border-radius:10px;margin-bottom:14px;box-shadow:0 2px 7px #0001}
+label{display:block;margin-top:10px}
+select,input{width:100%;padding:12px;margin:7px 0 12px;border:1px solid #cbd5e1;border-radius:7px;font-size:16px}
+button{background:#2563eb;color:white;border:0;border-radius:7px;padding:11px 15px;cursor:pointer;font-size:15px}
+.topic h3{color:#1d4ed8;margin-top:0}
+.topic p,.lesson p,.lesson li{line-height:1.7}
+.formula{background:#eff6ff;border-left:4px solid #2563eb;padding:12px;margin:12px 0;overflow-wrap:anywhere}
+.hidden{display:none}
+footer{background:#1e40af;color:white;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+<header>
+<h1>EduSyllabus Mathematics</h1>
+<p>Mathematics lessons from JSS1 to SS3</p>
+</header>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="curriculum.html">Curriculum</a>
+<a href="quiz.html">Quiz</a>
+<a href="ai-teacher.html">AI Teacher</a>
+</nav>
+
+<main>
+<section class="panel">
+<h2>Find a Mathematics Lesson</h2>
+
+<label for="classSelect">Choose class</label>
+<select id="classSelect">
+<option>JSS1</option>
+<option>JSS2</option>
+<option>JSS3</option>
+<option>SS1</option>
+<option>SS2</option>
+<option>SS3</option>
+</select>
+
+<label for="termSelect">Choose term</label>
+<select id="termSelect">
+<option>First Term</option>
+<option>Second Term</option>
+<option>Third Term</option>
+</select>
+
+<label for="searchInput">Search topics</label>
+<input id="searchInput" type="search" placeholder="e.g. fractions, algebra, equations">
+
+<button id="searchButton" type="button">Find Topics</button>
+</section>
+
+<section>
+<h2 id="topicHeading">JSS1 Mathematics</h2>
+<div id="topicList"></div>
+<p id="noResults" class="hidden">No topics found for this selection.</p>
+</section>
+
+<section id="lessonBox" class="lesson hidden">
+<h2 id="lessonTitle"></h2>
+<div id="lessonNotes"></div>
+<button id="closeLesson" type="button">Close Lesson</button>
+</section>
+</main>
+
+<footer>
+<p>&copy; 2026 EduSyllabus AI</p>
+<p>Learn, practise and improve.</p>
+</footer>
+
+<script>
+const lessons = [
+/* JSS1 */
+{c:"JSS1",t:"First Term",n:"Whole Numbers",d:`<p>Whole numbers are 0, 1, 2, 3 and so on.</p><p>They do not include fractions or negative numbers.</p><div class="formula">Example: 245 + 132 = 377</div>`},
+{c:"JSS1",t:"First Term",n:"Fractions",d:`<p>A fraction represents part of a whole. The numerator is above the fraction line and the denominator is below it.</p><div class="formula">1/2 + 1/4 = 2/4 + 1/4 = 3/4</div>`},
+{c:"JSS1",t:"First Term",n:"Factors and Multiples",d:`<p>A factor divides a number exactly. A multiple is obtained by multiplying a number by an integer.</p><p>Factors of 12: 1, 2, 3, 4, 6, 12.</p><p>Multiples of 3: 3, 6, 9, 12, 15...</p>`},
+{c:"JSS1",t:"Second Term",n:"Decimals and Percentages",d:`<p>Decimals use place value after a decimal point. Percent means out of 100.</p><div class="formula">0.25 = 25/100 = 25%</div>`},
+{c:"JSS1",t:"Second Term",n:"Basic Algebra",d:`<p>Letters can represent unknown numbers.</p><div class="formula">3x + 2x = 5x<br>If x = 4, then 5x = 20.</div>`},
+{c:"JSS1",t:"Second Term",n:"Angles",d:`<p>A right angle is 90°, a straight angle is 180°, and a complete turn is 360°.</p><p>Angles on a straight line add up to 180°.</p>`},
+{c:"JSS1",t:"Third Term",n:"Perimeter and Area",d:`<div class="formula">Rectangle perimeter = 2(l + w)<br>Rectangle area = l × w</div><p>For a rectangle of length 8 cm and width 3 cm, area = 8 × 3 = 24 cm².</p>`},
+{c:"JSS1",t:"Third Term",n:"Statistics and Charts",d:`<p>Statistics is the collection and interpretation of data. Data can be shown using tables, bar charts and pictograms.</p><div class="formula">Mean = Sum of values ÷ Number of values</div>`},
+
+/* JSS2 */
+{c:"JSS2",t:"First Term",n:"Directed Numbers",d:`<p>Directed numbers include positive and negative numbers.</p><div class="formula">-3 + 8 = 5<br>-4 - 2 = -6</div>`},
+{c:"JSS2",t:"First Term",n:"Ratio and Proportion",d:`<p>A ratio compares quantities.</p><div class="formula">Ratio 6:9 simplifies to 2:3 by dividing both terms by 3.</div>`},
+{c:"JSS2",t:"First Term",n:"Indices",d:`<p>An index tells us how many times a number is multiplied by itself.</p><div class="formula">2³ = 2 × 2 × 2 = 8<br>a² × a³ = a⁵</div>`},
+{c:"JSS2",t:"Second Term",n:"Linear Equations",d:`<p>Solve an equation by keeping both sides balanced.</p><div class="formula">2x + 4 = 14<br>2x = 10<br>x = 5</div>`},
+{c:"JSS2",t:"Second Term",n:"Angles and Polygons",d:`<p>A polygon is a closed shape made of straight sides.</p><div class="formula">Sum of interior angles = (n - 2) × 180°</div><p>For a triangle, the sum is 180°.</p>`},
+{c:"JSS2",t:"Second Term",n:"Simple Interest",d:`<p>Simple interest is calculated on the original amount borrowed or invested.</p><div class="formula">Simple Interest = (Principal × Rate × Time) ÷ 100</div><p>Use the rate as a percentage per year when time is in years.</p>`},
+{c:"JSS2",t:"Third Term",n:"Pythagoras' Theorem",d:`<p>In a right-angled triangle, the square of the hypotenuse equals the sum of the squares of the other two sides.</p><div class="formula">a² + b² = c²<br>3² + 4² = 9 + 16 = 25, so c = 5.</div>`},
+{c:"JSS2",t:"Third Term",n:"Probability",d:`<p>Probability measures the chance of an event occurring.</p><div class="formula">Probability = Favourable outcomes ÷ Total equally likely outcomes</div><p>The probability of heads on a fair coin is 1/2.</p>`},
+
+/* JSS3 */
+{c:"JSS3",t:"First Term",n:"Standard Form",d:`<p>Standard form writes a number as A × 10ⁿ, where 1 ≤ A &lt; 10 and n is an integer.</p><div class="formula">450000 = 4.5 × 10⁵<br>0.0032 = 3.2 × 10⁻³</div>`},
+{c:"JSS3",t:"First Term",n:"Expansion and Factorisation",d:`<p>Expansion removes brackets, while factorisation writes an expression as a product.</p><div class="formula">3(x + 2) = 3x + 6<br>6x + 12 = 6(x + 2)</div>`},
+{c:"JSS3",t:"First Term",n:"Simultaneous Equations",d:`<p>Simultaneous equations are solved together.</p><div class="formula">x + y = 7<br>x - y = 1<br>Add: 2x = 8, so x = 4 and y = 3.</div>`},
+{c:"JSS3",t:"Second Term",n:"Quadratic Equations",d:`<p>A quadratic equation contains a squared variable.</p><div class="formula">x² - 5x + 6 = 0<br>(x - 2)(x - 3) = 0<br>x = 2 or x = 3</div>`},
+{c:"JSS3",t:"Second Term",n:"Trigonometry",d:`<p>Trigonometric ratios relate angles and sides in right-angled triangles.</p><div class="formula">sin θ = Opposite/Hypotenuse<br>cos θ = Adjacent/Hypotenuse<br>tan θ = Opposite/Adjacent</div>`},
+{c:"JSS3",t:"Second Term",n:"Bearings and Scale Drawing",d:`<p>Bearings are measured clockwise from north and written with three digits, such as 045°.</p><p>A scale drawing represents real distances using a fixed ratio.</p>`},
+{c:"JSS3",t:"Third Term",n:"Variation",d:`<p>Direct variation means two quantities change in the same ratio.</p><div class="formula">Direct variation: y = kx<br>Inverse variation: y = k/x</div>`},
+{c:"JSS3",t:"Third Term",n:"Graphs of Linear Equations",d:`<p>A linear graph forms a straight line.</p><div class="formula">y = 2x + 1</div><p>For x = 0, y = 1. For x = 1, y = 3. Plot the points and draw a straight line through them.</p>`},
+
+/* SS1 */
+{c:"SS1",t:"First Term",n:"Number Bases",d:`<p>Base 10 uses ten digits, while binary is base 2.</p><div class="formula">1011₂ = 8 + 2 + 1 = 11₁₀</div>`},
+{c:"SS1",t:"First Term",n:"Surds",d:`<p>A surd is an irrational root that cannot be simplified to a rational number.</p><div class="formula">√12 = √(4 × 3) = 2√3</div>`},
+{c:"SS1",t:"Second Term",n:"Sets",d:`<p>A set is a well-defined collection of objects. Union combines members of sets, while intersection contains common members.</p><div class="formula">A ∪ B = members in A or B<br>A ∩ B = members common to A and B</div>`},
+{c:"SS1",t:"Second Term",n:"Linear Inequalities",d:`<p>Inequalities compare values using &lt;, &gt;, ≤ or ≥.</p><div class="formula">x + 3 &gt; 7<br>x &gt; 4</div><p>When multiplying or dividing by a negative number, reverse the inequality sign.</p>`},
+{c:"SS1",t:"Third Term",n:"Statistics",d:`<p>The mean is the sum divided by the number of values. The median is the middle ordered value, and the mode is the most frequent value.</p><div class="formula">Mean of 2, 4, 6 = 12 ÷ 3 = 4</div>`},
+
+/* SS2 */
+{c:"SS2",t:"First Term",n:"Quadratic Equations",d:`<p>A quadratic equation has the form ax² + bx + c = 0, with a ≠ 0.</p><div class="formula">x² - 5x + 6 = 0<br>(x - 2)(x - 3) = 0<br>x = 2 or x = 3</div>`},
+{c:"SS2",t:"First Term",n:"Logarithms",d:`<p>A logarithm gives the power to which a base is raised.</p><div class="formula">log₁₀(100) = 2 because 10² = 100.</div>`},
+{c:"SS2",t:"Second Term",n:"Trigonometry",d:`<p>Trigonometry studies relationships between angles and sides of triangles.</p><div class="formula">sin θ = Opposite/Hypotenuse<br>cos θ = Adjacent/Hypotenuse<br>tan θ = Opposite/Adjacent</div>`},
+{c:"SS2",t:"Second Term",n:"Coordinate Geometry",d:`<p>Coordinates locate points on a plane.</p><div class="formula">Gradient = (y₂ - y₁) ÷ (x₂ - x₁)</div><p>Between (1, 2) and (3, 6), the gradient is (6 - 2)/(3 - 1) = 2.</p>`},
+{c:"SS2",t:"Third Term",n:"Sequences and Series",d:`<p>An arithmetic sequence has a constant difference between consecutive terms.</p><div class="formula">nth term = a + (n - 1)d</div><p>For 3, 7, 11, 15, the first term is 3 and the common difference is 4.</p>`},
+
+/* SS3 */
+{c:"SS3",t:"First Term",n:"Differentiation",d:`<p>Differentiation finds the rate of change of a function.</p><div class="formula">If y = xⁿ, then dy/dx = nxⁿ⁻¹</div><p>If y = x³, then dy/dx = 3x².</p>`},
+{c:"SS3",t:"First Term",n:"Integration",d:`<p>Integration can find antiderivatives and areas under curves.</p><div class="formula">∫xⁿ dx = xⁿ⁺¹/(n + 1) + C, n ≠ -1</div><p>For example, ∫2x dx = x² + C.</p>`},
+{c:"SS3",t:"Second Term",n:"Matrices",d:`<p>A matrix is a rectangular arrangement of numbers in rows and columns.</p><div class="formula">[1  2] + [3  4] = [4  6]</div><p>Add corresponding entries in matrices of equal dimensions.</p>`},
+{c:"SS3",t:"Second Term",n:"Vectors",d:`<p>A vector has magnitude and direction. A scalar has magnitude only.</p><div class="formula">(2, 3) + (1, 4) = (3, 7)</div>`},
+{c:"SS3",t:"Third Term",n:"Probability",d:`<p>Probability measures how likely an event is to occur.</p><div class="formula">P(event) = Favourable outcomes ÷ Total equally likely outcomes</div>`},
+{c:"SS3",t:"Third Term",n:"Bearings",d:`<p>A bearing is measured clockwise from north and written as a three-digit angle, such as 060° or 135°.</p><p>Always draw a north line at the starting point before measuring a bearing.</p>`}
+];
+
+const classSelect=document.getElementById("classSelect");
+const termSelect=document.getElementById("termSelect");
+const searchInput=document.getElementById("searchInput");
+const topicList=document.getElementById("topicList");
+const topicHeading=document.getElementById("topicHeading");
+const noResults=document.getElementById("noResults");
+const lessonBox=document.getElementById("lessonBox");
+const lessonTitle=document.getElementById("lessonTitle");
+const lessonNotes=document.getElementById("lessonNotes");
+
+function displayTopics(){
+  const cls=classSelect.value;
+  const term=termSelect.value;
+  const query=searchInput.value.trim().toLowerCase();
+
+  topicHeading.textContent=cls+" Mathematics - "+term;
+  const filtered=lessons.filter(item=>
+    item.c===cls &&
+    item.t===term &&
+    (item.n.toLowerCase().includes(query) ||
+     item.d.toLowerCase().replace(/<[^>]*>/g," ").toLowerCase().includes(query))
+  );
+
+  topicList.innerHTML="";
+  lessonBox.classList.add("hidden");
+
+  filtered.forEach(item=>{
+    const card=document.createElement("article");
+    card.className="topic";
+    const heading=document.createElement("h3");
+    heading.textContent=item.n;
+    const button=document.createElement("button");
+    button.type="button";
+    button.textContent="Open Lesson";
+    button.addEventListener("click",()=>{
+      lessonTitle.textContent=item.n;
+      lessonNotes.innerHTML=item.d;
+      lessonBox.classList.remove("hidden");
+      lessonBox.scrollIntoView({behavior:"smooth"});
+    });
+    card.append(heading,button);
+    topicList.appendChild(card);
+  });
+
+  noResults.classList.toggle("hidden",filtered.length>0);
+}
+
+document.getElementById("searchButton").addEventListener("click",displayTopics);
+classSelect.addEventListener("change",displayTopics);
+termSelect.addEventListener("change",displayTopics);
+searchInput.addEventListener("input",displayTopics);
+document.getElementById("closeLesson").addEventListener("click",()=>{
+  lessonBox.classList.add("hidden");
+});
+displayTopics();
+</script>
+</body>
+</html>
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  
+</body>
+
+</html>

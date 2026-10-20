@@ -1,0 +1,366 @@
+<!DOCTYP
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Financial Accounting - EduSyllabus</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+header {
+  background: #075985;
+  color: white;
+  padding: 22px 12px;
+  text-align: center;
+}
+
+main {
+  width: 92%;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 10px;
+  margin-bottom: 18px;
+}
+
+h2 { color: #075985; }
+
+.classes {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.classes button {
+  flex: 1;
+  padding: 13px 5px;
+  border: none;
+  border-radius: 7px;
+  background: #dbeafe;
+  color: #075985;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.classes button.active {
+  background: #075985;
+  color: white;
+}
+
+.term-button {
+  width: 100%;
+  padding: 15px;
+  margin: 7px 0;
+  border: none;
+  border-radius: 8px;
+  background: #dbeafe;
+  color: #075985;
+  text-align: left;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.term-button span {
+  float: right;
+}
+
+.term-content {
+  padding: 12px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.lesson-button {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0;
+  text-align: left;
+  border: 1px solid #cbd5e1;
+  background: white;
+  border-radius: 6px;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.lesson-button:active {
+  background: #e0f2fe;
+}
+
+.lesson {
+  padding: 12px;
+  background: #f0f9ff;
+  border-radius: 6px;
+  margin: 5px 0 12px;
+  line-height: 1.7;
+}
+
+.back {
+  display: inline-block;
+  background: #075985;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  border-radius: 7px;
+}
+
+footer {
+  text-align: center;
+  background: #075985;
+  color: white;
+  padding: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>EduSyllabus</h1>
+  <p>Financial Accounting</p>
+  <p>SS1 - SS3 Curriculum and Lessons</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>Financial Accounting Curriculum</h2>
+    <p>Step 1: Select your class.</p>
+    <p>Step 2: Tap a term to open its topics.</p>
+    <p>Step 3: Tap a lesson to study it.</p>
+  </section>
+
+  <div class="classes">
+    <button class="active" onclick="showClass('SS1',this)">SS1</button>
+    <button onclick="showClass('SS2',this)">SS2</button>
+    <button onclick="showClass('SS3',this)">SS3</button>
+  </div>
+
+  <section class="card" id="curriculum"></section>
+
+  <a class="back" href="index.html">← Back to Home</a>
+</main>
+
+<footer>
+  <p>EduSyllabus © 2026</p>
+</footer>
+
+<script>
+const courses = {
+  SS1: {
+    "First Term": [
+      ["Meaning of Financial Accounting",
+       "Financial accounting is the process of recording, classifying, summarising and reporting the financial transactions of a business.",
+       "Example: Recording the money a shop receives from selling goods."],
+      ["Users of Accounting Information",
+       "Business owners, managers, investors, banks and government agencies use accounting information to make decisions.",
+       "Example: A bank may examine a business's accounts before granting a loan."],
+      ["Accounting Concepts",
+       "Accounting concepts are basic principles used when preparing financial records. Examples include the business entity and going concern concepts.",
+       "Example: The owner's personal spending is recorded separately from business spending."],
+      ["Assets, Liabilities and Capital",
+       "Assets are resources owned by a business. Liabilities are amounts it owes. Capital is the owner's investment in the business.",
+       "Example: Cash is an asset, a bank loan is a liability, and the owner's investment is capital."],
+      ["The Accounting Equation",
+       "The accounting equation is Assets = Capital + Liabilities.",
+       "Example: If assets are ₦50,000 and liabilities are ₦10,000, capital is ₦40,000."],
+      ["Source Documents",
+       "Source documents provide evidence of business transactions. Examples include receipts, invoices and payment vouchers.",
+       "Example: A receipt can prove that a customer paid for goods."]
+    ],
+    "Second Term": [
+      ["Double-Entry Bookkeeping",
+       "Every transaction has at least two corresponding entries: a debit and a credit.",
+       "Example: Buying goods for cash affects both purchases and cash accounts."],
+      ["Debit and Credit",
+       "Debit and credit are the two sides of an account. Their effect depends on the type of account.",
+       "Example: Cash received is generally recorded as a debit in the cash account."],
+      ["Ledger Accounts",
+       "A ledger is a collection of accounts where transactions are classified and recorded.",
+       "Example: A business can maintain separate cash, sales and purchases accounts."],
+      ["Trial Balance",
+       "A trial balance lists ledger balances to check whether total debits equal total credits.",
+       "Example: Total debit balances should equal total credit balances."]
+    ],
+    "Third Term": [
+      ["Cash Book",
+       "A cash book records cash and bank receipts and payments.",
+       "Example: Cash received from a customer is entered on the receipts side."],
+      ["Bank Reconciliation",
+       "A bank reconciliation statement explains differences between a business's cash book and bank statement.",
+       "Example: An unpresented cheque can cause a difference."],
+      ["Purchases and Sales Journals",
+       "These journals record relevant credit purchases and credit sales.",
+       "Example: Goods sold on credit are entered in the sales journal."],
+      ["Trade and Cash Discounts",
+       "A trade discount reduces a listed selling price. A cash discount may encourage prompt payment.",
+       "Example: A 10% trade discount on ₦1,000 reduces the price by ₦100."]
+    ]
+  },
+
+  SS2: {
+    "First Term": [
+      ["Correction of Errors",
+       "Accounting errors are mistakes in recording or processing transactions.",
+       "Example: An amount posted to the wrong account may need correction."],
+      ["Suspense Account",
+       "A suspense account temporarily holds an unexplained difference while an error is investigated.",
+       "Example: It may be used when a trial balance does not agree."],
+      ["Control Accounts",
+       "Control accounts summarise information from individual personal accounts.",
+       "Example: A receivables control account summarises amounts owed by customers."],
+      ["Manufacturing Accounts",
+       "A manufacturing account calculates the cost of producing goods.",
+       "Example: It includes relevant raw materials, labour and factory overheads."]
+    ],
+    "Second Term": [
+      ["Depreciation",
+       "Depreciation allocates the depreciable cost of a fixed asset over its useful life.",
+       "Example: A business allocates the cost of equipment over the years it uses it."],
+      ["Bad and Doubtful Debts",
+       "These relate to customer debts that may not be collected.",
+       "Example: A business may estimate that some credit customers will not pay."],
+      ["Accrued and Prepaid Expenses",
+       "Accrued expenses are incurred but unpaid. Prepaid expenses are paid before they are fully used.",
+       "Example: Unpaid electricity bills may be accrued expenses."],
+      ["Partnership Accounts",
+       "Partnership accounting records the financial activities of a business owned by two or more partners.",
+       "Example: Partners may share profits according to their agreement."]
+    ],
+    "Third Term": [
+      ["Admission of a Partner",
+       "This involves accounting adjustments when a new partner joins a partnership.",
+       "Example: The new partner may contribute cash as capital."],
+      ["Retirement of a Partner",
+       "This involves settling the accounts of a partner who leaves the business.",
+       "Example: The retiring partner's balance is calculated."],
+      ["Departmental Accounts",
+       "These accounts help measure the performance of different departments in a business.",
+       "Example: A supermarket may compare the results of its food and clothing departments."]
+    ]
+  },
+
+  SS3: {
+    "First Term": [
+      ["Company Accounts",
+       "Company accounting records the financial activities of a company.",
+       "Example: A company records its income, expenses, assets and liabilities."],
+      ["Shares and Share Capital",
+       "Shares represent units of ownership in a company.",
+       "Example: Investors may buy shares when a company raises capital."],
+      ["Debentures",
+       "Debentures are a form of borrowing by a company, usually with stated repayment terms.",
+       "Example: A company may raise funds by issuing debentures."],
+      ["Non-Profit Organisation Accounts",
+       "These accounts record the receipts, payments and financial position of organisations that are not operated primarily for profit.",
+       "Example: A club prepares an income and expenditure account."]
+    ],
+    "Second Term": [
+      ["Branch Accounts",
+       "Branch accounting records the transactions and results of business branches.",
+       "Example: A company tracks sales made at its Lagos branch."],
+      ["Public Sector Accounting",
+       "Public sector accounting records the collection and use of government funds.",
+       "Example: A government department records expenditure on public schools."],
+      ["Cost Accounting",
+       "Cost accounting identifies and analyses the costs of producing goods or services.",
+       "Example: A bakery calculates the cost of flour, labour and electricity."],
+      ["Budgetary Control",
+       "Budgetary control compares actual results with planned financial figures.",
+       "Example: A business checks whether its spending exceeds its budget."]
+    ],
+    "Third Term": [
+      ["Financial Statement Analysis",
+       "Financial statement analysis helps users assess an organisation's financial performance and position.",
+       "Example: Comparing sales and expenses across two years."],
+      ["Accounting Ratios",
+       "Accounting ratios compare figures in financial statements to help assess performance or financial position.",
+       "Example: A current ratio compares current assets with current liabilities."],
+      ["Computerised Accounting",
+       "Computerised accounting uses software to record and process financial transactions.",
+       "Example: Accounting software can generate reports from recorded transactions."]
+    ]
+  }
+};
+
+function showClass(className, button) {
+  document.querySelectorAll(".classes button").forEach(function(btn) {
+    btn.classList.remove("active");
+  });
+
+  button.classList.add("active");
+
+  const container = document.getElementById("curriculum");
+  container.replaceChildren();
+
+  const heading = document.createElement("h2");
+  heading.textContent = className + " Financial Accounting";
+  container.appendChild(heading);
+
+  Object.entries(courses[className]).forEach(function(entry) {
+    const termName = entry[0];
+    const lessons = entry[1];
+
+    const termButton = document.createElement("button");
+    termButton.type = "button";
+    termButton.className = "term-button";
+    termButton.innerHTML = termName + ' <span>+</span>';
+
+    const termContent = document.createElement("div");
+    termContent.className = "term-content";
+    termContent.hidden = true;
+
+    termButton.addEventListener("click", function() {
+      termContent.hidden = !termContent.hidden;
+      termButton.querySelector("span").textContent =
+        termContent.hidden ? "+" : "−";
+    });
+
+    lessons.forEach(function(lesson, index) {
+      const lessonButton = document.createElement("button");
+      lessonButton.type = "button";
+      lessonButton.className = "lesson-button";
+      lessonButton.textContent = (index + 1) + ". " + lesson[0];
+
+      const lessonContent = document.createElement("div");
+      lessonContent.className = "lesson";
+      lessonContent.hidden = true;
+
+      const explanation = document.createElement("p");
+      explanation.textContent = lesson[1];
+
+      const example = document.createElement("p");
+      example.textContent = lesson[2];
+
+      lessonContent.append(explanation, example);
+
+      lessonButton.addEventListener("click", function() {
+        lessonContent.hidden = !lessonContent.hidden;
+      });
+
+      termContent.append(lessonButton, lessonContent);
+    });
+
+    container.append(termButton, termContent);
+  });
+}
+
+showClass("SS1", document.querySelector(".classes button"));
+</script>
+
+</body>
+</html>

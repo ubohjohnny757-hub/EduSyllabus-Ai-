@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemistry | EduSyllabus</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+header {
+  background: #075985;
+  color: white;
+  text-align: center;
+  padding: 25px 15px;
+}
+
+header h1 {
+  margin: 0 0 8px;
+}
+
+nav {
+  background: #0c4a6e;
+  padding: 12px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 7px;
+  display: inline-block;
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 18px;
+}
+
+.controls, .lesson, .topic {
+  background: white;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 7px #00000010;
+}
+
+select, input {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  font-size: 16px;
+}
+
+button {
+  background: #0284c7;
+  color: white;
+  padding: 11px 15px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover {
+  background: #0369a1;
+}
+
+.topic h3 {
+  margin-top: 0;
+  color: #075985;
+}
+
+.topic p {
+  line-height: 1.6;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #0c4a6e;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>EduSyllabus Chemistry</h1>
+  <p>Learn Chemistry from SS1 to SS3</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="curriculum.html">Curriculum</a>
+  <a href="biology.html">Biology</a>
+  <a href="quiz.html">Quiz</a>
+</nav>
+
+<main>
+  <section class="controls">
+    <h2>Find a Chemistry Lesson</h2>
+
+    <label for="classSelect">Select your class</label>
+    <select id="classSelect">
+      <option value="SS1">SS1</option>
+      <option value="SS2">SS2</option>
+      <option value="SS3">SS3</option>
+    </select>
+
+    <label for="termSelect">Select term</label>
+    <select id="termSelect">
+      <option value="First Term">First Term</option>
+      <option value="Second Term">Second Term</option>
+      <option value="Third Term">Third Term</option>
+    </select>
+
+    <label for="searchInput">Search topics</label>
+    <input id="searchInput" type="search"
+      placeholder="e.g. atoms, acids, organic chemistry">
+
+    <button type="button" id="searchButton">Find Topics</button>
+  </section>
+
+  <section>
+    <h2 id="topicHeading">SS1 Chemistry Topics</h2>
+    <div id="topicList"></div>
+    <p id="noResults" class="hidden">
+      No matching topics. Try another class, term, or search word.
+    </p>
+  </section>
+
+  <section class="lesson hidden" id="lessonBox">
+    <h2 id="lessonTitle"></h2>
+    <div id="lessonNotes"></div>
+    <button type="button" id="closeLesson">Close Lesson</button>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 EduSyllabus AI</p>
+  <p>Learning Chemistry made easier.</p>
+</footer>
+
+<script>
+const lessons = [
+  {
+    cls: "SS1", term: "First Term",
+    title: "Introduction to Chemistry",
+    notes: `<p><b>Definition:</b> Chemistry is the branch of science that studies matter, its composition, properties and changes.</p>
+    <p><b>Importance:</b> Chemistry is useful in medicine, agriculture, food production, manufacturing and environmental protection.</p>
+    <p><b>Examples:</b> Making soap, producing fertilisers and purifying water.</p>`
+  },
+  {
+    cls: "SS1", term: "First Term",
+    title: "Matter",
+    notes: `<p>Matter is anything that has mass and occupies space.</p>
+    <p><b>States of matter:</b> Solid, liquid and gas.</p>
+    <ul><li>Solids have a definite shape and volume.</li>
+    <li>Liquids have a definite volume but take the shape of their container.</li>
+    <li>Gases have no fixed shape or volume.</li></ul>`
+  },
+  {
+    cls: "SS1", term: "First Term",
+    title: "Elements, Compounds and Mixtures",
+    notes: `<p><b>Element:</b> A pure substance made of one type of atom, such as iron.</p>
+    <p><b>Compound:</b> A substance formed when elements chemically combine in fixed proportions, such as water.</p>
+    <p><b>Mixture:</b> Two or more substances physically combined, such as sand and salt.</p>`
+  },
+  {
+    cls: "SS1", term: "First Term",
+    title: "Laboratory Safety",
+    notes: `<p>Laboratory safety rules help prevent accidents during experiments.</p>
+    <ul><li>Follow your teacher's instructions.</li>
+    <li>Wear suitable protective equipment.</li>
+    <li>Never taste chemicals.</li>
+    <li>Do not smell chemicals directly.</li>
+    <li>Report spills and breakages immediately.</li></ul>`
+  },
+  {
+    cls: "SS1", term: "Second Term",
+    title: "Separation of Mixtures",
+    notes: `<p>Mixtures can be separated using physical methods.</p>
+    <ul><li><b>Filtration:</b> Separates an insoluble solid from a liquid.</li>
+    <li><b>Evaporation:</b> Recovers a dissolved solid from a solution.</li>
+    <li><b>Distillation:</b> Separates substances using differences in boiling points.</li>
+    <li><b>Chromatography:</b> Separates components of a mixture based on their movement through a medium.</li></ul>`
+  },
+  {
+    cls: "SS1", term: "Second Term",
+    title: "Atomic Structure",
+    notes: `<p>An atom contains a nucleus surrounded by electrons.</p>
+    <ul><li><b>Protons:</b> Positively charged particles in the nucleus.</li>
+    <li><b>Neutrons:</b> Particles with no electric charge in the nucleus.</li>
+    <li><b>Electrons:</b> Negatively charged particles around the nucleus.</li></ul>
+    <p>The atomic number equals the number of protons in an atom.</p>`
+  },
+  {
+    cls: "SS1", term: "Third Term",
+    title: "Symbols and Chemical Formulae",
+    notes: `<p>Chemical symbols represent elements. Examples include H for hydrogen, O for oxygen and Na for sodium.</p>
+    <p>Chemical formulae show which elements are present and how many atoms are represented. For example, H₂O represents water and CO₂ represents carbon dioxide.</p>`
+  },
+  {
+    cls: "SS1", term: "Third Term",
+    title: "Chemical Reactions",
+    notes: `<p>A chemical reaction changes starting substances called reactants into new substances called products.</p>
+    <p>Example: magnesium reacts with oxygen to form magnesium oxide.</p>
+    <p>A chemical equation should be balanced so that the number of atoms of each element is the same on both sides.</p>`
+  },
+  {
+    cls: "SS2", term: "First Term",
+    title: "Chemical Bonding",
+    notes: `<p>Chemical bonding holds atoms or ions together.</p>
+    <ul><li><b>Ionic bonding:</b> Attraction between oppositely charged ions.</li>
+    <li><b>Covalent bonding:</b> Atoms share electron pairs.</li>
+    <li><b>Metallic bonding:</b> Attraction between positive metal ions and delocalised electrons.</li></ul>`
+  },
+  {
+    cls: "SS2", term: "First Term",
+    title: "The Periodic Table",
+    notes: `<p>The periodic table arranges elements by increasing atomic number.</p>
+    <p>Horizontal rows are called periods, while vertical columns are called groups. Elements in the same group often have similar chemical properties.</p>`
+  },
+  {
+    cls: "SS2", term: "First Term",
+    title: "Acids, Bases and Salts",
+    notes: `<p><b>Acids</b> produce hydrogen ions in aqueous solution. <b>Bases</b> neutralise acids; soluble bases are called alkalis.</p>
+    <p><b>Neutralisation:</b> Acid + Base → Salt + Water.</p>
+    <p>Litmus and other indicators can help identify acidic and alkaline solutions. Never taste laboratory chemicals.</p>`
+  },
+  {
+    cls: "SS2", term: "Second Term",
+    title: "Rates of Chemical Reactions",
+    notes: `<p>The rate of reaction describes how quickly reactants are converted into products.</p>
+    <p>Factors affecting reaction rate include temperature, concentration, surface area, pressure for gases, and catalysts.</p>
+    <p>A catalyst increases reaction rate without being permanently consumed.</p>`
+  },
+  {
+    cls: "SS2", term: "Second Term",
+    title: "Oxidation and Reduction",
+    notes: `<p>Oxidation can be described as loss of electrons, while reduction is gain of electrons.</p>
+    <p>These processes occur together in reactions called redox reactions.</p>
+    <p>Rusting of iron is a familiar example of oxidation.</p>`
+  },
+  {
+    cls: "SS2", term: "Third Term",
+    title: "Electrolysis",
+    notes: `<p>Electrolysis uses an electric current to cause a chemical change in an electrolyte.</p>
+    <p>The electrodes are called the anode and cathode. Positive ions move towards the cathode, while negative ions move towards the anode.</p>
+    <p>Electrolysis experiments should only be performed with appropriate supervision and equipment.</p>`
+  },
+  {
+    cls: "SS2", term: "Third Term",
+    title: "Gas Laws",
+    notes: `<p>Gas laws describe relationships between pressure, volume and temperature.</p>
+    <p><b>Boyle's law:</b> For a fixed amount of gas at constant temperature, pressure is inversely proportional to volume.</p>
+    <p><b>Charles's law:</b> At constant pressure, gas volume is directly proportional to absolute temperature.</p>`
+  },
+  {
+    cls: "SS3", term: "First Term",
+    title: "Organic Chemistry",
+    notes: `<p>Organic chemistry mainly studies carbon compounds.</p>
+    <p>Many organic compounds contain carbon and hydrogen. Important families include alkanes, alkenes, alcohols and carboxylic acids.</p>
+    <p>Organic compounds are used in fuels, medicines, plastics and many everyday products.</p>`
+  },
+  {
+    cls: "SS3", term: "First Term",
+    title: "Hydrocarbons",
+    notes: `<p>Hydrocarbons contain only carbon and hydrogen.</p>
+    <ul><li><b>Alkanes:</b> Saturated hydrocarbons with only carbon-carbon single bonds.</li>
+    <li><b>Alkenes:</b> Unsaturated hydrocarbons containing a carbon-carbon double bond.</li>
+    <li><b>Alkynes:</b> Unsaturated hydrocarbons containing a carbon-carbon triple bond.</li></ul>`
+  },
+  {
+    cls: "SS3", term: "Second Term",
+    title: "Polymers",
+    notes: `<p>Polymers are large molecules made from repeating smaller units called monomers.</p>
+    <p>Examples include polyethylene, used in packaging, and natural polymers such as starch and cellulose.</p>
+    <p>Responsible use and disposal of plastics help reduce environmental pollution.</p>`
+  },
+  {
+    cls: "SS3", term: "Second Term",
+    title: "Chemical Equilibrium",
+    notes: `<p>In a reversible reaction, chemical equilibrium occurs when the forward and reverse reaction rates are equal in a closed system.</p>
+    <p>The concentrations of reactants and products remain constant at equilibrium, though reactions continue in both directions.</p>`
+  },
+  {
+    cls: "SS3", term: "Third Term",
+    title: "Electrochemical Cells",
+    notes: `<p>An electrochemical cell involves chemical reactions and electrical energy.</p>
+    <p>A galvanic cell produces electrical energy from a spontaneous chemical reaction. An electrolytic cell uses electrical energy to drive a chemical reaction.</p>`
+  },
+  {
+    cls: "SS3", term: "Third Term",
+    title: "Chemistry in Industry",
+    notes: `<p>Chemical industries produce materials such as fertilisers, cement, soap, glass and petroleum products.</p>
+    <p>Industrial chemistry considers raw materials, energy use, product quality, worker safety and environmental protection.</p>`
+  }
+];
+
+const classSelect = document.getElementById("classSelect");
+const termSelect = document.getElementById("termSelect");
+const searchInput = document.getElementById("searchInput");
+const topicList = document.getElementById("topicList");
+const topicHeading = document.getElementById("topicHeading");
+const noResults = document.getElementById("noResults");
+const lessonBox = document.getElementById("lessonBox");
+const lessonTitle = document.getElementById("lessonTitle");
+const lessonNotes = document.getElementById("lessonNotes");
+
+function displayTopics() {
+  const selectedClass = classSelect.value;
+  const selectedTerm = termSelect.value;
+  const search = searchInput.value.trim().toLowerCase();
+
+  topicHeading.textContent =
+    selectedClass + " Chemistry - " + selectedTerm;
+
+  const filtered = lessons.filter(function(lesson) {
+    return lesson.cls === selectedClass &&
+      lesson.term === selectedTerm &&
+      lesson.title.toLowerCase().includes(search);
+  });
+
+  topicList.innerHTML = "";
+
+  filtered.forEach(function(lesson) {
+    const card = document.createElement("article");
+    card.className = "topic";
+
+    const heading = document.createElement("h3");
+    heading.textContent = lesson.title;
+
+    const button = document.createElement("button");
+    button.textContent = "Open Lesson";
+    button.type = "button";
+    button.addEventListener("click", function() {
+      lessonTitle.textContent = lesson.title;
+      lessonNotes.innerHTML = lesson.notes;
+      lessonBox.classList.remove("hidden");
+      lessonBox.scrollIntoView({ behavior: "smooth" });
+    });
+
+    card.appendChild(heading);
+    card.appendChild(button);
+    topicList.appendChild(card);
+  });
+
+  noResults.classList.toggle("hidden", filtered.length !== 0);
+}
+
+document.getElementById("searchButton")
+  .addEventListener("click", displayTopics);
+
+classSelect.addEventListener("change", displayTopics);
+termSelect.addEventListener("change", displayTopics);
+
+searchInput.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") displayTopics();
+});
+
+document.getElementById("closeLesson")
+  .addEventListener("click", function() {
+    lessonBox.classList.add("hidden");
+  });
+
+displayTopics();
+</script>
+
+</body>
+</html>

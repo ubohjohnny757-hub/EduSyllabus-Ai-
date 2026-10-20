@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commerce - EduSyllabus</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f2f6ff;color:#202b40}
+header{background:#173f78;color:white;text-align:center;padding:22px 12px}
+header h1{margin:0 0 8px}
+.container{max-width:900px;margin:auto;padding:15px}
+.panel{background:white;padding:16px;margin-bottom:16px;border-radius:12px;box-shadow:0 2px 8px #00000012}
+label{display:block;margin:12px 0 6px;font-weight:bold}
+select{width:100%;padding:12px;border:1px solid #b9c9e0;border-radius:7px;background:white;font-size:16px}
+button{padding:12px;border:none;border-radius:7px;font-size:15px;cursor:pointer}
+.topic{display:block;width:100%;text-align:left;margin:8px 0;background:#e8f0ff;color:#173f78;border:1px solid #ccdaf5}
+.topic:hover{background:#d5e3ff}
+.primary{background:#173f78;color:white;margin:5px 3px 5px 0}
+.secondary{background:#e7ecf4;color:#202b40;margin:5px 3px 5px 0}
+#lesson{line-height:1.7}
+#lesson h2,#lesson h3{color:#173f78}
+.hidden{display:none}
+footer{text-align:center;padding:20px;color:#52647e}
+</style>
+</head>
+
+<body>
+<header>
+<h1>📚 EduSyllabus</h1>
+<p>Senior Secondary Commerce</p>
+<p>SS1 – SS3 | All Three Terms</p>
+</header>
+
+<div class="container">
+
+<div class="panel">
+<h2>Choose Class and Term</h2>
+
+<label for="classSelect">Class</label>
+<select id="classSelect" onchange="updateCurriculum()">
+<option value="SS1">SS1</option>
+<option value="SS2">SS2</option>
+<option value="SS3">SS3</option>
+</select>
+
+<label for="termSelect">Term</label>
+<select id="termSelect" onchange="updateCurriculum()">
+<option value="1">First Term</option>
+<option value="2">Second Term</option>
+<option value="3">Third Term</option>
+</select>
+</div>
+
+<div class="panel" id="curriculumPanel">
+<h2 id="curriculumTitle">SS1 Commerce</h2>
+<p id="termTitle">First Term Curriculum</p>
+<div id="topicList">
+<button class="topic" onclick="openLesson(0)">1. Meaning, Nature and Scope of Commerce</button>
+<button class="topic" onclick="openLesson(1)">2. Importance of Commerce</button>
+<button class="topic" onclick="openLesson(2)">3. Production and Its Types</button>
+<button class="topic" onclick="openLesson(3)">4. Factors of Production</button>
+<button class="topic" onclick="openLesson(4)">5. Division of Labour</button>
+<button class="topic" onclick="openLesson(5)">6. Occupation and Business Activities</button>
+</div>
+</div>
+
+<div class="panel hidden" id="lessonPanel">
+<button class="secondary" onclick="backToCurriculum()">← Back to Curriculum</button>
+<div id="lesson"></div>
+<button class="primary" onclick="previousLesson()">Previous Lesson</button>
+<button class="primary" onclick="nextLesson()">Next Lesson</button>
+</div>
+
+<div class="panel">
+<h2>Practice Questions</h2>
+<p id="questionText">What is commerce?</p>
+<button class="primary" onclick="showAnswer()">Show Answer</button>
+<p id="answerText" class="hidden"></p>
+<button class="secondary" onclick="nextQuestion()">Next Question</button>
+</div>
+
+<button class="secondary" onclick="goHome()">← Back to EduSyllabus Home</button>
+</div>
+
+<footer>EduSyllabus — Learn, Grow and Succeed</footer>
+
+<script>
+var curriculumData={
+SS1:{
+1:[
+"Meaning, Nature and Scope of Commerce",
+"Importance of Commerce",
+"Production and Its Types",
+"Factors of Production",
+"Division of Labour and Specialisation",
+"Occupation and Business Activities"
+],
+2:[
+"Trade and Its Classification",
+"Home Trade",
+"Foreign Trade",
+"Retail Trade",
+"Wholesale Trade",
+"Channels of Distribution"
+],
+3:[
+"Aids to Trade",
+"Transportation",
+"Communication",
+"Warehousing",
+"Insurance",
+"Advertising"
+]
+},
+SS2:{
+1:[
+"Business Organisations",
+"Sole Proprietorship",
+"Partnership",
+"Limited Liability Companies",
+"Public Enterprises",
+"Cooperative Societies"
+],
+2:[
+"Banking and Financial Institutions",
+"Types of Banks",
+"Functions of Commercial Banks",
+"Methods of Payment",
+"Principles of Insurance",
+"Types of Insurance"
+],
+3:[
+"Business Documents",
+"Enquiry and Quotation",
+"Order and Invoice",
+"Credit Documents",
+"Terms of Trade",
+"Consumer Protection"
+]
+},
+SS3:{
+1:[
+"International Trade",
+"Import and Export Procedures",
+"Balance of Trade and Payments",
+"Customs and Excise Duties",
+"Trade Restrictions",
+"Economic Integration"
+],
+2:[
+"Business Management",
+"Business Finance",
+"Sources of Business Capital",
+"Stock Exchange",
+"Entrepreneurship",
+"Business Ethics"
+],
+3:[
+"E-Commerce",
+"Modern Business Communication",
+"Marketing and Sales Promotion",
+"Consumer Rights and Responsibilities",
+"Business Environment",
+"Revision and Examination Practice"
+]
+}
+};
+
+var currentTopics=[];
+var currentIndex=0;
+var questionIndex=0;
+
+var questions=[
+{q:"What is commerce?",a:"Commerce is concerned with trade and the activities that help distribute goods and services from producers to consumers."},
+{q:"Mention four aids to trade.",a:"Transportation, banking, insurance and warehousing."},
+{q:"What is production?",a:"Production is the creation of goods and services or the addition of usefulness to them."},
+{q:"What is division of labour?",a:"Division of labour is the process of dividing production into different tasks performed by different workers."},
+{q:"Differentiate between imports and exports.",a:"Imports are goods and services bought from other countries. Exports are goods and services sold to other countries."},
+{q:"Mention three forms of business ownership.",a:"Sole proprietorship, partnership and limited liability company."},
+{q:"What is warehousing?",a:"Warehousing is the storage of goods until they are needed for sale or use."},
+{q:"What is advertising?",a:"Advertising is paid communication used to inform or persuade people about goods, services or ideas."},
+{q:"What is insurance?",a:"Insurance provides financial protection against specified risks in return for a premium."},
+{q:"What is e-commerce?",a:"E-commerce is the buying and selling of goods and services through electronic networks, especially the internet."}
+];
+
+var lessonDetails={
+"Meaning, Nature and Scope of Commerce":{
+meaning:"Commerce is the process of distributing and exchanging goods and services. It includes trade and the activities that support trade.",
+points:["Trade involves buying and selling.","Aids to trade include transport, banking, insurance and warehousing.","Commerce connects producers, traders and consumers."],
+example:"A retailer buying goods from a wholesaler and selling them to customers participates in commerce."
+},
+"Importance of Commerce":{
+meaning:"Commerce makes the exchange and distribution of goods and services possible.",
+points:["It makes goods available to consumers.","It creates employment.","It supports business growth.","It promotes trade between regions and countries.","It helps improve living standards."],
+example:"A transport company helps farmers deliver produce to markets."
+},
+"Production and Its Types":{
+meaning:"Production is the creation of goods and services or the addition of usefulness to existing goods.",
+points:["Primary production obtains raw materials from nature.","Secondary production processes raw materials into finished goods.","Tertiary production provides services."],
+example:"Turning cocoa beans into chocolate is secondary production."
+},
+"Factors of Production":{
+meaning:"Factors of production are the resources used to produce goods and services.",
+points:["Land provides natural resources.","Labour refers to human effort.","Capital includes tools, machinery and funds used in production.","Entrepreneurship organises resources and takes business risks."],
+example:"A bakery uses land, workers, ovens and the skills of an entrepreneur."
+},
+"Division of Labour and Specialisation":{
+meaning:"Division of labour means dividing a production process into separate tasks. Specialisation means concentrating on a particular task or activity.",
+points:["It can increase productivity.","It helps workers develop specific skills.","It can save time.","Repetitive tasks may become boring, and workers may depend on one another."],
+example:"In a bakery, different workers may mix dough, bake bread and package finished products."
+},
+"Trade and Its Classification":{
+meaning:"Trade is the buying and selling of goods and services.",
+points:["Home trade occurs within a country.","Foreign trade occurs between countries.","Wholesale trade usually involves bulk sales.","Retail trade involves sales to final consumers."],
+example:"A Nigerian shop selling goods to local customers engages in home trade."
+},
+"Banking and Financial Institutions":{
+meaning:"Banks and financial institutions provide services such as deposits, payments, lending and money transfers.",
+points:["Banks keep customers' deposits.","They facilitate payments and transfers.","Some provide loans subject to conditions.","They support business transactions."],
+example:"A trader can pay a supplier through a bank transfer."
+},
+"International Trade":{
+meaning:"International trade is the exchange of goods and services between countries.",
+points:["Imports are bought from other countries.","Exports are sold to other countries.","Trade can widen markets.","Exchange rates and trade rules affect transactions."],
+example:"A country buying machinery from another country is engaging in international trade."
+},
+"Business Documents":{
+meaning:"Business documents are written or electronic records used to support commercial transactions.",
+points:["An invoice lists goods supplied and the amount due.","A receipt confirms that payment has been made.","A quotation states proposed prices.","An order requests goods or services."],
+example:"A shopkeeper may issue a receipt after a customer pays for goods."
+},
+"E-Commerce":{
+meaning:"E-commerce is the buying and selling of goods and services through electronic networks.",
+points:["Customers can order products online.","Electronic payments can support transactions.","Businesses can reach customers in different locations.","Security, fraud and delivery are important considerations."],
+example:"Buying a textbook from an online shop is an example of e-commerce."
+}
+};
+
+function updateCurriculum(){
+var className=document.getElementById("classSelect").value;
+var term=document.getElementById("termSelect").value;
+currentTopics=curriculumData[className][term];
+currentIndex=0;
+
+document.getElementById("curriculumTitle").innerHTML=className+" Commerce";
+
+var termNames={"1":"First Term","2":"Second Term","3":"Third Term"};
+document.getElementById("termTitle").innerHTML=termNames[term]+" Curriculum";
+
+var html="";
+for(var i=0;i<currentTopics.length;i++){
+html+='<button class="topic" onclick="openLesson('+i+')">'+(i+1)+". "+currentTopics[i]+"</button>";
+}
+document.getElementById("topicList").innerHTML=html;
+document.getElementById("curriculumPanel").className="panel";
+document.getElementById("lessonPanel").className="panel hidden";
+}
+
+function openLesson(index){
+if(typeof index==="number"){
+currentIndex=index;
+}
+
+var topic=currentTopics[currentIndex];
+var detail=lessonDetails[topic];
+var html="<h2>"+topic+"</h2><h3>Meaning</h3><p>";
+
+if(detail){
+html+=detail.meaning;
+}else{
+html+=topic+" is an important area of commerce concerned with business activities, trade, and the distribution of goods and services.";
+}
+
+html+="</p><h3>Key Points</h3><ul>";
+
+if(detail){
+for(var i=0;i<detail.points.length;i++){
+html+="<li>"+detail.points[i]+"</li>";
+}
+}else{
+html+="<li>Understand the meaning and purpose of this topic.</li>";
+html+="<li>Learn its importance in business and commerce.</li>";
+html+="<li>Study practical examples and relevant commercial terms.</li>";
+}
+
+html+="</ul><h3>Example</h3><p>";
+html+=detail?detail.example:"Businesses use this knowledge when buying, selling, transporting, storing or managing goods and services.";
+html+="</p><h3>Revision Questions</h3><ol>";
+html+="<li>Explain the meaning of "+topic+".</li>";
+html+="<li>State three important points about this topic.</li>";
+html+="<li>Give one practical example.</li></ol>";
+
+document.getElementById("lesson").innerHTML=html;
+document.getElementById("curriculumPanel").className="panel hidden";
+document.getElementById("lessonPanel").className="panel";
+window.scrollTo(0,0);
+}
+
+function backToCurriculum(){
+document.getElementById("lessonPanel").className="panel hidden";
+document.getElementById("curriculumPanel").className="panel";
+}
+
+function nextLesson(){
+if(currentIndex<currentTopics.length-1){
+currentIndex++;
+openLesson(currentIndex);
+}else{
+alert("You have reached the last topic in this term.");
+}
+}
+
+function previousLesson(){
+if(currentIndex>0){
+currentIndex--;
+openLesson(currentIndex);
+}else{
+alert("This is the first topic in this term.");
+}
+}
+
+function showAnswer(){
+document.getElementById("answerText").innerHTML=questions[questionIndex].a;
+document.getElementById("answerText").className="";
+}
+
+function nextQuestion(){
+questionIndex++;
+if(questionIndex>=questions.length){questionIndex=0;}
+document.getElementById("questionText").innerHTML=questions[questionIndex].q;
+document.getElementById("answerText").innerHTML="";
+document.getElementById("answerText").className="hidden";
+}
+
+function goHome(){
+window.location.href="index.html";
+}
+
+updateCurriculum();
+</script>
+</body>
+</html>

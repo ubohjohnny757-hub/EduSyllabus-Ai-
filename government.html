@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-s
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Government - EduSyllabus</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+header {
+    background: #3730a3;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+main {
+    max-width: 800px;
+    margin: auto;
+    padding: 15px;
+}
+a {
+    color: #3730a3;
+}
+.class-button, .term-button, .topic-button {
+    width: 100%;
+    padding: 13px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+}
+.class-button {
+    width: 32%;
+    background: #c7d2fe;
+    text-align: center;
+}
+.class-button.active {
+    background: #3730a3;
+    color: white;
+}
+.term-button {
+    background: #e0e7ff;
+    font-weight: bold;
+}
+.topic-button {
+    background: white;
+    border: 1px solid #cbd5e1;
+}
+.lesson {
+    background: white;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-left: 4px solid #6366f1;
+}
+[hidden] {
+    display: none !important;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>EduSyllabus</h1>
+    <h2>Government Curriculum</h2>
+    <p>Senior Secondary School: SS1–SS3</p>
+</header>
+
+<main>
+    <p><a href="index.html">← Back to Home</a></p>
+    <h3>Select your class</h3>
+
+    <button class="class-button active" onclick="showClass('SS1', this)">SS1</button>
+    <button class="class-button" onclick="showClass('SS2', this)">SS2</button>
+    <button class="class-button" onclick="showClass('SS3', this)">SS3</button>
+
+    <div id="curriculum"></div>
+</main>
+
+<script>
+var data = {
+SS1: {
+"First Term": [
+["Meaning of Government", "Government is the system or institution through which a country is ruled and public decisions are made.", "Example: Government makes laws and provides public services."],
+["Basic Concepts of Government", "Important concepts include power, authority, sovereignty and legitimacy.", "Example: Authority is the recognised right to exercise power."],
+["The State and the Nation", "A state has a population, territory, government and sovereignty. A nation is a group of people with a shared identity.", "Example: People may share a language and culture."],
+["Forms of Government", "Forms include democracy, monarchy and authoritarian government.", "Example: In a democracy, citizens participate in choosing leaders."],
+["Arms of Government", "The legislature makes laws, the executive implements them, and the judiciary interprets them.", "Example: A court interprets the law in a legal dispute."]
+],
+"Second Term": [
+["The Constitution", "A constitution contains the fundamental rules for governing a country.", "Example: It defines government powers and citizens' rights."],
+["Types of Constitution", "Constitutions can be written or unwritten, and rigid or flexible.", "Example: A rigid constitution requires a special process for amendment."],
+["Democracy", "Democracy allows citizens to participate in government directly or through representatives.", "Example: Eligible citizens vote in elections."],
+["Political Parties", "Political parties organise people to seek political power and promote policies.", "Example: A party publishes a manifesto."],
+["Pressure Groups", "Pressure groups seek to influence government policies without necessarily forming a government.", "Example: A teachers' association campaigns for better school facilities."]
+],
+"Third Term": [
+["Electoral Systems", "Electoral systems determine how votes are counted and representatives are chosen.", "Example: A constituency election may be won by the candidate with the most votes."],
+["Citizenship", "Citizenship is legal membership of a country, with rights and responsibilities.", "Example: Eligible citizens may vote."],
+["Human Rights", "Human rights are basic freedoms and protections recognised by law.", "Example: Freedom of expression is a recognised right, subject to lawful limits."],
+["Rule of Law", "The rule of law means that everyone is subject to the law.", "Example: Public officials must obey applicable laws."],
+["Public Opinion", "Public opinion means the views people hold about public issues.", "Example: Citizens express their views about roads or schools."]
+]
+},
+SS2: {
+"First Term": [
+["Pre-Colonial Political Systems", "Nigerian communities had different political systems before colonial rule.", "Example: Some had kings, while others used community assemblies."],
+["Hausa-Fulani Political System", "Many northern emirates were organised under emirs and administrative officials.", "Example: An emir traditionally governed an emirate."],
+["Yoruba Political System", "Many Yoruba states had an Oba and councils of chiefs.", "Example: The Oyo Empire had the Alaafin."],
+["Igbo Political System", "Many traditional Igbo communities used decentralised systems and community decision-making.", "Example: Village assemblies discussed community matters."],
+["Colonial Administration", "British colonial rule introduced new administrative arrangements, including indirect rule.", "Example: Colonial officials governed through recognised traditional authorities in some areas."]
+],
+"Second Term": [
+["Nigerian Nationalism", "Nationalism involved efforts to gain self-government and independence from colonial rule.", "Example: Nationalists used newspapers and political organisations."],
+["Constitutional Development", "Nigeria's constitutional arrangements changed during colonial rule.", "Example: The Richards Constitution was introduced in 1946."],
+["1960 Independence Constitution", "This constitution provided the framework for independent Nigeria's parliamentary system.", "Example: The prime minister headed the federal government."],
+["1963 Republican Constitution", "Nigeria became a republic under the 1963 Constitution.", "Example: A Nigerian president became head of state."],
+["Nigerian Civil War", "The Nigerian Civil War lasted from 1967 to 1970 and had lasting effects on the country.", "Example: Reconciliation and reconstruction became important post-war concerns."]
+],
+"Third Term": [
+["Military Rule", "Military rule is government led by the armed forces rather than the usual elected civilian system.", "Example: Nigeria experienced periods of military government."],
+["1979 Constitution", "The 1979 Constitution introduced a presidential system in Nigeria's Second Republic.", "Example: The president was head of state and government."],
+["1999 Constitution", "The 1999 Constitution provides the main framework for Nigeria's Fourth Republic.", "Example: It establishes federal institutions."],
+["Federalism", "Federalism divides powers between a central government and constituent units such as states.", "Example: Federal and state governments have different responsibilities."],
+["Local Government", "Local government handles community-level responsibilities established by law.", "Example: A local council may maintain markets."]
+]
+},
+SS3: {
+"First Term": [
+["The Legislature", "The legislature makes laws and oversees government activities.", "Example: Nigeria's National Assembly consists of the Senate and House of Representatives."],
+["The Executive", "The executive implements laws and public policies.", "Example: Government ministries carry out public programmes."],
+["The Judiciary", "The judiciary interprets laws and settles legal disputes.", "Example: A court decides whether an action is lawful."],
+["Checks and Balances", "These arrangements help prevent one arm of government from abusing its powers.", "Example: The legislature can examine executive spending."],
+["The Civil Service", "The civil service provides permanent administrative support to government.", "Example: Civil servants help implement government policies."]
+],
+"Second Term": [
+["Public Corporations", "Public corporations are established or owned by government to perform specified functions.", "Example: A public corporation may provide transport services."],
+["Local Government Reforms", "These are changes to local government structure, funding or responsibilities.", "Example: A reform may change how councils prepare budgets."],
+["Political Participation", "Political participation includes activities through which citizens influence public decisions.", "Example: Attending a public meeting."],
+["Electoral Commission", "Electoral commissions organise elections under the applicable law.", "Example: INEC conducts federal and state elections in Nigeria."],
+["Electoral Problems", "Problems may include intimidation, misinformation and logistical difficulties.", "Example: Voter education can help people understand voting procedures."]
+],
+"Third Term": [
+["International Relations", "International relations concerns interactions between countries.", "Example: Countries cooperate on trade and security."],
+["Foreign Policy", "Foreign policy guides a country's relationships with other countries.", "Example: A country negotiates a trade agreement."],
+["United Nations", "The United Nations promotes international cooperation and works on peace and humanitarian issues.", "Example: UN agencies support education and health programmes."],
+["African Union", "The African Union promotes cooperation among African countries.", "Example: Members work together on continental development."],
+["ECOWAS", "ECOWAS promotes cooperation and integration among West African countries.", "Example: It works on regional trade and security."]
+]
+}
+};
+
+function showClass(className, clickedButton) {
+    var area = document.getElementById("curriculum");
+    area.innerHTML = "";
+
+    document.querySelectorAll(".class-button").forEach(function(button) {
+        button.classList.remove("active");
+    });
+    clickedButton.classList.add("active");
+
+    var heading = document.createElement("h2");
+    heading.textContent = className + " Government";
+    area.appendChild(heading);
+
+    Object.keys(data[className]).forEach(function(termName) {
+        var termButton = document.createElement("button");
+        termButton.className = "term-button";
+        termButton.textContent = termName + " ▼";
+
+        var termContent = document.createElement("div");
+        termContent.hidden = true;
+
+        termButton.onclick = function() {
+            termContent.hidden = !termContent.hidden;
+            termButton.textContent = termName +
+                (termContent.hidden ? " ▼" : " ▲");
+        };
+
+        data[className][termName].forEach(function(item) {
+            var topicButton = document.createElement("button");
+            topicButton.className = "topic-button";
+            topicButton.textContent = "+ " + item[0];
+
+            var lesson = document.createElement("div");
+            lesson.className = "lesson";
+            lesson.hidden = true;
+
+            var explanation = document.createElement("p");
+            explanation.textContent = item[1];
+
+            var example = document.createElement("p");
+            example.textContent = item[2];
+
+            lesson.appendChild(explanation);
+            lesson.appendChild(example);
+
+            topicButton.onclick = function() {
+                lesson.hidden = !lesson.hidden;
+                topicButton.textContent =
+                    (lesson.hidden ? "+ " : "− ") + item[0];
+            };
+
+            termContent.appendChild(topicButton);
+            termContent.appendChild(lesson);
+        });
+
+        area.appendChild(termButton);
+        area.appendChild(termContent);
+    });
+}
+
+showClass("SS1", document.querySelector(".class-button"));
+</script>
+
+</body>
+</html>

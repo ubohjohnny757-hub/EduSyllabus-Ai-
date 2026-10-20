@@ -1,0 +1,674 @@
+<!DOCTYPE ht
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Language | EduSyllabus</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f7fb;
+  color: #202938;
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(135deg, #064e3b, #0f766e);
+  color: white;
+  padding: 25px 18px;
+}
+
+.header-content {
+  max-width: 1000px;
+  margin: auto;
+}
+
+header h1 {
+  font-size: 28px;
+}
+
+header p {
+  margin-top: 5px;
+}
+
+nav {
+  background: white;
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  box-shadow: 0 2px 8px #00000010;
+}
+
+nav a {
+  text-decoration: none;
+  color: #065f46;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 22px 15px;
+}
+
+.welcome {
+  background: white;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 20px;
+  border-left: 5px solid #0d9488;
+}
+
+.welcome h2 {
+  color: #065f46;
+  margin-bottom: 8px;
+}
+
+.selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 25px;
+}
+
+select, input, button {
+  padding: 13px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+}
+
+select, input {
+  width: 100%;
+  background: white;
+}
+
+h2.section-heading {
+  color: #065f46;
+  margin: 20px 0 14px;
+}
+
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.topic-card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px #0000000c;
+  border: 1px solid #e5e7eb;
+}
+
+.topic-card h3 {
+  color: #065f46;
+  margin-bottom: 8px;
+}
+
+.topic-card p {
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.topic-card button, .action-button {
+  background: #0f766e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+}
+
+.topic-card button:hover, .action-button:hover {
+  background: #064e3b;
+}
+
+.lesson-box, .quiz-box {
+  background: white;
+  padding: 22px;
+  margin-top: 22px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.lesson-box h2, .quiz-box h2 {
+  color: #065f46;
+  margin-bottom: 10px;
+}
+
+.lesson-example {
+  background: #ecfdf5;
+  padding: 13px;
+  border-radius: 8px;
+  margin-top: 12px;
+}
+
+.quiz-option {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.quiz-option input {
+  width: auto;
+  margin-right: 8px;
+}
+
+#quizFeedback {
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}
+
+footer {
+  margin-top: 35px;
+  background: #064e3b;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+@media (max-width: 500px) {
+  header h1 {
+    font-size: 24px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-content">
+    <h1>EduSyllabus</h1>
+    <p>English Language Learning Centre</p>
+    <p>Read • Write • Speak • Succeed</p>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="curriculum.html">Curriculum</a>
+  <a href="quiz.html">All Quizzes</a>
+  <a href="ai-teacher.html">AI Teacher</a>
+</nav>
+
+<main class="container">
+
+  <section class="welcome">
+    <h2>Welcome to English Language</h2>
+    <p>
+      Improve your grammar, vocabulary, comprehension, essay writing
+      and oral English. Choose your class and school term to begin.
+    </p>
+  </section>
+
+  <section class="selection">
+    <select id="classChoice" aria-label="Choose class">
+      <option value="JSS1">JSS1</option>
+      <option value="JSS2">JSS2</option>
+      <option value="JSS3">JSS3</option>
+      <option value="SS1">SS1</option>
+      <option value="SS2">SS2</option>
+      <option value="SS3">SS3</option>
+    </select>
+
+    <select id="termChoice" aria-label="Choose term">
+      <option value="First Term">First Term</option>
+      <option value="Second Term">Second Term</option>
+      <option value="Third Term">Third Term</option>
+    </select>
+
+    <input id="topicSearch" type="search"
+      placeholder="Search for a topic..." aria-label="Search topics">
+  </section>
+
+  <h2 class="section-heading" id="topicHeading">Your English Topics</h2>
+  <section class="topic-grid" id="topicGrid"></section>
+
+  <section class="lesson-box hidden" id="lessonBox">
+    <h2 id="lessonTitle">Lesson</h2>
+    <p id="lessonDescription"></p>
+    <div class="lesson-example">
+      <strong>Example:</strong>
+      <p id="lessonExample"></p>
+    </div>
+    <button class="action-button" id="closeLesson" style="margin-top:15px">
+      Close Lesson
+    </button>
+  </section>
+
+  <section class="quiz-box">
+    <h2>Quick English Quiz</h2>
+    <p id="quizQuestion">Which word is a noun?</p>
+
+    <label class="quiz-option">
+      <input type="radio" name="answer" value="A"> Quickly
+    </label>
+
+    <label class="quiz-option">
+      <input type="radio" name="answer" value="B"> Teacher
+    </label>
+
+    <label class="quiz-option">
+      <input type="radio" name="answer" value="C"> Beautiful
+    </label>
+
+    <button class="action-button" id="checkAnswer">Check Answer</button>
+    <p id="quizFeedback" aria-live="polite"></p>
+    <button class="action-button" id="nextQuestion" style="margin-top:10px">
+      Next Question
+    </button>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2026 EduSyllabus</p>
+  <p>Education for Every Student</p>
+</footer>
+
+<script>
+const lessons = {
+  JSS1: {
+    "First Term": [
+      {
+        title: "Nouns",
+        description: "A noun names a person, place, animal, object or idea.",
+        example: "The teacher entered the classroom. Teacher and classroom are nouns."
+      },
+      {
+        title: "Pronouns",
+        description: "A pronoun replaces a noun to avoid repetition.",
+        example: "Mary is kind. She helps her friends. She is a pronoun."
+      },
+      {
+        title: "Comprehension",
+        description: "Comprehension means understanding a passage and answering questions about it.",
+        example: "Read carefully, identify the main idea and find evidence in the passage."
+      }
+    ],
+    "Second Term": [
+      {
+        title: "Verbs",
+        description: "A verb expresses an action, event or state.",
+        example: "The pupils read every morning. Read is the verb."
+      },
+      {
+        title: "Letter Writing",
+        description: "An informal letter is written to a friend or relative in a friendly style.",
+        example: "Begin with an appropriate greeting and organise your ideas into paragraphs."
+      },
+      {
+        title: "Vocabulary",
+        description: "Vocabulary is the collection of words you know and use.",
+        example: "Enormous means very large."
+      }
+    ],
+    "Third Term": [
+      {
+        title: "Tenses",
+        description: "Tenses show when actions happen.",
+        example: "Past: I played. Present: I play. Future: I will play."
+      },
+      {
+        title: "Punctuation",
+        description: "Punctuation marks organise writing and make meaning clear.",
+        example: "Where are you going? I am going home."
+      },
+      {
+        title: "Descriptive Essay",
+        description: "A descriptive essay describes a person, place, object or event.",
+        example: "Use clear details to help your reader imagine what you describe."
+      }
+    ]
+  },
+
+  JSS2: {
+    "First Term": [
+      {
+        title: "Adjectives",
+        description: "An adjective describes a noun or pronoun.",
+        example: "The clever girl answered correctly. Clever describes girl."
+      },
+      {
+        title: "Sentence Types",
+        description: "Sentences can make statements, ask questions, give commands or express strong feelings.",
+        example: "Statement: I am ready. Question: Are you ready?"
+      },
+      {
+        title: "Narrative Essay",
+        description: "A narrative essay tells a story in a logical sequence.",
+        example: "Include a beginning, middle and ending."
+      }
+    ],
+    "Second Term": [
+      {
+        title: "Conjunctions",
+        description: "Conjunctions join words, phrases or clauses.",
+        example: "I studied because I had a test."
+      },
+      {
+        title: "Formal Letters",
+        description: "Formal letters are used for official communication.",
+        example: "You may write to a principal to request permission for an activity."
+      },
+      {
+        title: "Direct and Reported Speech",
+        description: "Direct speech gives exact words; reported speech tells what someone said.",
+        example: "Direct: He said, 'I am happy.' Reported: He said that he was happy."
+      }
+    ],
+    "Third Term": [
+      {
+        title: "Active and Passive Voice",
+        description: "Active voice focuses on the doer; passive voice focuses on the receiver of an action.",
+        example: "Active: Ada baked the cake. Passive: The cake was baked by Ada."
+      },
+      {
+        title: "Summary Writing",
+        description: "A summary gives the main points of a passage briefly.",
+        example: "Use your own words and remove unnecessary details."
+      },
+      {
+        title: "Figures of Speech",
+        description: "Figures of speech make language expressive.",
+        example: "Simile: He is as brave as a lion."
+      }
+    ]
+  },
+
+  JSS3: {
+    "First Term": [
+      {
+        title: "Concord",
+        description: "Concord means grammatical agreement between words.",
+        example: "Correct: She sings well. They sing well."
+      },
+      {
+        title: "Clauses",
+        description: "A clause is a group of words containing a subject and a verb.",
+        example: "When the bell rang, the students left."
+      },
+      {
+        title: "Argumentative Essay",
+        description: "An argumentative essay presents a position supported by reasons and evidence.",
+        example: "Topic: Should students wear school uniforms?"
+      }
+    ],
+    "Second Term": [
+      {
+        title: "Complex Sentences",
+        description: "A complex sentence contains an independent clause and at least one dependent clause.",
+        example: "Although it rained, we went to school."
+      },
+      {
+        title: "Speech Writing",
+        description: "A speech is written to be delivered to an audience.",
+        example: "Topic: The importance of education."
+      },
+      {
+        title: "Oral English",
+        description: "Oral English develops pronunciation, listening and speaking skills.",
+        example: "Practise distinguishing similar sounds by listening carefully."
+      }
+    ],
+    "Third Term": [
+      {
+        title: "Comprehension Skills",
+        description: "Comprehension includes finding main ideas, meanings and implied information.",
+        example: "Support your answers with clues from the passage."
+      },
+      {
+        title: "Summary Revision",
+        description: "Summary writing requires concise and accurate expression of main points.",
+        example: "Do not introduce new ideas that are absent from the passage."
+      },
+      {
+        title: "Examination Preparation",
+        description: "Revise grammar, comprehension, writing, vocabulary and oral English.",
+        example: "Read each question carefully and manage your time."
+      }
+    ]
+  }
+};
+
+const seniorLessons = {
+  "First Term": [
+    {
+      title: "Grammar and Sentence Structure",
+      description: "Study clauses, sentence patterns, word functions and grammatical agreement.",
+      example: "Each of the students has a textbook."
+    },
+    {
+      title: "Essay Writing",
+      description: "Practise narrative, descriptive, expository and argumentative writing.",
+      example: "Organise your essay into an introduction, body paragraphs and conclusion."
+    },
+    {
+      title: "Oral English",
+      description: "Study speech sounds, word stress and intonation.",
+      example: "Practise pronouncing words clearly and distinguishing similar sounds."
+    }
+  ],
+  "Second Term": [
+    {
+      title: "Summary and Comprehension",
+      description: "Identify key ideas, infer meaning and express important points concisely.",
+      example: "Use evidence from the passage to support your answers."
+    },
+    {
+      title: "Vocabulary and Idioms",
+      description: "Learn word meanings, idiomatic expressions and appropriate word usage.",
+      example: "Once in a blue moon means very rarely."
+    },
+    {
+      title: "Formal Writing",
+      description: "Write formal letters, reports and speeches using suitable language and organisation.",
+      example: "Use a respectful, clear tone in official communication."
+    }
+  ],
+  "Third Term": [
+    {
+      title: "Lexis and Structure",
+      description: "Choose words and grammatical forms that correctly complete sentences.",
+      example: "Check the whole sentence to understand which word fits best."
+    },
+    {
+      title: "Advanced Essay Practice",
+      description: "Develop clear arguments, relevant examples and coherent paragraphs.",
+      example: "Plan your main points before beginning the essay."
+    },
+    {
+      title: "Examination Revision",
+      description: "Revise grammar, comprehension, summary, essays and oral English.",
+      example: "Practise with appropriate past questions and review your mistakes."
+    }
+  ]
+};
+
+const classChoice = document.getElementById("classChoice");
+const termChoice = document.getElementById("termChoice");
+const topicSearch = document.getElementById("topicSearch");
+const topicGrid = document.getElementById("topicGrid");
+const lessonBox = document.getElementById("lessonBox");
+
+function getLessons() {
+  const selectedClass = classChoice.value;
+  const selectedTerm = termChoice.value;
+
+  if (lessons[selectedClass]) {
+    return lessons[selectedClass][selectedTerm];
+  }
+
+  return seniorLessons[selectedTerm];
+}
+
+function displayTopics() {
+  const selectedClass = classChoice.value;
+  const selectedTerm = termChoice.value;
+  const query = topicSearch.value.toLowerCase().trim();
+
+  document.getElementById("topicHeading").textContent =
+    selectedClass + " English Language - " + selectedTerm;
+
+  topicGrid.innerHTML = "";
+  lessonBox.classList.add("hidden");
+
+  const filtered = getLessons().filter(function(lesson) {
+    return lesson.title.toLowerCase().includes(query) ||
+           lesson.description.toLowerCase().includes(query);
+  });
+
+  if (filtered.length === 0) {
+    topicGrid.innerHTML =
+      "<p>No topics found. Try a different search.</p>";
+    return;
+  }
+
+  filtered.forEach(function(lesson, index) {
+    const card = document.createElement("article");
+    card.className = "topic-card";
+
+    const title = document.createElement("h3");
+    title.textContent = lesson.title;
+
+    const description = document.createElement("p");
+    description.textContent = lesson.description;
+
+    const button = document.createElement("button");
+    button.textContent = "Open Lesson";
+    button.addEventListener("click", function() {
+      openLesson(lesson);
+    });
+
+    card.appendChild(title);
+    card.appendChild(description);
+    card.appendChild(button);
+    topicGrid.appendChild(card);
+  });
+}
+
+function openLesson(lesson) {
+  document.getElementById("lessonTitle").textContent = lesson.title;
+  document.getElementById("lessonDescription").textContent =
+    lesson.description;
+  document.getElementById("lessonExample").textContent = lesson.example;
+
+  lessonBox.classList.remove("hidden");
+  lessonBox.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+document.getElementById("closeLesson").addEventListener("click", function() {
+  lessonBox.classList.add("hidden");
+});
+
+classChoice.addEventListener("change", displayTopics);
+termChoice.addEventListener("change", displayTopics);
+topicSearch.addEventListener("input", displayTopics);
+
+const questions = [
+  {
+    question: "Which word is a noun?",
+    options: ["Quickly", "Teacher", "Beautiful"],
+    answer: 1,
+    explanation: "Teacher is a noun because it names a person."
+  },
+  {
+    question: "Choose the correct sentence.",
+    options: [
+      "She go to school.",
+      "She goes to school.",
+      "She going school."
+    ],
+    answer: 1,
+    explanation: "She goes to school is correct in the simple present tense."
+  },
+  {
+    question: "Which word is an adjective?",
+    options: ["Happiness", "Run", "Beautiful"],
+    answer: 2,
+    explanation: "Beautiful describes a noun, so it is an adjective."
+  },
+  {
+    question: "What is the past tense of 'write'?",
+    options: ["Writed", "Written", "Wrote"],
+    answer: 2,
+    explanation: "The simple past tense of write is wrote."
+  }
+];
+
+let questionIndex = 0;
+
+function showQuestion() {
+  const question = questions[questionIndex];
+
+  document.getElementById("quizQuestion").textContent =
+    question.question;
+
+  const labels = document.querySelectorAll(".quiz-option");
+
+  labels.forEach(function(label, index) {
+    label.innerHTML = "";
+
+    const radio = document.createElement("input");
+    radio.type = "radio";
+    radio.name = "answer";
+    radio.value = index;
+
+    label.appendChild(radio);
+    label.appendChild(
+      document.createTextNode(" " + question.options[index])
+    );
+  });
+
+  document.getElementById("quizFeedback").textContent = "";
+}
+
+document.getElementById("checkAnswer").addEventListener("click", function() {
+  const selected = document.querySelector('input[name="answer"]:checked');
+  const feedback = document.getElementById("quizFeedback");
+
+  if (!selected) {
+    feedback.textContent = "Please select an answer first.";
+    return;
+  }
+
+  const question = questions[questionIndex];
+
+  if (Number(selected.value) === question.answer) {
+    feedback.textContent = "Correct! " + question.explanation;
+  } else {
+    feedback.textContent = "Not quite. " + question.explanation;
+  }
+});
+
+document.getElementById("nextQuestion").addEventListener("click", function() {
+  questionIndex = (questionIndex + 1) % questions.length;
+  showQuestion();
+});
+
+displayTopics();
+showQuestion();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!DOCTY
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Science | EduSyllabus</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #172033;
+}
+header {
+  background: #075e54;
+  color: white;
+  padding: 22px 15px;
+  text-align: center;
+}
+header h1 { margin: 0 0 8px; }
+header p { margin: 0; }
+main { max-width: 850px; margin: auto; padding: 16px; }
+.home {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #075e54;
+  font-weight: bold;
+}
+h2 { color: #075e54; }
+.class-button {
+  display: inline-block;
+  margin: 4px;
+  padding: 12px 16px;
+  border: 0;
+  border-radius: 7px;
+  background: #0b806f;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+.class-button:focus,
+.class-button:hover { background: #064e45; }
+.class-content {
+  margin-top: 18px;
+  padding: 16px;
+  background: white;
+  border-radius: 10px;
+}
+.term {
+  margin: 12px 0;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.term summary {
+  padding: 14px;
+  background: #dff5ee;
+  color: #064e45;
+  font-weight: bold;
+  cursor: pointer;
+}
+.term ul { padding: 0 20px 0 38px; }
+.term li { margin: 12px 0; line-height: 1.5; }
+.note { color: #475569; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <h1>EduSyllabus</h1>
+  <p>Computer Science Curriculum</p>
+  <p>JSS1–JSS3 and SS1–SS3</p>
+</header>
+
+<main>
+  <a class="home" href="index.html">← Back to Home</a>
+  <h2>Select Your Class</h2>
+  <p>Tap a class to view its curriculum.</p>
+
+  <div>
+    <button class="class-button" onclick="showClass('jss1')">JSS1</button>
+    <button class="class-button" onclick="showClass('jss2')">JSS2</button>
+    <button class="class-button" onclick="showClass('jss3')">JSS3</button>
+    <button class="class-button" onclick="showClass('ss1')">SS1</button>
+    <button class="class-button" onclick="showClass('ss2')">SS2</button>
+    <button class="class-button" onclick="showClass('ss3')">SS3</button>
+  </div>
+
+  <section id="jss1" class="class-content">
+    <h2>JSS1 Computer Science</h2>
+    <details class="term" open>
+      <summary>First Term</summary>
+      <ul>
+        <li>Meaning and importance of a computer</li>
+        <li>Characteristics and uses of computers</li>
+        <li>Parts of a computer system</li>
+        <li>Input and output devices</li>
+        <li>Keyboard and mouse operations</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Second Term</summary>
+      <ul>
+        <li>Computer hardware and software</li>
+        <li>Types of computers</li>
+        <li>Starting and shutting down a computer</li>
+        <li>Introduction to the desktop and icons</li>
+        <li>Computer room safety and care</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Third Term</summary>
+      <ul>
+        <li>Introduction to word processing</li>
+        <li>Typing and editing simple text</li>
+        <li>Saving and opening documents</li>
+        <li>Introduction to the internet</li>
+        <li>Responsible use of computers</li>
+      </ul>
+    </details>
+  </section>
+
+  <section id="jss2" class="class-content" hidden>
+    <h2>JSS2 Computer Science</h2>
+    <details class="term" open>
+      <summary>First Term</summary>
+      <ul>
+        <li>Revision of computer fundamentals</li>
+        <li>Data and information</li>
+        <li>Data processing cycle</li>
+        <li>Computer memory and storage devices</li>
+        <li>File and folder management</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Second Term</summary>
+      <ul>
+        <li>Word processing: formatting documents</li>
+        <li>Creating and formatting tables</li>
+        <li>Introduction to spreadsheets</li>
+        <li>Rows, columns, cells and simple formulas</li>
+        <li>Computer networks and their uses</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Third Term</summary>
+      <ul>
+        <li>Internet services and web browsers</li>
+        <li>Search engines and effective searching</li>
+        <li>Email and online communication</li>
+        <li>Computer viruses and protection</li>
+        <li>Introduction to algorithms and flowcharts</li>
+      </ul>
+    </details>
+  </section>
+
+  <section id="jss3" class="class-content" hidden>
+    <h2>JSS3 Computer Science</h2>
+    <details class="term" open>
+      <summary>First Term</summary>
+      <ul>
+        <li>Review of computer hardware and software</li>
+        <li>Number systems: binary and decimal</li>
+        <li>Data representation</li>
+        <li>Computer networks and communication</li>
+        <li>Digital safety and privacy</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Second Term</summary>
+      <ul>
+        <li>Spreadsheet calculations and functions</li>
+        <li>Creating charts and graphs</li>
+        <li>Presentation software</li>
+        <li>Algorithms and flowchart symbols</li>
+        <li>Introduction to programming concepts</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Third Term</summary>
+      <ul>
+        <li>Introduction to web pages and HTML</li>
+        <li>Basic HTML elements</li>
+        <li>Introduction to databases</li>
+        <li>Computer ethics and cyber safety</li>
+        <li>Revision and practical projects</li>
+      </ul>
+    </details>
+  </section>
+
+  <section id="ss1" class="class-content" hidden>
+    <h2>SS1 Computer Science</h2>
+    <details class="term" open>
+      <summary>First Term</summary>
+      <ul>
+        <li>Evolution and generations of computers</li>
+        <li>Classification and types of computers</li>
+        <li>Computer hardware and software</li>
+        <li>Input, output and storage devices</li>
+        <li>Computer memory and data units</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Second Term</summary>
+      <ul>
+        <li>Number systems and conversions</li>
+        <li>Binary arithmetic</li>
+        <li>Data representation and coding</li>
+        <li>Operating systems and their functions</li>
+        <li>Computer maintenance and security</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Third Term</summary>
+      <ul>
+        <li>Problem-solving techniques</li>
+        <li>Algorithms and flowcharts</li>
+        <li>Introduction to programming languages</li>
+        <li>Basic HTML and web page structure</li>
+        <li>Computer networks and the internet</li>
+      </ul>
+    </details>
+  </section>
+
+  <section id="ss2" class="class-content" hidden>
+    <h2>SS2 Computer Science</h2>
+    <details class="term" open>
+      <summary>First Term</summary>
+      <ul>
+        <li>Boolean algebra and logic gates</li>
+        <li>Computer system architecture</li>
+        <li>Central processing unit and its functions</li>
+        <li>Operating system concepts</li>
+        <li>Programming fundamentals and variables</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Second Term</summary>
+      <ul>
+        <li>Algorithms, pseudocode and flowcharts</li>
+        <li>Selection and repetition in programming</li>
+        <li>Arrays and simple data structures</li>
+        <li>Database concepts and database tables</li>
+        <li>Spreadsheet functions and data analysis</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Third Term</summary>
+      <ul>
+        <li>Computer networks and network topologies</li>
+        <li>Internet protocols and web services</li>
+        <li>Cybersecurity and data protection</li>
+        <li>HTML forms and web page styling</li>
+        <li>Programming and database practical work</li>
+      </ul>
+    </details>
+  </section>
+
+  <section id="ss3" class="class-content" hidden>
+    <h2>SS3 Computer Science</h2>
+    <details class="term" open>
+      <summary>First Term</summary>
+      <ul>
+        <li>Revision of computer fundamentals</li>
+        <li>Advanced number system operations</li>
+        <li>Logic gates and Boolean expressions</li>
+        <li>Programming problem-solving techniques</li>
+        <li>Data structures and algorithms</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Second Term</summary>
+      <ul>
+        <li>Database design and queries</li>
+        <li>Network security and data protection</li>
+        <li>Software development and testing</li>
+        <li>Web development practical work</li>
+        <li>Computer ethics and emerging technologies</li>
+      </ul>
+    </details>
+    <details class="term">
+      <summary>Third Term</summary>
+      <ul>
+        <li>Revision of major topics</li>
+        <li>Past-question practice</li>
+        <li>Practical computer exercises</li>
+        <li>Programming and database revision</li>
+        <li>Preparation for final examinations</li>
+      </ul>
+    </details>
+  </section>
+
+  <p class="note">Note: These are general study topics. Check your school's approved curriculum for the exact term-by-term syllabus.</p>
+</main>
+
+<script>
+function showClass(classId) {
+  var sections = document.querySelectorAll(".class-content");
+
+  sections.forEach(function(section) {
+    section.hidden = true;
+  });
+
+  var selected = document.getElementById(classId);
+
+  if (selected) {
+    selected.hidden = false;
+  }
+}
+</script>
+</body>
+</html>
